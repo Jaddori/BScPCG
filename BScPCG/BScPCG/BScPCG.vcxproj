@@ -127,13 +127,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Assets.h" />
-    <ClInclude Include="Foo.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
-    <ClCompile Include="Foo.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>

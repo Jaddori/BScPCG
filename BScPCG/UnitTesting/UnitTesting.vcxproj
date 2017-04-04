@@ -127,7 +127,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AssetsTest.cpp" />
-    <ClCompile Include="FooTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="TextureTest.cpp" />

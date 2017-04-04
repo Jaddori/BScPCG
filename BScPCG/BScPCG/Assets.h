@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include <stdint.h>
+#include <assert.h>
 
 namespace Assets
 {
@@ -13,7 +14,7 @@ namespace Assets
 		Asset();
 		~Asset();
 
-		virtual bool Load( const std::string& path, AssetManager* assets ) = 0;
+		virtual bool Load(const std::string& path) = 0;
 		virtual void Unload() = 0;
 		virtual void Upload() = 0;
 		virtual void Bind() = 0;
@@ -30,13 +31,36 @@ namespace Assets
 		~AssetManager();
 
 		template<typename T>
-		int Load( const std::string& path )
+		int Load(const std::string& path)
 		{
-			return 0;
+			int result = -1;
+			for(int i=0; i<paths.size() && result < 0; i++)
+			{
+				if(paths[i] == path)
+				{
+					result = i;
+				}
+			}
+
+			if(result < 0)
+			{
+				T* asset = new T();
+				if(asset->Load(path))
+				{
+					result = assets.size();
+
+					assets.push_back(asset);
+					paths.push_back(path);
+				}
+				else
+					delete asset;
+			}
+
+			return result;
 		}
 
 		void Unload();
-		void BindAsset( int index );
+		void BindAsset(int index);
 
 	private:
 		std::vector<Asset*> assets;

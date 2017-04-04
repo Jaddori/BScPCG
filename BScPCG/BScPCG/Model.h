@@ -21,7 +21,7 @@ namespace Assets
 		Model();
 		~Model();
 
-		bool Load(const std::string& path, AssetManager* assets) override;
+		bool Load(const std::string& path) override;
 		void Unload() override;
 		void Upload() override;
 		void Bind() override;
