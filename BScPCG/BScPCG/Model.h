@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Assets.h"
+#include "GL\glew.h"
 
 namespace Assets
 {
@@ -14,12 +15,12 @@ namespace Assets
 		void Unload() override;
 		void Bind() override;
 
-		unsigned int GetVertexArray() const;
+		GLuint GetVertexArray() const;
 		int GetNumIndices() const;
 
 	private:
-		unsigned int vertexBuffer, indexBuffer;
-		unsigned int vertexArray;
+		GLuint vertexBuffer, indexBuffer;
+		GLuint vertexArray;
 		int numIndices;
 	};
 }

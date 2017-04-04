@@ -23,7 +23,7 @@ namespace Assets
 	{
 	}
 
-	unsigned int Texture::GetID() const
+	GLuint Texture::GetID() const
 	{
 		return 0;
 	}

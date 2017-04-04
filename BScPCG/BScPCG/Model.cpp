@@ -23,7 +23,7 @@ namespace Assets
 	{
 	}
 
-	unsigned int Model::GetVertexArray() const
+	GLuint Model::GetVertexArray() const
 	{
 		return 0;
 	}
