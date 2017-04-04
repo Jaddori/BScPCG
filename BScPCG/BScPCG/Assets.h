@@ -14,6 +14,7 @@ namespace Assets
 
 		virtual bool Load( const std::string& path, AssetManager* assets ) = 0;
 		virtual void Unload() = 0;
+		virtual void Upload() = 0;
 		virtual void Bind() = 0;
 		int GetSize();
 

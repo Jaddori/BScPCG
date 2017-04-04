@@ -13,6 +13,7 @@ namespace Assets
 
 		bool Load( const std::string& path, AssetManager* assets ) override;
 		void Unload() override;
+		void Upload() override;
 		void Bind() override;
 
 		GLuint GetID() const;

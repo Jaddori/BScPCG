@@ -79,7 +79,7 @@ namespace AutoTester
                     MessageBox.Show("Failed to start.\nNo output file selected.", "AutoTester - Error");
                 else
                 {
-                    ReadResults();
+                    RunTests();
 
                     watchTimer.Start();
                     btn_start.Text = "Stop";
@@ -89,6 +89,11 @@ namespace AutoTester
         }
 
         private void watchTimer_Tick(object sender, EventArgs e)
+        {
+            RunTests();
+        }
+
+        private void RunTests()
         {
             try
             {
@@ -102,10 +107,11 @@ namespace AutoTester
                     ProcessStartInfo startInfo = new ProcessStartInfo(testFile, "--gtest_output=xml:" + outputFile);
                     startInfo.CreateNoWindow = true;
                     startInfo.UseShellExecute = false;
+                    startInfo.WorkingDirectory = Path.GetDirectoryName(testFile);
                     Process p = Process.Start(startInfo);
                     p.WaitForExit();
 
-                    ReadResults();                    
+                    ReadResults();
                 }
             }
             catch (Exception exc)

@@ -19,6 +19,10 @@ namespace Assets
 	{
 	}
 
+	void Texture::Upload()
+	{
+	}
+
 	void Texture::Bind()
 	{
 	}
