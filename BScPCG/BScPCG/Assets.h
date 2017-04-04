@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <stdint.h>
 
 namespace Assets
 {
@@ -18,7 +19,7 @@ namespace Assets
 		virtual void Bind() = 0;
 		int GetSize();
 
-	private:
+	protected:
 		int size;
 	};
 
