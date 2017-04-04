@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.tree_results = new System.Windows.Forms.TreeView();
             this.lbl_test = new System.Windows.Forms.Label();
             this.txt_testFile = new System.Windows.Forms.TextBox();
@@ -42,6 +43,7 @@
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.lbl_runtime = new System.Windows.Forms.Label();
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // tree_results
@@ -161,6 +163,14 @@
             this.lbl_runtime.TabIndex = 10;
             this.lbl_runtime.Text = "N/A";
             // 
+            // notifyIcon
+            // 
+            this.notifyIcon.BalloonTipTitle = "AutoTester";
+            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
+            this.notifyIcon.Text = "AutoTester";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.Click += new System.EventHandler(this.notifyIcon_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,6 +189,7 @@
             this.Name = "MainForm";
             this.Text = "AutoTester";
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Resize += new System.EventHandler(this.MainForm_Resize);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -199,6 +210,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.Label lbl_runtime;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

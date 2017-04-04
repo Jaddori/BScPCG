@@ -19,6 +19,8 @@ namespace AutoTester
         private string testFile;
         private string outputFile;
         private DateTime prevTime;
+        private int totalTests;
+        private int successfulTests;
 
         public MainForm()
         {
@@ -103,7 +105,7 @@ namespace AutoTester
                     Process p = Process.Start(startInfo);
                     p.WaitForExit();
 
-                    ReadResults();
+                    ReadResults();                    
                 }
             }
             catch (Exception exc)
@@ -141,6 +143,8 @@ namespace AutoTester
             xmlReader.Close();*/
 
             tree_results.Nodes.Clear();
+            totalTests = 0;
+            successfulTests = 0;
 
             XmlDocument doc = new XmlDocument();
             doc.Load(outputFile);
@@ -152,6 +156,11 @@ namespace AutoTester
                     ReadTestsuite(node);
                 }
             }
+
+            string tip = successfulTests.ToString() + "/" + totalTests.ToString() + " tests succeeded.";
+            notifyIcon.Text = tip;
+            notifyIcon.BalloonTipText = tip;
+            notifyIcon.ShowBalloonTip(2000);
         }
 
         /*private void ReadTestsuite(XmlReader xmlReader)
@@ -180,6 +189,9 @@ namespace AutoTester
             int failures = int.Parse(parent.Attributes["failures"].Value);
             int successes = tests - failures;
             float time = float.Parse(parent.Attributes["time"].Value.Replace('.', ','));
+
+            totalTests += tests;
+            successfulTests += successes;
 
             TreeNode testsuiteNode = new TreeNode(name + " (" + successes.ToString() + "/" + tests.ToString() + ") - " + time.ToString() + "s");
             testsuiteNode.BackColor = Color.LightGreen;
@@ -230,6 +242,20 @@ namespace AutoTester
 
             TreeNode messageNode = new TreeNode(cdata.Data);
             testcaseNode.Nodes.Add(messageNode);
+        }
+
+        private void MainForm_Resize(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+            }
+        }
+
+        private void notifyIcon_Click(object sender, EventArgs e)
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
         }
     }
 }
