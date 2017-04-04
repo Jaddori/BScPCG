@@ -8,6 +8,8 @@
 *.sln.docstates
 *.orig
 *.filters
+*.lib
+*.exe
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
