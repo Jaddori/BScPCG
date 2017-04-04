@@ -136,7 +136,7 @@
             // 
             // watchTimer
             // 
-            this.watchTimer.Interval = 1000;
+            this.watchTimer.Interval = 10000;
             this.watchTimer.Tick += new System.EventHandler(this.watchTimer_Tick);
             // 
             // openFileDialog

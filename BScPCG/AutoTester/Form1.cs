@@ -77,6 +77,8 @@ namespace AutoTester
                     MessageBox.Show("Failed to start.\nNo output file selected.", "AutoTester - Error");
                 else
                 {
+                    ReadResults();
+
                     watchTimer.Start();
                     btn_start.Text = "Stop";
                     running = true;
@@ -86,20 +88,27 @@ namespace AutoTester
 
         private void watchTimer_Tick(object sender, EventArgs e)
         {
-            DateTime curTime = File.GetLastWriteTime(testFile);
-            if (curTime != prevTime)
+            try
             {
-                prevTime = curTime;
+                DateTime curTime = File.GetLastWriteTime(testFile);
+                if (curTime != prevTime)
+                {
+                    prevTime = curTime;
 
-                lbl_runtime.Text = curTime.ToString();
+                    lbl_runtime.Text = curTime.ToString();
 
-                ProcessStartInfo startInfo = new ProcessStartInfo(testFile, "--gtest_output=xml:" + outputFile);
-                startInfo.CreateNoWindow = true;
-                startInfo.UseShellExecute = false;
-                Process p = Process.Start(startInfo);
-                p.WaitForExit();
+                    ProcessStartInfo startInfo = new ProcessStartInfo(testFile, "--gtest_output=xml:" + outputFile);
+                    startInfo.CreateNoWindow = true;
+                    startInfo.UseShellExecute = false;
+                    Process p = Process.Start(startInfo);
+                    p.WaitForExit();
 
-                ReadResults();
+                    ReadResults();
+                }
+            }
+            catch (Exception exc)
+            {
+                lbl_runtime.Text = "FAILED";
             }
         }
 
@@ -130,6 +139,8 @@ namespace AutoTester
             }
 
             xmlReader.Close();*/
+
+            tree_results.Nodes.Clear();
 
             XmlDocument doc = new XmlDocument();
             doc.Load(outputFile);
@@ -171,6 +182,7 @@ namespace AutoTester
             float time = float.Parse(parent.Attributes["time"].Value.Replace('.', ','));
 
             TreeNode testsuiteNode = new TreeNode(name + " (" + successes.ToString() + "/" + tests.ToString() + ") - " + time.ToString() + "s");
+            testsuiteNode.BackColor = Color.LightGreen;
 
             foreach (XmlNode node in parent.ChildNodes)
             {
