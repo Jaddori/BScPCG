@@ -160,4 +160,34 @@ namespace Rendering
 
 		return result;
 	}
+
+	void Shader::SetInt(GLuint location, int value)
+	{
+		glUniform1i(location, value);
+	}
+
+	void Shader::SetFloat(GLuint location, float value)
+	{
+		glUniform1f(location, value);
+	}
+
+	void Shader::SetVec2(GLuint location, const glm::vec2& value)
+	{
+		glUniform2f(location, value.x, value.y);
+	}
+
+	void Shader::SetVec3(GLuint location, const glm::vec3& value)
+	{
+		glUniform3f(location, value.x, value.y, value.z);
+	}
+
+	void Shader::SetVec4(GLuint location, const glm::vec4& value)
+	{
+		glUniform4f(location, value.x, value.y, value.z, value.w);
+	}
+
+	void Shader::SetMat4(GLuint location, const glm::mat4& value)
+	{
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+	}
 }

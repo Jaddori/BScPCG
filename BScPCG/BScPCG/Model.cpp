@@ -87,9 +87,10 @@ namespace Assets
 		delete[] indices;
 	}
 
-	void Model::Bind()
+	void Model::Render(int instances)
 	{
 		glBindVertexArray(vertexArray);
+		glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
 	}
 
 	GLuint Model::GetVertexArray() const

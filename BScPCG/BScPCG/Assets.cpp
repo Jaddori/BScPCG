@@ -2,51 +2,62 @@
 
 namespace Assets
 {
-	// ***************************************
-	// Asset
-	// ***************************************
-	Asset::Asset()
-		: size(0)
-	{
-	}
-
-	Asset::~Asset()
-	{
-	}
-
-	int Asset::GetSize()
-	{
-		return size;
-	}
-
-	// ***************************************
-	// Assets
-	// ***************************************
 	AssetManager::AssetManager()
 	{
 	}
 	
 	AssetManager::~AssetManager()
 	{
-		Unload();
+	}
+
+	int AssetManager::LoadModel(const std::string& path)
+	{
+		int result = -1;
+
+		Model model;
+		if(model.Load(path))
+		{
+			result = models.size();
+
+			models.push_back(model);
+			modelPaths.push_back(path);
+		}
+
+		return result;
+	}
+
+	void AssetManager::RenderModel(int index, int instances)
+	{
+		models[index].Render(instances);
+	}
+
+	int AssetManager::LoadTexture(const std::string& path)
+	{
+		int result = -1;
+
+		Texture texture;
+		if(texture.Load(path))
+		{
+			result = textures.size();
+
+			textures.push_back(texture);
+			texturePaths.push_back(path);
+		}
+
+		return result;
+	}
+
+	void AssetManager::BindTexture(int index)
+	{
+		textures[index].Bind();
 	}
 
 	void AssetManager::Unload()
 	{
-		for(int i=0; i<assets.size(); i++)
-		{
-			assets[i]->Unload();
-			delete assets[i];
-		}
+		models.clear();
+		modelPaths.clear();
 
-		assets.clear();
-		paths.clear();
-	}
-
-	void AssetManager::BindAsset(int index)
-	{
-		assert(index >= 0 && index < assets.size());
-
-		assets[index]->Bind();
+		textures.clear();
+		texturePaths.clear();
 	}
 }

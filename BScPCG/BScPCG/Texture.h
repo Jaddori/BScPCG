@@ -1,6 +1,7 @@
 #pragma once
 
-#include "Assets.h"
+#include <stdint.h>
+#include <string>
 #include "GL\glew.h"
 
 #define DDS_MAGIC_NUMBER 0x20534444 // 'DDS ' in hex
@@ -40,16 +41,16 @@ namespace Assets
 		int32_t           reserved2;
 	};
 
-	class Texture : public Asset
+	class Texture
 	{
 	public:
 		Texture();
 		~Texture();
 
-		bool Load(const std::string& path) override;
-		void Unload() override;
-		void Upload() override;
-		void Bind() override;
+		bool Load(const std::string& path);
+		void Unload();
+		void Upload();
+		void Bind();
 
 		GLuint GetID() const;
 		int GetWidth() const;
@@ -57,7 +58,7 @@ namespace Assets
 
 	private:
 		GLuint id;
-		int width, height;
+		int width, height, size;
 		GLenum format;
 		GLbyte* pixels;
 	};

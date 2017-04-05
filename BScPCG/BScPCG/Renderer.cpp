@@ -2,6 +2,14 @@
 
 namespace Rendering
 {
+	int CompareElements(const void* a, const void* b)
+	{
+		int akey = *(int*)a;
+		int bkey = *(int*)b;
+
+		return akey - bkey;
+	}
+
 	Renderer::Renderer()
 	{
 	}
@@ -10,22 +18,57 @@ namespace Rendering
 	{
 	}
 
-	void Renderer::Render( Assets::AssetManager* assets )
+	void Renderer::Load()
 	{
+		shader.Load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
+
+		worldMatrixLocation = shader.GetUniform("WorldMatrix");
+		viewMatrixLocation = shader.GetUniform("ViewMatrix");
+		projectionMatrixLocation = shader.GetUniform("ProjectionMatrix");
 	}
 
-	RenderQueue* Renderer::GetRenderQueue()
+	void Renderer::AddElement(int model, int texture, const glm::vec3& position)
 	{
-		return nullptr;
+		RenderElement element = { model, texture, position };
+		elements.push_back(element);
+		worldMatrices.push_back(glm::mat4());
+	}
+
+	void Renderer::Render( Assets::AssetManager* assets )
+	{
+		// sort elements
+		std::qsort(elements.data(), elements.size(), sizeof(RenderElement), CompareElements);
+
+		// create world matrices from positions
+		for(size_t i=0; i<elements.size(); i++)
+		{
+			glm::translate(worldMatrices[i], elements[i].position);
+		}
+
+		// update uniforms
+		shader.SetMat4(projectionMatrixLocation, camera.GetProjectionMatrix());
+		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
+
+		// render all elements
+		for(size_t i=0; i<elements.size(); i++)
+		{
+			shader.SetMat4(worldMatrixLocation, worldMatrices[i]);
+			assets->BindTexture(elements[i].texture);
+			assets->RenderModel(elements[i].model, 1);
+		}
+
+		// clear lists
+		elements.clear();
+		worldMatrices.clear();
 	}
 
 	Shader* Renderer::GetShader()
 	{
-		return nullptr;
+		return &shader;
 	}
 
 	Camera* Renderer::GetCamera()
 	{
-		return nullptr;
+		return &camera;
 	}
 }
