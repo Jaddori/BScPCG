@@ -23,7 +23,6 @@ namespace Rendering
 		bool CompileShader( GLuint shader );
 		bool LinkProgram();
 
-		GLuint vertexShader, geometryShader, fragmentShader;
 		GLuint shaderProgram;
 	};
 }
