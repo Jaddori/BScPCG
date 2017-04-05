@@ -79,8 +79,9 @@ namespace Assets
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-	void Texture::Bind()
+	void Texture::Bind(GLenum target)
 	{
+		glActiveTexture(target);
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 

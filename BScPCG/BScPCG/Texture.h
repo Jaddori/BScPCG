@@ -50,7 +50,7 @@ namespace Assets
 		bool Load(const std::string& path);
 		void Unload();
 		void Upload();
-		void Bind();
+		void Bind(GLenum target = GL_TEXTURE0);
 
 		GLuint GetID() const;
 		int GetWidth() const;
