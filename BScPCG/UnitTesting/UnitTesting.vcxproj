@@ -131,7 +131,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="RendererTest.cpp" />
-    <ClCompile Include="RenderQueueTest.cpp" />
     <ClCompile Include="ShaderTest.cpp" />
     <ClCompile Include="TextureTest.cpp" />
   </ItemGroup>
