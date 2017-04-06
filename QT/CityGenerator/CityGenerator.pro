@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets opengl
 TARGET = CityGenerator
 TEMPLATE = app
 
-LIBS += -L$$OUT_PWD/../../BScPCG/lib -L$$OUT_PWD/../../BScPCG/build -lglew32s -lopengl32
+LIBS += -L$$OUT_PWD/../../BScPCG/lib -L$$OUT_PWD/../../BScPCG/build -lglew32s -lopengl32 -lelicras
 INCLUDEPATH += $$OUT_PWD/../../BScPCG/include \
                 $$OUT_PWD/../../BScPCG/BScPCG
 
@@ -36,3 +36,5 @@ HEADERS  += mainwindow.h \
     glwidget.h
 
 FORMS    += mainwindow.ui
+
+DESTDIR = $$OUT_PWD/../../BScPCG/build

@@ -22,38 +22,28 @@ void GLWidget::initializeGL()
 {
     qDebug( "OpenGL Version: %s", glGetString(GL_VERSION) );
 
+    // initalize GLEW
     glewExperimental = GL_TRUE;
-    glewInit() == GLEW_OK;
+    glewInit();
 
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
+    // setup OpenGL flags
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+    glDisable(GL_CULL_FACE);
 
-    glEnableVertexAttribArray(0);
+    // load assets
+    model = assets.LoadModel("./assets/models/valid_model.model");
+    texture = assets.LoadTexture("./assets/textures/valid_texture.dds");
 
-    glGenBuffers(1, &vbo);
-    glGenBuffers(1, &ibo);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-
-    GLfloat vdata[] = { 0.0f, 1.0f, 1.0f, -1.0f, -1.0f, -1.0f };
-    GLuint idata[] = { 0, 1, 2 };
-
-    glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*6, vdata, GL_STATIC_DRAW);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*3, idata, GL_STATIC_DRAW);
-
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat)*2, 0);
-
-    glBindVertexArray(0);
+    // load the renderer
+    renderer.Load();
 }
 
 void GLWidget::paintGL()
 {
-    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glBindVertexArray(vao);
-    glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, NULL);
+    renderer.AddElement(model, texture, glm::vec3(0.0f));
+    renderer.Render(&assets);
 }
 
 void GLWidget::resizeGL(int w, int h)

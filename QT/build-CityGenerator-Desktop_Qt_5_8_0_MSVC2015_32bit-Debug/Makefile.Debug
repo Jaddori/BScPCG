@@ -17,7 +17,7 @@ CXXFLAGS      = -nologo -Zc:wchar_t -FS -Zc:strictStrings -Zc:throwingNew -Zi -M
 INCPATH       = -I..\CityGenerator -I. -I..\..\BScPCG\include -I..\..\BScPCG\BScPCG -ID:\Qt\5.8\msvc2015\include -ID:\Qt\5.8\msvc2015\include\QtOpenGL -ID:\Qt\5.8\msvc2015\include\QtWidgets -ID:\Qt\5.8\msvc2015\include\QtGui -ID:\Qt\5.8\msvc2015\include\QtANGLE -ID:\Qt\5.8\msvc2015\include\QtCore -Idebug -I. -ID:\Qt\5.8\msvc2015\mkspecs\win32-msvc2015 
 LINKER        = link
 LFLAGS        = /NOLOGO /DYNAMICBASE /NXCOMPAT /DEBUG /SUBSYSTEM:WINDOWS "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'"
-LIBS          = /LIBPATH:D:\Qt\5.8\msvc2015\lib D:\Qt\5.8\msvc2015\lib\qtmaind.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:D:\dev\Git\BScPCG\BScPCG\lib /LIBPATH:D:\dev\Git\BScPCG\BScPCG\build D:\dev\Git\BScPCG\BScPCG\lib\glew32s.lib opengl32.lib D:\Qt\5.8\msvc2015\lib\Qt5OpenGLd.lib D:\Qt\5.8\msvc2015\lib\Qt5Widgetsd.lib D:\Qt\5.8\msvc2015\lib\Qt5Guid.lib D:\Qt\5.8\msvc2015\lib\Qt5Cored.lib 
+LIBS          = /LIBPATH:D:\Qt\5.8\msvc2015\lib D:\Qt\5.8\msvc2015\lib\qtmaind.lib /LIBPATH:C:\utils\my_sql\my_sql\lib /LIBPATH:C:\utils\postgresql\pgsql\lib shell32.lib /LIBPATH:D:\dev\Git\BScPCG\BScPCG\lib /LIBPATH:D:\dev\Git\BScPCG\BScPCG\build D:\dev\Git\BScPCG\BScPCG\lib\glew32s.lib opengl32.lib D:\dev\Git\BScPCG\BScPCG\build\elicras.lib D:\Qt\5.8\msvc2015\lib\Qt5OpenGLd.lib D:\Qt\5.8\msvc2015\lib\Qt5Widgetsd.lib D:\Qt\5.8\msvc2015\lib\Qt5Guid.lib D:\Qt\5.8\msvc2015\lib\Qt5Cored.lib 
 QMAKE         = D:\Qt\5.8\msvc2015\bin\qmake.exe
 IDC           = idc
 IDL           = midl
@@ -58,9 +58,9 @@ DIST          =  ..\CityGenerator\mainwindow.h \
 		..\CityGenerator\mainwindow.cpp \
 		..\CityGenerator\glwidget.cpp
 QMAKE_TARGET  = CityGenerator
-DESTDIR        = debug\ #avoid trailing-slash linebreak
+DESTDIR        = ..\..\BScPCG\build\ #avoid trailing-slash linebreak
 TARGET         = CityGenerator.exe
-DESTDIR_TARGET = debug\CityGenerator.exe
+DESTDIR_TARGET = ..\..\BScPCG\build\CityGenerator.exe
 
 ####### Implicit rules
 
@@ -146,10 +146,10 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) debug\main.obj debug\mainwindow.obj debug\glwidget.obj debug\moc_mainwindow.obj debug\moc_glwidget.obj
-	-$(DEL_FILE) debug\CityGenerator.exp debug\CityGenerator.vc.pdb debug\CityGenerator.ilk debug\CityGenerator.idb
+	-$(DEL_FILE) ..\..\BScPCG\build\CityGenerator.exp debug\CityGenerator.vc.pdb ..\..\BScPCG\build\CityGenerator.ilk ..\..\BScPCG\build\CityGenerator.idb
 
 distclean: clean 
-	-$(DEL_FILE) .qmake.stash debug\CityGenerator.lib debug\CityGenerator.pdb
+	-$(DEL_FILE) .qmake.stash ..\..\BScPCG\build\CityGenerator.lib ..\..\BScPCG\build\CityGenerator.pdb
 	-$(DEL_FILE) $(DESTDIR_TARGET)
 	-$(DEL_FILE) Makefile.Debug
 
@@ -403,6 +403,99 @@ debug\moc_glwidget.cpp: ..\..\BScPCG\include\GL\glew.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qtimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
+		..\..\BScPCG\BScPCG\Assets.h \
+		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\include\glm\glm.hpp \
+		..\..\BScPCG\include\glm\detail\_fixes.hpp \
+		..\..\BScPCG\include\glm\fwd.hpp \
+		..\..\BScPCG\include\glm\detail\type_int.hpp \
+		..\..\BScPCG\include\glm\detail\setup.hpp \
+		..\..\BScPCG\include\glm\detail\type_float.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec.hpp \
+		..\..\BScPCG\include\glm\detail\precision.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat.hpp \
+		..\..\BScPCG\include\glm\vec2.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle_func.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.inl \
+		..\..\BScPCG\include\glm\vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.inl \
+		..\..\BScPCG\include\glm\vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_sse2.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx2.inl \
+		..\..\BScPCG\include\glm\mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.inl \
+		..\..\BScPCG\include\glm\mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.inl \
+		..\..\BScPCG\include\glm\mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.inl \
+		..\..\BScPCG\include\glm\mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.inl \
+		..\..\BScPCG\include\glm\mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.inl \
+		..\..\BScPCG\include\glm\mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.inl \
+		..\..\BScPCG\include\glm\mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.inl \
+		..\..\BScPCG\include\glm\mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.inl \
+		..\..\BScPCG\include\glm\mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.inl \
+		..\..\BScPCG\include\glm\trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.inl \
+		..\..\BScPCG\include\glm\detail\_vectorize.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.inl \
+		..\..\BScPCG\include\glm\exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.inl \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.hpp \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.inl \
+		..\..\BScPCG\include\glm\common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.inl \
+		..\..\BScPCG\include\glm\packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.inl \
+		..\..\BScPCG\include\glm\detail\type_half.hpp \
+		..\..\BScPCG\include\glm\detail\type_half.inl \
+		..\..\BScPCG\include\glm\geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.inl \
+		..\..\BScPCG\include\glm\matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.inl \
+		..\..\BScPCG\include\glm\vector_relational.hpp \
+		..\..\BScPCG\include\glm\integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Renderer.h \
+		..\..\BScPCG\BScPCG\Shader.h \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Camera.h \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
 		..\CityGenerator\glwidget.h \
 		debug\moc_predefs.h \
 		D:\Qt\5.8\msvc2015\bin\moc.exe
@@ -535,7 +628,100 @@ ui_mainwindow.h: ..\CityGenerator\mainwindow.ui \
 		D:\Qt\5.8\msvc2015\include\QtCore\QTimer \
 		D:\Qt\5.8\msvc2015\include\QtCore\qtimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
-		D:\Qt\5.8\msvc2015\include\QtCore\QDebug
+		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
+		..\..\BScPCG\BScPCG\Assets.h \
+		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\include\glm\glm.hpp \
+		..\..\BScPCG\include\glm\detail\_fixes.hpp \
+		..\..\BScPCG\include\glm\fwd.hpp \
+		..\..\BScPCG\include\glm\detail\type_int.hpp \
+		..\..\BScPCG\include\glm\detail\setup.hpp \
+		..\..\BScPCG\include\glm\detail\type_float.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec.hpp \
+		..\..\BScPCG\include\glm\detail\precision.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat.hpp \
+		..\..\BScPCG\include\glm\vec2.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle_func.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.inl \
+		..\..\BScPCG\include\glm\vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.inl \
+		..\..\BScPCG\include\glm\vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_sse2.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx2.inl \
+		..\..\BScPCG\include\glm\mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.inl \
+		..\..\BScPCG\include\glm\mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.inl \
+		..\..\BScPCG\include\glm\mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.inl \
+		..\..\BScPCG\include\glm\mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.inl \
+		..\..\BScPCG\include\glm\mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.inl \
+		..\..\BScPCG\include\glm\mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.inl \
+		..\..\BScPCG\include\glm\mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.inl \
+		..\..\BScPCG\include\glm\mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.inl \
+		..\..\BScPCG\include\glm\mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.inl \
+		..\..\BScPCG\include\glm\trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.inl \
+		..\..\BScPCG\include\glm\detail\_vectorize.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.inl \
+		..\..\BScPCG\include\glm\exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.inl \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.hpp \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.inl \
+		..\..\BScPCG\include\glm\common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.inl \
+		..\..\BScPCG\include\glm\packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.inl \
+		..\..\BScPCG\include\glm\detail\type_half.hpp \
+		..\..\BScPCG\include\glm\detail\type_half.inl \
+		..\..\BScPCG\include\glm\geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.inl \
+		..\..\BScPCG\include\glm\matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.inl \
+		..\..\BScPCG\include\glm\vector_relational.hpp \
+		..\..\BScPCG\include\glm\integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Renderer.h \
+		..\..\BScPCG\BScPCG\Shader.h \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Camera.h \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
 	D:\Qt\5.8\msvc2015\bin\uic.exe ..\CityGenerator\mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -819,7 +1005,100 @@ debug\mainwindow.obj: ..\CityGenerator\mainwindow.cpp ../CityGenerator/mainwindo
 		D:\Qt\5.8\msvc2015\include\QtCore\QTimer \
 		D:\Qt\5.8\msvc2015\include\QtCore\qtimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
-		D:\Qt\5.8\msvc2015\include\QtCore\QDebug
+		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
+		..\..\BScPCG\BScPCG\Assets.h \
+		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\include\glm\glm.hpp \
+		..\..\BScPCG\include\glm\detail\_fixes.hpp \
+		..\..\BScPCG\include\glm\fwd.hpp \
+		..\..\BScPCG\include\glm\detail\type_int.hpp \
+		..\..\BScPCG\include\glm\detail\setup.hpp \
+		..\..\BScPCG\include\glm\detail\type_float.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec.hpp \
+		..\..\BScPCG\include\glm\detail\precision.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat.hpp \
+		..\..\BScPCG\include\glm\vec2.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle_func.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.inl \
+		..\..\BScPCG\include\glm\vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.inl \
+		..\..\BScPCG\include\glm\vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_sse2.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx2.inl \
+		..\..\BScPCG\include\glm\mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.inl \
+		..\..\BScPCG\include\glm\mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.inl \
+		..\..\BScPCG\include\glm\mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.inl \
+		..\..\BScPCG\include\glm\mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.inl \
+		..\..\BScPCG\include\glm\mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.inl \
+		..\..\BScPCG\include\glm\mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.inl \
+		..\..\BScPCG\include\glm\mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.inl \
+		..\..\BScPCG\include\glm\mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.inl \
+		..\..\BScPCG\include\glm\mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.inl \
+		..\..\BScPCG\include\glm\trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.inl \
+		..\..\BScPCG\include\glm\detail\_vectorize.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.inl \
+		..\..\BScPCG\include\glm\exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.inl \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.hpp \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.inl \
+		..\..\BScPCG\include\glm\common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.inl \
+		..\..\BScPCG\include\glm\packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.inl \
+		..\..\BScPCG\include\glm\detail\type_half.hpp \
+		..\..\BScPCG\include\glm\detail\type_half.inl \
+		..\..\BScPCG\include\glm\geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.inl \
+		..\..\BScPCG\include\glm\matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.inl \
+		..\..\BScPCG\include\glm\vector_relational.hpp \
+		..\..\BScPCG\include\glm\integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Renderer.h \
+		..\..\BScPCG\BScPCG\Shader.h \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Camera.h \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
 
 debug\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h \
 		..\..\BScPCG\include\GL\glew.h \
@@ -941,7 +1220,100 @@ debug\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QTimer \
 		D:\Qt\5.8\msvc2015\include\QtCore\qtimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
-		D:\Qt\5.8\msvc2015\include\QtCore\QDebug
+		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
+		..\..\BScPCG\BScPCG\Assets.h \
+		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\include\glm\glm.hpp \
+		..\..\BScPCG\include\glm\detail\_fixes.hpp \
+		..\..\BScPCG\include\glm\fwd.hpp \
+		..\..\BScPCG\include\glm\detail\type_int.hpp \
+		..\..\BScPCG\include\glm\detail\setup.hpp \
+		..\..\BScPCG\include\glm\detail\type_float.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec.hpp \
+		..\..\BScPCG\include\glm\detail\precision.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat.hpp \
+		..\..\BScPCG\include\glm\vec2.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle.hpp \
+		..\..\BScPCG\include\glm\detail\_swizzle_func.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec2.inl \
+		..\..\BScPCG\include\glm\vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec3.inl \
+		..\..\BScPCG\include\glm\vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec4.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_sse2.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx.inl \
+		..\..\BScPCG\include\glm\detail\type_vec4_avx2.inl \
+		..\..\BScPCG\include\glm\mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x2.inl \
+		..\..\BScPCG\include\glm\mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x3.inl \
+		..\..\BScPCG\include\glm\mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat2x4.inl \
+		..\..\BScPCG\include\glm\mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x2.inl \
+		..\..\BScPCG\include\glm\mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x3.inl \
+		..\..\BScPCG\include\glm\mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat3x4.inl \
+		..\..\BScPCG\include\glm\mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x2.inl \
+		..\..\BScPCG\include\glm\mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x3.inl \
+		..\..\BScPCG\include\glm\mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.hpp \
+		..\..\BScPCG\include\glm\detail\type_mat4x4.inl \
+		..\..\BScPCG\include\glm\trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_trigonometric.inl \
+		..\..\BScPCG\include\glm\detail\_vectorize.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.hpp \
+		..\..\BScPCG\include\glm\detail\type_vec1.inl \
+		..\..\BScPCG\include\glm\exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.hpp \
+		..\..\BScPCG\include\glm\detail\func_exponential.inl \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.hpp \
+		..\..\BScPCG\include\glm\detail\func_vector_relational.inl \
+		..\..\BScPCG\include\glm\common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.hpp \
+		..\..\BScPCG\include\glm\detail\func_common.inl \
+		..\..\BScPCG\include\glm\packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.hpp \
+		..\..\BScPCG\include\glm\detail\func_packing.inl \
+		..\..\BScPCG\include\glm\detail\type_half.hpp \
+		..\..\BScPCG\include\glm\detail\type_half.inl \
+		..\..\BScPCG\include\glm\geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.hpp \
+		..\..\BScPCG\include\glm\detail\func_geometric.inl \
+		..\..\BScPCG\include\glm\matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.hpp \
+		..\..\BScPCG\include\glm\detail\func_matrix.inl \
+		..\..\BScPCG\include\glm\vector_relational.hpp \
+		..\..\BScPCG\include\glm\integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.hpp \
+		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Renderer.h \
+		..\..\BScPCG\BScPCG\Shader.h \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Camera.h \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 

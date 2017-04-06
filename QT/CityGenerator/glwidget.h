@@ -6,6 +6,11 @@
 #include <QMouseEvent>
 #include <QTimer>
 #include <QDebug>
+#include "Assets.h"
+#include "Renderer.h"
+
+using namespace Assets;
+using namespace Rendering;
 
 class GLWidget : public QOpenGLWidget
 {
@@ -33,7 +38,10 @@ private:
     bool spaceKey, leftShiftKey;
     bool xKey, wKey, aKey, sKey, dKey;*/
 
-    GLuint vbo, ibo, vao;
+    AssetManager assets;
+    Renderer renderer;
+
+    int model, texture;
 };
 
 #endif // GLWIDGET_H

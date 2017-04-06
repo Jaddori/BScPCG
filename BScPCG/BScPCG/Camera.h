@@ -17,6 +17,9 @@ namespace Rendering
 
 		void Update( float deltaTime );
 
+		void SetPosition(const glm::vec3& position);
+		void SetLookAt(const glm::vec3& lookAt);
+
 		const glm::mat4& GetViewMatrix() const;
 		const glm::mat4& GetProjectionMatrix() const;
 		const glm::vec3& GetPosition() const;

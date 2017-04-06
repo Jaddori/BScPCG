@@ -17,6 +17,8 @@ namespace Assets
 		Model model;
 		if(model.Load(path))
 		{
+			model.Upload();
+
 			result = models.size();
 
 			models.push_back(model);
@@ -38,6 +40,8 @@ namespace Assets
 		Texture texture;
 		if(texture.Load(path))
 		{
+			texture.Upload();
+
 			result = textures.size();
 
 			textures.push_back(texture);

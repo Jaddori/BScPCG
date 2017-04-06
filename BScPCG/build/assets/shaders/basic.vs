@@ -1,4 +1,4 @@
-#version 320
+#version 450
 
 layout(location=0) in vec3 PositionIn;
 layout(location=1) in vec2 UVIn;
@@ -12,5 +12,5 @@ uniform mat4 WorldMatrix;
 
 void main()
 {
-	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrix * vec4(Position,1.0);
-}
+	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrix * vec4(PositionIn,1.0);
+};

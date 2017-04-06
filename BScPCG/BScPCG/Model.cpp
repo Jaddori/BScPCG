@@ -9,7 +9,6 @@ namespace Assets
 
 	Model::~Model()
 	{
-		Unload();
 	}
 
 	bool Model::Load(const std::string& path)
@@ -85,12 +84,16 @@ namespace Assets
 
 		delete[] vertices;
 		delete[] indices;
+
+		vertices = nullptr;
+		indices = nullptr;
 	}
 
 	void Model::Render(int instances)
 	{
 		glBindVertexArray(vertexArray);
-		glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
+		//glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
+		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
 	}
 
 	GLuint Model::GetVertexArray() const

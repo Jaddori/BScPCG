@@ -77,6 +77,9 @@ namespace Assets
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glCompressedTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, size, pixels);
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		delete[] pixels;
+		pixels = nullptr;
 	}
 
 	void Texture::Bind(GLenum target)

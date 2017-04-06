@@ -51,7 +51,10 @@ namespace Rendering
 		{
 			glDeleteProgram(shaderProgram);
 			shaderProgram = 0;
-			result = false;
+		}
+		else
+		{
+			result = true;
 		}
 
 		if(vertexShader > 0)
@@ -92,20 +95,23 @@ namespace Rendering
 		GLuint result = 0;
 
 		FILE* file = NULL;
-		fopen_s(&file, path, "r");
+		fopen_s(&file, path, "rb");
 		if(file)
 		{
 			fseek(file, 0, SEEK_END);
 			int len = ftell(file);
 			fseek(file, 0, SEEK_SET);
 
-			char* text = new char[len];
+			char* text = new char[len+1];
 			fread(text, sizeof(char), len, file);
+			text[len] = 0;
 
 			fclose(file);
 
 			result = glCreateShader( shaderType );
-			glShaderSource(result, 1, &text, 0);
+			glShaderSource(result, 1, &text, NULL);
+
+			delete[] text;
 			
 			if(!CompileShader(result))
 			{

@@ -14,7 +14,17 @@ namespace Rendering
 
 	void Camera::Update( float deltaTime )
 	{
-		viewMatrix = glm::lookAt(position, position+lookAt, glm::vec3(0.0f,1.0f,0.0f));
+		viewMatrix = glm::lookAt(position, lookAt, glm::vec3(0.0f,1.0f,0.0f));
+	}
+
+	void Camera::SetPosition(const glm::vec3& p)
+	{
+		position = p;
+	}
+
+	void Camera::SetLookAt(const glm::vec3& l)
+	{
+		lookAt = l;
 	}
 
 	const glm::mat4& Camera::GetViewMatrix() const

@@ -21,9 +21,11 @@ namespace Rendering
 		~Renderer();
 
 		void Load();
+		void DEBUG_Load();
 
 		void AddElement(int model, int texture, const glm::vec3& position);
 		void Render(Assets::AssetManager* assets);
+		void DEBUG_Render();
 
 		Shader* GetShader();
 		Camera* GetCamera();
@@ -38,5 +40,7 @@ namespace Rendering
 		GLuint worldMatrixLocation;
 		GLuint viewMatrixLocation;
 		GLuint projectionMatrixLocation;
+
+		GLuint DEBUG_vbo, DEBUG_ibo, DEBUG_vao;
 	};
 }

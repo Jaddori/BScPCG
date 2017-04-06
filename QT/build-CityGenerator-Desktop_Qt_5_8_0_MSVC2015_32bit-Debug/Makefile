@@ -390,13 +390,13 @@ qmake_all: FORCE
 make_first: debug-make_first release-make_first  FORCE
 all: debug-all release-all  FORCE
 clean: debug-clean release-clean  FORCE
-	-$(DEL_FILE) CityGenerator.exp
+	-$(DEL_FILE) ..\..\BScPCG\build\CityGenerator.exp
 	-$(DEL_FILE) CityGenerator.vc.pdb
-	-$(DEL_FILE) CityGenerator.ilk
-	-$(DEL_FILE) CityGenerator.idb
+	-$(DEL_FILE) ..\..\BScPCG\build\CityGenerator.ilk
+	-$(DEL_FILE) ..\..\BScPCG\build\CityGenerator.idb
 distclean: debug-distclean release-distclean  FORCE
 	-$(DEL_FILE) Makefile
-	-$(DEL_FILE) .qmake.stash CityGenerator.lib CityGenerator.pdb
+	-$(DEL_FILE) .qmake.stash ..\..\BScPCG\build\CityGenerator.lib ..\..\BScPCG\build\CityGenerator.pdb
 
 debug-mocclean:
 	@set MAKEFLAGS=$(MAKEFLAGS)
