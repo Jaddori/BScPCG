@@ -84,8 +84,6 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
 
     renderer.GetCamera()->SetPosition(cameraPosition);
     update();
-
-    qDebug("Got input.");
 }
 
 void GLWidget::keyReleaseEvent(QKeyEvent* event)
