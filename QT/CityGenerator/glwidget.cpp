@@ -27,8 +27,8 @@ void GLWidget::initializeGL()
     glewInit();
 
     // setup OpenGL flags
-    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
-    glDisable(GL_CULL_FACE);
+    glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
+    glEnable(GL_CULL_FACE);
 
     // load assets
     model = assets.LoadModel("./assets/models/valid_model.model");
@@ -40,7 +40,7 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     renderer.AddElement(model, texture, glm::vec3(0.0f));
     renderer.Render(&assets);
@@ -48,6 +48,7 @@ void GLWidget::paintGL()
 
 void GLWidget::resizeGL(int w, int h)
 {
+    glViewport(0,0,w,h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
@@ -60,45 +61,34 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     mouseY = newY;
 
     rmb = event->buttons() & Qt::RightButton;*/
-    event->ignore();
+    QOpenGLWidget::mouseMoveEvent(event);
 }
 
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
-    /*if( event->key() == Qt::Key_Space )
-        spaceKey = true;
-    else if( event->key() == Qt::Key_Shift )
-        leftShiftKey = true;
-    else if( event->key() == Qt::Key_X )
-        xKey = true;
-    else if( event->key() == Qt::Key_W )
-        wKey = true;
-    else if( event->key() == Qt::Key_A )
-        aKey = true;
-    else if( event->key() == Qt::Key_S )
-        sKey = true;
-    else if( event->key() == Qt::Key_D )
-        dKey = true;
-    else*/
-        event->ignore();
+    glm::vec3 cameraPosition = renderer.GetCamera()->GetPosition();
+    if(event->key() == Qt::Key_W)
+        cameraPosition.z += 1.0f;
+    else if(event->key() == Qt::Key_S)
+        cameraPosition.z -= 1.0f;
+    else if(event->key() == Qt::Key_D)
+        cameraPosition.x += 1.0f;
+    else if(event->key() == Qt::Key_A)
+        cameraPosition.x -= 1.0f;
+    else if(event->key() == Qt::Key_Up)
+        cameraPosition.y += 1.0f;
+    else if(event->key() == Qt::Key_Down)
+        cameraPosition.y -= 1.0f;
+    else
+        QOpenGLWidget::keyPressEvent(event);
+
+    renderer.GetCamera()->SetPosition(cameraPosition);
+    update();
+
+    qDebug("Got input.");
 }
 
 void GLWidget::keyReleaseEvent(QKeyEvent* event)
 {
-    /*if( event->key() == Qt::Key_Space )
-        spaceKey = false;
-    else if( event->key() == Qt::Key_Shift )
-        leftShiftKey = false;
-    else if( event->key() == Qt::Key_X )
-        xKey = false;
-    else if( event->key() == Qt::Key_W )
-        wKey = false;
-    else if( event->key() == Qt::Key_A )
-        aKey = false;
-    else if( event->key() == Qt::Key_S )
-        sKey = false;
-    else if( event->key() == Qt::Key_D )
-        dKey = false;
-    else*/
-        event->ignore();
+    QOpenGLWidget::keyReleaseEvent(event);
 }

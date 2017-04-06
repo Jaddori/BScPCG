@@ -1,8 +1,12 @@
-#version 450
+#version 330 core
 
-out vec4 FragColor;
+in vec2 fragUV;
+
+out vec4 finalColor;
+
+uniform sampler2D DiffuseTexture;
 
 void main()
 {
-	FragColor = vec4(1.0, 0.0, 0.0, 1.0);
+	finalColor = texture2D(DiffuseTexture, fragUV);
 };

@@ -58,6 +58,16 @@ namespace Assets
 
 	void AssetManager::Unload()
 	{
+		for(size_t i=0; i<models.size(); i++)
+		{
+			models[i].Unload();
+		}
+
+		for(size_t i=0; i<textures.size(); i++)
+		{
+			textures[i].Unload();
+		}
+
 		models.clear();
 		modelPaths.clear();
 

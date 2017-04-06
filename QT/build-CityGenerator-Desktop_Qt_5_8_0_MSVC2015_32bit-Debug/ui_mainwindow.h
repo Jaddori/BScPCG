@@ -35,7 +35,10 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         widget = new GLWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 20, 281, 231));
+        widget->setGeometry(QRect(30, 20, 800, 600));
+        widget->setMouseTracking(false);
+        widget->setFocusPolicy(Qt::ClickFocus);
+        widget->setAutoFillBackground(false);
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);

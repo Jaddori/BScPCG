@@ -9,7 +9,6 @@ namespace Assets
 
 	Texture::~Texture()
 	{
-		Unload();
 	}
 
 	bool Texture::Load(const std::string& path)

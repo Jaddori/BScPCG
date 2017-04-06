@@ -22,6 +22,8 @@ TEST(ModelTest, ValidLoad)
 
 	EXPECT_EQ(model.GetVertexCount(), 23);
 	EXPECT_EQ(model.GetIndexCount(), 36);
+
+	model.Load("./assets/models/plane.model");
 }
 
 TEST(ModelTest, InvalidLoad)
