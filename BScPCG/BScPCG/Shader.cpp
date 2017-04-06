@@ -94,8 +94,7 @@ namespace Rendering
 
 		GLuint result = 0;
 
-		FILE* file = NULL;
-		fopen_s(&file, path, "rb");
+		FILE* file = fopen(path, "rb");
 		if(file)
 		{
 			fseek(file, 0, SEEK_END);

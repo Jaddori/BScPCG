@@ -15,8 +15,7 @@ namespace Assets
 	{
 		bool result = false;
 
-		FILE* file = NULL;
-		fopen_s(&file, path.c_str(), "rb");
+		FILE* file = fopen(path.c_str(), "rb");
 		if(file)
 		{
 			int32_t magicNumber;

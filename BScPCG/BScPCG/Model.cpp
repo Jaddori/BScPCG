@@ -15,8 +15,7 @@ namespace Assets
 	{
 		bool result = false;
 
-		FILE* file = NULL;
-		fopen_s(&file, path.c_str(), "rb");
+		FILE* file = fopen(path.c_str(), "rb");
 		if(file)
 		{
 			fread(&vertexCount, sizeof(vertexCount), 1, file);

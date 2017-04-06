@@ -32,7 +32,7 @@ namespace Rendering
 
 	void Renderer::AddElement(int model, int texture, const glm::vec3& position)
 	{
-		RenderElement element = { model, texture, position };
+		RenderElement element = { (uint16_t)model, (uint16_t)texture, position };
 		elements.push_back(element);
 		worldMatrices.push_back(glm::mat4());
 	}
