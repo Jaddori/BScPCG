@@ -1,8 +1,6 @@
 #pragma once
 
-#include <stdint.h>
-#include <string>
-#include "GL\glew.h"
+#include "BaseIncludes.h"
 
 #define DDS_MAGIC_NUMBER 0x20534444 // 'DDS ' in hex
 #define ID_DXT1 0x31545844

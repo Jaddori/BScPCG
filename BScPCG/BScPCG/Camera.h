@@ -1,8 +1,6 @@
 #pragma once
 
-#include "glm\glm.hpp"
-#include "glm\matrix.hpp"
-#include "glm\gtc\matrix_transform.hpp"
+#include "BaseIncludes.h"
 
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 720

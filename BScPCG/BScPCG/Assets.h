@@ -1,9 +1,6 @@
 #pragma once
 
-#include <string>
-#include <vector>
-#include <stdint.h>
-#include <assert.h>
+#include "BaseIncludes.h"
 #include "Model.h"
 #include "Texture.h"
 

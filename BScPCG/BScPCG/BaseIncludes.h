@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <map>
+#include <assert.h>
 
 #ifdef WIN32
 
@@ -12,7 +13,7 @@
 #include "glm\gtc\matrix_transform.hpp"
 #include "glm\gtc\type_ptr.hpp"
 
-#elif
+#else
 
 #include <OpenGL\gl3.h>
 #include <glm\glm.hpp>
