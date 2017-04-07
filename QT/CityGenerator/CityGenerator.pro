@@ -11,8 +11,12 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets opengl
 TARGET = CityGenerator
 TEMPLATE = app
 
-LIBS += -L$$OUT_PWD/../../BScPCG/lib -L$$OUT_PWD/../../BScPCG/build -lglew32s -lopengl32 -lelicras
-INCLUDEPATH += $$OUT_PWD/../../BScPCG/include \
+win32: LIBS += -L$$OUT_PWD/../../BScPCG/lib -L$$OUT_PWD/../../BScPCG/build -lglew32s -lopengl32 -lelicras
+else:unix: LIBS += -L$$OUT_PWD/../../BScPCG/build -lelicras
+
+win32: INCLUDEPATH += $$OUT_PWD/../../BScPCG/include \
+                $$OUT_PWD/../../BScPCG/BScPCG
+else:unix: INCLUDEPATH += $$OUT_PWD/../../BScPCG/include \
                 $$OUT_PWD/../../BScPCG/BScPCG
 
 # The following define makes your compiler emit warnings if you use

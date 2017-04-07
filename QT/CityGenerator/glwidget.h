@@ -1,7 +1,13 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
+#if defined(Q_OS_WIN)
 #include "GL/glew.h"
+#else
+#include <OpenGL/gl3.h>
+#include <OpenGL/glext.h>
+#endif
+
 #include <QOpenGLWidget>
 #include <QMouseEvent>
 #include <QTimer>

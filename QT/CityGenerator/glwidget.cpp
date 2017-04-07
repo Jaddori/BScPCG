@@ -21,11 +21,16 @@ GLWidget::~GLWidget()
 
 void GLWidget::initializeGL()
 {
-    qDebug( "OpenGL Version: %s", glGetString(GL_VERSION) );
+    qDebug("OpenGL Version: %s", glGetString(GL_VERSION));
 
+#if defined(Q_OS_WIN)
     // initalize GLEW
     glewExperimental = GL_TRUE;
-    glewInit();
+    if(glewInit() != GLEW_OK)
+    {
+        qDebug("Failed to initialize GLEW.");
+    }
+#endif
 
     // setup OpenGL flags
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
