@@ -404,7 +404,7 @@ release\moc_glwidget.cpp: ..\..\BScPCG\include\GL\glew.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
-		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\BScPCG\BaseIncludes.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -484,18 +484,19 @@ release\moc_glwidget.cpp: ..\..\BScPCG\include\GL\glew.h \
 		..\..\BScPCG\include\glm\integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
-		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.inl \
-		..\..\BScPCG\include\glm\gtc\quaternion.inl \
-		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
 		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
 		..\CityGenerator\glwidget.h \
 		release\moc_predefs.h \
 		D:\Qt\5.8\msvc2015\bin\moc.exe
@@ -630,7 +631,7 @@ ui_mainwindow.h: ..\CityGenerator\mainwindow.ui \
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
-		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\BScPCG\BaseIncludes.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -710,18 +711,19 @@ ui_mainwindow.h: ..\CityGenerator\mainwindow.ui \
 		..\..\BScPCG\include\glm\integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
-		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.inl \
-		..\..\BScPCG\include\glm\gtc\quaternion.inl \
-		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
+		..\..\BScPCG\BScPCG\Camera.h
 	D:\Qt\5.8\msvc2015\bin\uic.exe ..\CityGenerator\mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -1007,7 +1009,7 @@ release\mainwindow.obj: ..\CityGenerator\mainwindow.cpp ../CityGenerator/mainwin
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
-		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\BScPCG\BaseIncludes.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -1087,18 +1089,19 @@ release\mainwindow.obj: ..\CityGenerator\mainwindow.cpp ../CityGenerator/mainwin
 		..\..\BScPCG\include\glm\integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
-		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.inl \
-		..\..\BScPCG\include\glm\gtc\quaternion.inl \
-		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
+		..\..\BScPCG\BScPCG\Camera.h
 
 release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h \
 		..\..\BScPCG\include\GL\glew.h \
@@ -1222,7 +1225,7 @@ release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h 
 		D:\Qt\5.8\msvc2015\include\QtCore\qbasictimer.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
-		..\..\BScPCG\BScPCG\Model.h \
+		..\..\BScPCG\BScPCG\BaseIncludes.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -1302,18 +1305,19 @@ release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h 
 		..\..\BScPCG\include\glm\integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.hpp \
 		..\..\BScPCG\include\glm\detail\func_integer.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.hpp \
+		..\..\BScPCG\include\glm\gtc\constants.inl \
+		..\..\BScPCG\include\glm\gtc\matrix_transform.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
+		..\..\BScPCG\include\glm\gtc\quaternion.inl \
+		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
+		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\include\glm\gtc\type_ptr.hpp \
-		..\..\BScPCG\include\glm\gtc\quaternion.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.hpp \
-		..\..\BScPCG\include\glm\gtc\constants.inl \
-		..\..\BScPCG\include\glm\gtc\quaternion.inl \
-		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.hpp \
-		..\..\BScPCG\include\glm\gtc\matrix_transform.inl
+		..\..\BScPCG\BScPCG\Camera.h
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 

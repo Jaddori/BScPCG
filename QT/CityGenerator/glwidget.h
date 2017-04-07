@@ -1,7 +1,7 @@
 #ifndef GLWIDGET_H
 #define GLWIDGET_H
 
-#if defined(Q_OS_WIN)
+#if _WIN32
 #include "GL/glew.h"
 #else
 #include <OpenGL/gl3.h>
