@@ -8,5 +8,5 @@ uniform sampler2D DiffuseTexture;
 
 void main()
 {
-	finalColor = texture2D(DiffuseTexture, fragUV);
-};
+	finalColor = texture(DiffuseTexture, fragUV);
+}

@@ -5,9 +5,10 @@ GLWidget::GLWidget(QWidget *parent)
 {
     QSurfaceFormat format;
     format.setVersion(4,5);
-    format.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
     format.setProfile(QSurfaceFormat::CoreProfile);
     setFormat(format);
+
+    QSurfaceFormat::setDefaultFormat(format);
 
     /*leftShiftKey = spaceKey = xKey = wKey = aKey = sKey = dKey = false;
     connect(&timer, SIGNAL(timeout()), this, SLOT(update()));

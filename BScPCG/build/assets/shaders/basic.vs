@@ -16,4 +16,4 @@ void main()
 {
 	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrix * vec4(vertPosition,1.0);
 	fragUV = vertUV;
-};
+}
