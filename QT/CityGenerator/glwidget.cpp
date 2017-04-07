@@ -23,7 +23,7 @@ void GLWidget::initializeGL()
 {
     qDebug("OpenGL Version: %s", glGetString(GL_VERSION));
 
-#if defined(Q_OS_WIN)
+#if _WIN32
     // initalize GLEW
     glewExperimental = GL_TRUE;
     if(glewInit() != GLEW_OK)
