@@ -37,17 +37,12 @@ protected:
 private:
    // QTimer timer;
 
-    /*int mouseX, mouseY;
-    float deltaX, deltaY;
-    float mouseScroll;
-    bool rmb;
-    bool spaceKey, leftShiftKey;
-    bool xKey, wKey, aKey, sKey, dKey;*/
-
     AssetManager assets;
     Renderer renderer;
 
     int model, texture;
+
+    int mouseX, mouseY;
 };
 
 #endif // GLWIDGET_H

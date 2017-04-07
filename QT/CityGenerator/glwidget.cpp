@@ -1,7 +1,7 @@
 #include "glwidget.h"
 
 GLWidget::GLWidget(QWidget *parent)
-    : QOpenGLWidget(parent)
+    : QOpenGLWidget(parent), mouseX(-1), mouseY(-1)
 {
     QSurfaceFormat format;
     format.setVersion(4,5);
@@ -59,36 +59,64 @@ void GLWidget::resizeGL(int w, int h)
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    /*int newX = event->localPos().x();
-    int newY = event->localPos().y();
-    deltaX = mouseX - newX;
-    deltaY = mouseY - newY;
-    mouseX = newX;
-    mouseY = newY;
+    if(event->buttons() & Qt::LeftButton)
+    {
+        // get the position of the mouse cursor
+        int newX = event->localPos().x();
+        int newY = event->localPos().y();
 
-    rmb = event->buttons() & Qt::RightButton;*/
-    QOpenGLWidget::mouseMoveEvent(event);
+        int deltaX = mouseX - newX;
+        int deltaY = mouseY - newY;
+
+        if(mouseX >= 0 && mouseY >= 0)
+        {
+            // move the camera with the mouse
+            renderer.GetCamera()->UpdateDirection(deltaX, deltaY);
+            update();
+        }
+
+        mouseX = newX;
+        mouseY = newY;
+    }
+    else
+    {
+        QOpenGLWidget::mouseMoveEvent(event);
+    }
 }
 
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
-    glm::vec3 cameraPosition = renderer.GetCamera()->GetPosition();
+    glm::vec3 movement;
     if(event->key() == Qt::Key_W)
-        cameraPosition.z += 1.0f;
+    {
+        movement.z += 1.0f;
+    }
     else if(event->key() == Qt::Key_S)
-        cameraPosition.z -= 1.0f;
+    {
+        movement.z -= 1.0f;
+    }
     else if(event->key() == Qt::Key_D)
-        cameraPosition.x += 1.0f;
+    {
+        movement.x += 1.0f;
+    }
     else if(event->key() == Qt::Key_A)
-        cameraPosition.x -= 1.0f;
+    {
+        movement.x -= 1.0f;
+    }
     else if(event->key() == Qt::Key_Up)
-        cameraPosition.y += 1.0f;
+    {
+        movement.y += 1.0f;
+    }
     else if(event->key() == Qt::Key_Down)
-        cameraPosition.y -= 1.0f;
+    {
+        movement.y -= 1.0f;
+    }
     else
+    {
         QOpenGLWidget::keyPressEvent(event);
+    }
 
-    renderer.GetCamera()->SetPosition(cameraPosition);
+    renderer.GetCamera()->UpdatePosition(movement);
     update();
 }
 

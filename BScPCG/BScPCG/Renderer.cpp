@@ -27,7 +27,7 @@ namespace Rendering
 		projectionMatrixLocation = shader.GetUniform("ProjectionMatrix");
 
 		camera.SetPosition(glm::vec3(0,0,-10));
-		camera.SetLookAt(glm::vec3(0,0,0));
+		camera.UpdateDirection(0,0);
 	}
 
 	void Renderer::AddElement(int model, int texture, const glm::vec3& position)
@@ -49,7 +49,6 @@ namespace Rendering
 		}
 
 		// update uniforms
-		camera.Update(0.0f);
 		shader.Bind();
 		shader.SetMat4(projectionMatrixLocation, camera.GetProjectionMatrix());
 		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
