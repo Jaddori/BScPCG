@@ -35,6 +35,7 @@ void GLWidget::initializeGL()
     // setup OpenGL flags
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
     glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
 
     // load assets
     model = assets.LoadModel("./assets/models/valid_model.model");
@@ -48,7 +49,13 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderer.AddElement(model, texture, glm::vec3(0.0f));
+    glm::vec3 position(-20.0f, 0.0f, 0.0f);
+    for(int i=0; i<10; i++)
+    {
+        renderer.AddElement(model, texture, position);
+        position.x += 4.0f;
+    }
+    //renderer.AddElement(model, texture, glm::vec3(0.0f));
     renderer.Render(&assets);
 }
 

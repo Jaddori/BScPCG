@@ -91,8 +91,8 @@ namespace Assets
 	void Model::Render(int instances)
 	{
 		glBindVertexArray(vertexArray);
-		//glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
-		glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
+		glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
+		//glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
 	}
 
 	GLuint Model::GetVertexArray() const

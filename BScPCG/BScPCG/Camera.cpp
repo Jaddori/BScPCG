@@ -65,7 +65,7 @@ namespace Rendering
 			horizontalAngle += 2*PI;
 		}
 		
-		if(abs(verticalAngle) > PI*0.5f)
+		if(fabs(verticalAngle) > PI*0.5f)
 		{
 			verticalAngle = PI*0.5f;
 		}
