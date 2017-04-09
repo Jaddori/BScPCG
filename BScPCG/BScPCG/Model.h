@@ -1,26 +1,38 @@
 #pragma once
 
-#include "Assets.h"
-#include "GL\glew.h"
+#include "BaseIncludes.h"
 
 namespace Assets
 {
-	class Model : public Asset
+	struct Vertex
+	{
+		glm::vec3 position;
+		glm::vec2 uv;
+		glm::vec3 normal;
+		glm::vec3 tangent;
+		glm::vec3 bitangent;
+	};
+
+	class Model
 	{
 	public:
 		Model();
 		~Model();
 
-		bool Load( const std::string& path, AssetManager* assets ) override;
-		void Unload() override;
-		void Bind() override;
+		bool Load(const std::string& path);
+		void Unload();
+		void Upload();
+		void Render(int instances);
 
 		GLuint GetVertexArray() const;
-		int GetNumIndices() const;
+		int GetVertexCount() const;
+		int GetIndexCount() const;
 
 	private:
+		Vertex* vertices;
+		GLuint* indices;
 		GLuint vertexBuffer, indexBuffer;
 		GLuint vertexArray;
-		int numIndices;
+		int vertexCount, indexCount;
 	};
 }

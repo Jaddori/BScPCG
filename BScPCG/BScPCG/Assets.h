@@ -1,43 +1,30 @@
 #pragma once
 
-#include <string>
-#include <vector>
+#include "BaseIncludes.h"
+#include "Model.h"
+#include "Texture.h"
 
 namespace Assets
 {
-	class AssetManager;
-	class Asset
-	{
-	public:
-		Asset();
-		~Asset();
-
-		virtual bool Load( const std::string& path, AssetManager* assets ) = 0;
-		virtual void Unload() = 0;
-		virtual void Bind() = 0;
-		int GetSize();
-
-	private:
-		int size;
-	};
-
 	class AssetManager
 	{
 	public:
 		AssetManager();
 		~AssetManager();
 
-		template<typename T>
-		int Load( const std::string& path )
-		{
-			return 0;
-		}
+		int LoadModel(const std::string& path);
+		void RenderModel(int index, int instances);
+
+		int LoadTexture(const std::string& path);
+		void BindTexture(int index);
 
 		void Unload();
-		void BindAsset( int index );
 
 	private:
-		std::vector<Asset*> assets;
-		std::vector<std::string> paths;
+		std::vector<Model> models;
+		std::vector<std::string> modelPaths;
+
+		std::vector<Texture> textures;
+		std::vector<std::string> texturePaths;
 	};
 }
