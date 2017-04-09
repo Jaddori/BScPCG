@@ -282,3 +282,5 @@ __pycache__/
 
 #QT build files
 QT/build-CityGenerator*/
+**/DerivedData/
+**/build-CityGenerator*/
