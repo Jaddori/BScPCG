@@ -61,7 +61,7 @@ void GLWidget::paintGL()
 
 void GLWidget::resizeGL(int w, int h)
 {
-    glViewport(0,0,w,h);
+    renderer.GetCamera()->UpdateProjection(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)

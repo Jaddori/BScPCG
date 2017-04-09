@@ -53,14 +53,6 @@ namespace Rendering
 		shader.Bind();
 		shader.SetMat4(projectionMatrixLocation, camera.GetProjectionMatrix());
 		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
-
-		// render all elements
-		/*for(size_t i=0; i<elements.size(); i++)
-		{
-			shader.SetMat4(worldMatrixLocation, worldMatrices[i]);
-			assets->BindTexture(elements[i].texture);
-			assets->RenderModel(elements[i].model, 1);
-		}*/
 		
 		// render all elements
 		int curModel = -1, curTexture = -1, curElements = 0, matrixIndex = 0;
@@ -77,7 +69,7 @@ namespace Rendering
 					assets->BindTexture(curTexture);
 					assets->RenderModel(curModel, curElements);
 					
-					matrixIndex = i;
+					matrixIndex = (int)i;
 					curElements = 0;
 				}
 				

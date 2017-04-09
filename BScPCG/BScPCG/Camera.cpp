@@ -8,17 +8,11 @@ namespace Rendering
 	Camera::Camera()
 		: position(0.0f), direction(0.0f, 0.0f, 1.0f), viewMatrixNeedsUpdate(true)
 	{
-		projectionMatrix = glm::perspectiveFov(45.0f, (float)WINDOW_WIDTH, (float)WINDOW_HEIGHT, 0.1f, 100.0f);
 	}
 
 	Camera::~Camera()
 	{
 	}
-
-	/*void Camera::Update( float deltaTime )
-	{
-		viewMatrix = glm::lookAt(position, lookAt, glm::vec3(0.0f,1.0f,0.0f));
-	}*/
 	
 	void Camera::UpdatePosition(const glm::vec3& localMovement)
 	{
@@ -77,16 +71,12 @@ namespace Rendering
 			cos(verticalAngle) * cos(horizontalAngle)
 		);
 		
-		/*glm::vec3 right(
-			sin(horizontalAngle - PI*0.5f),
-			0.0f,
-			cos(horizontalAngle - PI*0.5f)
-		);
-		
-		glm::vec3 up = glm::cross(right, direction);*/
-		
-		//viewMatrix = glm::lookAt(position, position+direction, glm::vec3(0.0f, 1.0f, 0.0f));
 		viewMatrixNeedsUpdate = true;
+	}
+	
+	void Camera::UpdateProjection(int width, int height)
+	{
+		projectionMatrix = glm::perspectiveFov(45.0f, (float)width, (float)height, 0.1f, 100.0f);
 	}
 
 	void Camera::SetPosition(const glm::vec3& p)

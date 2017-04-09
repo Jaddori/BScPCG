@@ -2,9 +2,6 @@
 
 #include "BaseIncludes.h"
 
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 720
-
 namespace Rendering
 {
 	class Camera
@@ -16,6 +13,7 @@ namespace Rendering
 		//void Update( float deltaTime );
 		void UpdatePosition(const glm::vec3& localMovement);
 		void UpdateDirection(int deltaX, int deltaY);
+		void UpdateProjection(int width, int height);
 
 		void SetPosition(const glm::vec3& position);
 		//void SetLookAt(const glm::vec3& lookAt);
