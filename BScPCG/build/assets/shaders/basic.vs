@@ -15,5 +15,5 @@ uniform mat4 WorldMatrices[100];
 void main()
 {
 	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrices[gl_InstanceID] * vec4(vertPosition,1.0);
-	fragUV = vertUV;
+	fragUV = vertUV * vec2(1,-1);
 }

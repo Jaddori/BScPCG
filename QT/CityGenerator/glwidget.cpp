@@ -40,6 +40,7 @@ void GLWidget::initializeGL()
     // load assets
     model = assets.LoadModel("./assets/models/valid_model.model");
     texture = assets.LoadTexture("./assets/textures/valid_texture.dds");
+    otherTexture = assets.LoadTexture("./assets/textures/other_texture.dds");
 
     // load the renderer
     renderer.Load();
@@ -55,7 +56,15 @@ void GLWidget::paintGL()
         renderer.AddElement(model, texture, position);
         position.x += 4.0f;
     }
-    //renderer.AddElement(model, texture, glm::vec3(0.0f));
+
+    position.x = -20.0f;
+    position.z = 4.0f;
+    for(int i=0; i<10; i++)
+    {
+        renderer.AddElement(model, otherTexture, position);
+        position.x += 4.0f;
+    }
+
     renderer.Render(&assets);
 }
 
@@ -89,6 +98,11 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
     {
         QOpenGLWidget::mouseMoveEvent(event);
     }
+}
+
+void GLWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    mouseX = mouseY = -1;
 }
 
 void GLWidget::keyPressEvent(QKeyEvent* event)

@@ -31,6 +31,7 @@ protected:
     void paintGL();
     void resizeGL(int w, int h);
     void mouseMoveEvent(QMouseEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
     void keyPressEvent(QKeyEvent* event);
     void keyReleaseEvent(QKeyEvent* event);
 
@@ -40,7 +41,7 @@ private:
     AssetManager assets;
     Renderer renderer;
 
-    int model, texture;
+    int model, texture, otherTexture;
 
     int mouseX, mouseY;
 };

@@ -55,29 +55,27 @@ namespace Rendering
 		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
 		
 		// render all elements
-		int curModel = -1, curTexture = -1, curElements = 0, matrixIndex = 0;
-		for(size_t i=0; i<elements.size(); i++)
+		int first = 0;
+		while(first < elements.size())
 		{
-			int model = elements[i].model;
-			int texture = elements[i].texture;
-			
-			if(curModel != model || i == elements.size()-1)
+			int last = first;
+			int curModel = elements[first].model;
+			int curTexture = elements[first].texture;
+
+			for(size_t i=first+1; i<elements.size(); i++, last++)
 			{
-				if(curElements > 0)
+				if(elements[i].model != curModel || elements[i].texture != curTexture)
 				{
-					shader.SetMat4v(worldMatrixLocation, &worldMatrices[matrixIndex], curElements);
-					assets->BindTexture(curTexture);
-					assets->RenderModel(curModel, curElements);
-					
-					matrixIndex = (int)i;
-					curElements = 0;
+					break;
 				}
-				
-				curModel = model;
-				curTexture = texture;
 			}
-			
-			curElements++;
+
+			int instances = last-first+1;
+			shader.SetMat4v(worldMatrixLocation, &worldMatrices[first], instances);
+			assets->BindTexture(curTexture);
+			assets->RenderModel(curModel, instances);
+
+			first = last+1;
 		}
 
 		// clear lists
