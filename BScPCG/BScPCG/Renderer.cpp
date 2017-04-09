@@ -63,7 +63,7 @@ namespace Rendering
 		}*/
 		
 		// render all elements
-		int curModel = -1, curTexture = -1, curElements = 0;
+		int curModel = -1, curTexture = -1, curElements = 0, matrixIndex = 0;
 		for(size_t i=0; i<elements.size(); i++)
 		{
 			int model = elements[i].model;
@@ -73,9 +73,11 @@ namespace Rendering
 			{
 				if(curElements > 0)
 				{
-					shader.SetMat4v(worldMatrixLocation, &worldMatrices[i], curElements);
+					shader.SetMat4v(worldMatrixLocation, &worldMatrices[matrixIndex], curElements);
 					assets->BindTexture(curTexture);
 					assets->RenderModel(curModel, curElements);
+					
+					matrixIndex = i;
 					curElements = 0;
 				}
 				
