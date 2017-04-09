@@ -6,7 +6,7 @@ namespace Rendering
 	static const float EPSILON = glm::epsilon<float>();
 	
 	Camera::Camera()
-		: position(0.0f), direction(0.0f, 0.0f, 1.0f), viewMatrixNeedsUpdate(true)
+		: position(0.0f), direction(0.0f, 0.0f, 1.0f), viewMatrixNeedsUpdate(true), horizontalAngle(0.0f), verticalAngle(0.0f)
 	{
 	}
 
