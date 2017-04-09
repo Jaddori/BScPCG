@@ -50,20 +50,30 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glm::vec3 position(-20.0f, 0.0f, 0.0f);
-    for(int i=0; i<10; i++)
+    for(int j=0; j<10; j++)
+    {
+        glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
+        for(int i=0; i<10; i++)
+        {
+            renderer.AddElement(model, texture, position);
+            position.x += 4.0f;
+        }
+    }
+
+    glm::vec3 position(-20.0f, 0.0f, 40.0f);
+    for(int i=0; i<2; i++)
     {
         renderer.AddElement(model, texture, position);
         position.x += 4.0f;
     }
 
-    position.x = -20.0f;
+    /*position.x = -20.0f;
     position.z = 4.0f;
     for(int i=0; i<10; i++)
     {
         renderer.AddElement(model, otherTexture, position);
         position.x += 4.0f;
-    }
+    }*/
 
     renderer.Render(&assets);
 }

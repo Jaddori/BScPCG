@@ -23,8 +23,8 @@ namespace Rendering
 		shader.Load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
 
 		worldMatrixLocation = shader.GetUniform("WorldMatrices");
-		viewMatrixLocation = shader.GetUniform("ViewMatrix");
 		projectionMatrixLocation = shader.GetUniform("ProjectionMatrix");
+		viewMatrixLocation = shader.GetUniform("ViewMatrix");
 
 		camera.SetPosition(glm::vec3(0,0,-10));
 		camera.UpdateDirection(0,0);
@@ -62,7 +62,7 @@ namespace Rendering
 			int curModel = elements[first].model;
 			int curTexture = elements[first].texture;
 
-			for(size_t i=first+1; i<elements.size(); i++, last++)
+			for(size_t i=first+1; i<elements.size() && last-first+1 < 100; i++, last++)
 			{
 				if(elements[i].model != curModel || elements[i].texture != curTexture)
 				{
