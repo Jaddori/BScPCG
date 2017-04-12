@@ -9,15 +9,13 @@ namespace Assets
 
 	Texture::~Texture()
 	{
-		Unload();
 	}
 
 	bool Texture::Load(const std::string& path)
 	{
 		bool result = false;
 
-		FILE* file = NULL;
-		fopen_s(&file, path.c_str(), "rb");
+		FILE* file = fopen(path.c_str(), "rb");
 		if(file)
 		{
 			int32_t magicNumber;
@@ -77,10 +75,14 @@ namespace Assets
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glCompressedTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, size, pixels);
 		glBindTexture(GL_TEXTURE_2D, 0);
+
+		delete[] pixels;
+		pixels = nullptr;
 	}
 
-	void Texture::Bind()
+	void Texture::Bind(GLenum target)
 	{
+		glActiveTexture(target);
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 

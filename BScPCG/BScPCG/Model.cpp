@@ -9,15 +9,13 @@ namespace Assets
 
 	Model::~Model()
 	{
-		Unload();
 	}
 
 	bool Model::Load(const std::string& path)
 	{
 		bool result = false;
 
-		FILE* file = NULL;
-		fopen_s(&file, path.c_str(), "rb");
+		FILE* file = fopen(path.c_str(), "rb");
 		if(file)
 		{
 			fread(&vertexCount, sizeof(vertexCount), 1, file);
@@ -85,11 +83,16 @@ namespace Assets
 
 		delete[] vertices;
 		delete[] indices;
+
+		vertices = nullptr;
+		indices = nullptr;
 	}
 
-	void Model::Bind()
+	void Model::Render(int instances)
 	{
 		glBindVertexArray(vertexArray);
+		glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
+		//glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
 	}
 
 	GLuint Model::GetVertexArray() const

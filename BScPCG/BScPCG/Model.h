@@ -1,8 +1,6 @@
 #pragma once
 
-#include "Assets.h"
-#include "GL\glew.h"
-#include "glm\glm.hpp"
+#include "BaseIncludes.h"
 
 namespace Assets
 {
@@ -15,16 +13,16 @@ namespace Assets
 		glm::vec3 bitangent;
 	};
 
-	class Model : public Asset
+	class Model
 	{
 	public:
 		Model();
 		~Model();
 
-		bool Load(const std::string& path) override;
-		void Unload() override;
-		void Upload() override;
-		void Bind() override;
+		bool Load(const std::string& path);
+		void Unload();
+		void Upload();
+		void Render(int instances);
 
 		GLuint GetVertexArray() const;
 		int GetVertexCount() const;
