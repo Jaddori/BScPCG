@@ -21,6 +21,7 @@ namespace Rendering
 		void SetVec3(GLuint location, const glm::vec3& value);
 		void SetVec4(GLuint location, const glm::vec4& value);
 		void SetMat4(GLuint location, const glm::mat4& value);
+		void SetMat4v(GLuint location, const glm::mat4* value, int n);
 
 	private:
 		GLuint ReadFile(const char* path, GLenum shaderType);

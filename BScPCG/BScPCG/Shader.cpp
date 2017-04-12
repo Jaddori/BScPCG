@@ -195,4 +195,9 @@ namespace Rendering
 	{
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
+	
+	void Shader::SetMat4v(GLuint location, const glm::mat4* value, int n)
+	{
+		glUniformMatrix4fv(location, n, GL_FALSE, glm::value_ptr(*value));
+	}
 }

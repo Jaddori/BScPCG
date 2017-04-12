@@ -9,8 +9,8 @@ namespace Rendering
 {
 	struct RenderElement
 	{
-		uint16_t model;
-		uint16_t texture;
+		int32_t model;
+		int32_t texture;
 		glm::vec3 position;
 	};
 

@@ -280,6 +280,7 @@ __pycache__/
 **/My Amplifier XE Results*/
 **/My Advisor Results*/
 
-
-*settings.lua
-*latestIp.lua
+#QT build files
+QT/build-CityGenerator*/
+**/DerivedData/
+**/build-CityGenerator*/

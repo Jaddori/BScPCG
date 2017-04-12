@@ -4,10 +4,10 @@ namespace Rendering
 {
 	int CompareElements(const void* a, const void* b)
 	{
-		int akey = *(int*)a;
-		int bkey = *(int*)b;
+		uint64_t akey = *(uint64_t*)a;
+		uint16_t bkey = *(uint64_t*)b;
 
-		return akey - bkey;
+		return (int)(akey - bkey);
 	}
 
 	Renderer::Renderer()
@@ -22,17 +22,17 @@ namespace Rendering
 	{
 		shader.Load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
 
-		worldMatrixLocation = shader.GetUniform("WorldMatrix");
-		viewMatrixLocation = shader.GetUniform("ViewMatrix");
+		worldMatrixLocation = shader.GetUniform("WorldMatrices");
 		projectionMatrixLocation = shader.GetUniform("ProjectionMatrix");
+		viewMatrixLocation = shader.GetUniform("ViewMatrix");
 
 		camera.SetPosition(glm::vec3(0,0,-10));
-		camera.SetLookAt(glm::vec3(0,0,0));
+		camera.UpdateDirection(0,0);
 	}
 
 	void Renderer::AddElement(int model, int texture, const glm::vec3& position)
 	{
-		RenderElement element = { (uint16_t)model, (uint16_t)texture, position };
+		RenderElement element = { model, texture, position };
 		elements.push_back(element);
 		worldMatrices.push_back(glm::mat4());
 	}
@@ -43,23 +43,39 @@ namespace Rendering
 		std::qsort(elements.data(), elements.size(), sizeof(RenderElement), CompareElements);
 
 		// create world matrices from positions
+		const glm::mat4 IDENT;
 		for(size_t i=0; i<elements.size(); i++)
 		{
-			glm::translate(worldMatrices[i], elements[i].position);
+			worldMatrices[i] = glm::translate(IDENT, elements[i].position);
 		}
 
 		// update uniforms
-		camera.Update(0.0f);
 		shader.Bind();
 		shader.SetMat4(projectionMatrixLocation, camera.GetProjectionMatrix());
 		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
-
+		
 		// render all elements
-		for(size_t i=0; i<elements.size(); i++)
+		int first = 0;
+		while(first < elements.size())
 		{
-			shader.SetMat4(worldMatrixLocation, worldMatrices[i]);
-			assets->BindTexture(elements[i].texture);
-			assets->RenderModel(elements[i].model, 1);
+			int last = first;
+			int curModel = elements[first].model;
+			int curTexture = elements[first].texture;
+
+			for(size_t i=first+1; i<elements.size() && last-first+1 < 100; i++, last++)
+			{
+				if(elements[i].model != curModel || elements[i].texture != curTexture)
+				{
+					break;
+				}
+			}
+
+			int instances = last-first+1;
+			shader.SetMat4v(worldMatrixLocation, &worldMatrices[first], instances);
+			assets->BindTexture(curTexture);
+			assets->RenderModel(curModel, instances);
+
+			first = last+1;
 		}
 
 		// clear lists

@@ -10,10 +10,10 @@ out vec2 fragUV;
 
 uniform mat4 ProjectionMatrix;
 uniform mat4 ViewMatrix;
-uniform mat4 WorldMatrix;
+uniform mat4 WorldMatrices[100];
 
 void main()
 {
-	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrix * vec4(vertPosition,1.0);
-	fragUV = vertUV;
+	gl_Position = ProjectionMatrix * ViewMatrix * WorldMatrices[gl_InstanceID] * vec4(vertPosition,1.0);
+	fragUV = vertUV * vec2(1,-1);
 }

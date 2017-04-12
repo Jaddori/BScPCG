@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5054DCD41E97F84D009787B4"
-               BuildableName = "libBScPCG.a"
+               BuildableName = "libelicras.a"
                BlueprintName = "BScPCG"
                ReferencedContainer = "container:BScPCG.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5054DCD41E97F84D009787B4"
-            BuildableName = "libBScPCG.a"
+            BuildableName = "libelicras.a"
             BlueprintName = "BScPCG"
             ReferencedContainer = "container:BScPCG.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5054DCD41E97F84D009787B4"
-            BuildableName = "libBScPCG.a"
+            BuildableName = "libelicras.a"
             BlueprintName = "BScPCG"
             ReferencedContainer = "container:BScPCG.xcodeproj">
          </BuildableReference>

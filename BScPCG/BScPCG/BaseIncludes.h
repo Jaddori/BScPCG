@@ -6,6 +6,7 @@
 #include <map>
 #include <assert.h>
 #include <cstdlib>
+#include <math.h>
 
 #ifdef WIN32
 

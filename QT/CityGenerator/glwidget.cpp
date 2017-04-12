@@ -1,7 +1,7 @@
 #include "glwidget.h"
 
 GLWidget::GLWidget(QWidget *parent)
-    : QOpenGLWidget(parent)
+    : QOpenGLWidget(parent), mouseX(-1), mouseY(-1)
 {
     QSurfaceFormat format;
     format.setVersion(4,5);
@@ -35,10 +35,12 @@ void GLWidget::initializeGL()
     // setup OpenGL flags
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
     glEnable(GL_CULL_FACE);
+    glEnable(GL_DEPTH_TEST);
 
     // load assets
     model = assets.LoadModel("./assets/models/valid_model.model");
     texture = assets.LoadTexture("./assets/textures/valid_texture.dds");
+    otherTexture = assets.LoadTexture("./assets/textures/other_texture.dds");
 
     // load the renderer
     renderer.Load();
@@ -48,47 +50,104 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderer.AddElement(model, texture, glm::vec3(0.0f));
+    for(int j=0; j<10; j++)
+    {
+        glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
+        for(int i=0; i<10; i++)
+        {
+            renderer.AddElement(model, texture, position);
+            position.x += 4.0f;
+        }
+    }
+
+    glm::vec3 position(-20.0f, 0.0f, 40.0f);
+    for(int i=0; i<2; i++)
+    {
+        renderer.AddElement(model, texture, position);
+        position.x += 4.0f;
+    }
+
+    /*position.x = -20.0f;
+    position.z = 4.0f;
+    for(int i=0; i<10; i++)
+    {
+        renderer.AddElement(model, otherTexture, position);
+        position.x += 4.0f;
+    }*/
+
     renderer.Render(&assets);
 }
 
 void GLWidget::resizeGL(int w, int h)
 {
-    glViewport(0,0,w,h);
+    renderer.GetCamera()->UpdateProjection(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
-    /*int newX = event->localPos().x();
-    int newY = event->localPos().y();
-    deltaX = mouseX - newX;
-    deltaY = mouseY - newY;
-    mouseX = newX;
-    mouseY = newY;
+    if(event->buttons() & Qt::LeftButton)
+    {
+        // get the position of the mouse cursor
+        int newX = event->localPos().x();
+        int newY = event->localPos().y();
 
-    rmb = event->buttons() & Qt::RightButton;*/
-    QOpenGLWidget::mouseMoveEvent(event);
+        int deltaX = mouseX - newX;
+        int deltaY = mouseY - newY;
+
+        if(mouseX >= 0 && mouseY >= 0)
+        {
+            // move the camera with the mouse
+            renderer.GetCamera()->UpdateDirection(deltaX, deltaY);
+            update();
+        }
+
+        mouseX = newX;
+        mouseY = newY;
+    }
+    else
+    {
+        QOpenGLWidget::mouseMoveEvent(event);
+    }
+}
+
+void GLWidget::mouseReleaseEvent(QMouseEvent *event)
+{
+    mouseX = mouseY = -1;
 }
 
 void GLWidget::keyPressEvent(QKeyEvent* event)
 {
-    glm::vec3 cameraPosition = renderer.GetCamera()->GetPosition();
+    glm::vec3 movement;
     if(event->key() == Qt::Key_W)
-        cameraPosition.z += 1.0f;
+    {
+        movement.z += 1.0f;
+    }
     else if(event->key() == Qt::Key_S)
-        cameraPosition.z -= 1.0f;
+    {
+        movement.z -= 1.0f;
+    }
     else if(event->key() == Qt::Key_D)
-        cameraPosition.x += 1.0f;
+    {
+        movement.x += 1.0f;
+    }
     else if(event->key() == Qt::Key_A)
-        cameraPosition.x -= 1.0f;
+    {
+        movement.x -= 1.0f;
+    }
     else if(event->key() == Qt::Key_Up)
-        cameraPosition.y += 1.0f;
+    {
+        movement.y += 1.0f;
+    }
     else if(event->key() == Qt::Key_Down)
-        cameraPosition.y -= 1.0f;
+    {
+        movement.y -= 1.0f;
+    }
     else
+    {
         QOpenGLWidget::keyPressEvent(event);
+    }
 
-    renderer.GetCamera()->SetPosition(cameraPosition);
+    renderer.GetCamera()->UpdatePosition(movement);
     update();
 }
 
