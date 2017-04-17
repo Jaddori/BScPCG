@@ -289,3 +289,4 @@ QT/build-CityGenerator*/
 # LaTeX files
 *.synctex.gz
 *.pdf
+*.aux
