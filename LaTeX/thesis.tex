@@ -1,4 +1,31 @@
 \documentclass{article}
+
+% Meta data
+\title{Thesis Title}
+\date{2017-04-17}
+\author{Niclas Olsson, Elias Frank}
+
 \begin{document}
-Hello, World!
+	% Title page
+	\pagenumbering{roman}
+	\maketitle
+	\newpage
+	
+	% Table of contents
+	\tableofcontents
+	\newpage
+	
+	\pagenumbering{arabic}
+	
+	% Body of work
+	\section{Section}
+	Hello, World!
+	
+	\subsection{Subsection}
+	This is a sub section.\cite{DummyCitation}
+	
+	% References
+	\newpage
+	\bibliographystyle{IEEEtran}
+	\bibliography{./citations.bib}
 \end{document}
