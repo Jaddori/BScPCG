@@ -285,3 +285,7 @@ QT/build-CityGenerator*/
 **/DerivedData/
 **/build-CityGenerator*/
 *.a
+
+# LaTeX files
+*.synctex.gz
+*.pdf
