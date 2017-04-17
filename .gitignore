@@ -290,3 +290,10 @@ QT/build-CityGenerator*/
 *.synctex.gz
 *.pdf
 *.aux
+
+# BibTex files
+*.bbl
+*.blg
+*.lof
+*.lot
+*.toc
