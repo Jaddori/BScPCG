@@ -129,6 +129,7 @@
     <ClCompile Include="ArrayTest.cpp" />
     <ClCompile Include="AssetsTest.cpp" />
     <ClCompile Include="CameraTest.cpp" />
+    <ClCompile Include="FontTest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ModelTest.cpp" />
     <ClCompile Include="RendererTest.cpp" />
