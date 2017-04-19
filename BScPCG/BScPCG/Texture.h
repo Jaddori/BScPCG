@@ -45,14 +45,14 @@ namespace Assets
 		Texture();
 		~Texture();
 
-		bool Load(const std::string& path);
-		void Unload();
-		void Upload();
-		void Bind(GLenum target = GL_TEXTURE0);
+		bool load(const std::string& path);
+		void unload();
+		void upload();
+		void bind(GLenum target = GL_TEXTURE0);
 
-		GLuint GetID() const;
-		int GetWidth() const;
-		int GetHeight() const;
+		GLuint getID() const;
+		int getWidth() const;
+		int getHeight() const;
 
 	private:
 		GLuint id;

@@ -11,7 +11,7 @@ namespace Assets
 	{
 	}
 
-	bool Model::Load(const std::string& path)
+	bool Model::load(const std::string& path)
 	{
 		bool result = false;
 
@@ -35,7 +35,7 @@ namespace Assets
 		return result;
 	}
 
-	void Model::Unload()
+	void Model::unload()
 	{
 		if(vertexArray > 0)
 		{
@@ -52,7 +52,7 @@ namespace Assets
 		vertexCount = indexCount = 0;
 	}
 
-	void Model::Upload()
+	void Model::upload()
 	{
 		glGenVertexArrays(1, &vertexArray);
 		glBindVertexArray(vertexArray);
@@ -88,24 +88,24 @@ namespace Assets
 		indices = nullptr;
 	}
 
-	void Model::Render(int instances)
+	void Model::render(int instances)
 	{
 		glBindVertexArray(vertexArray);
 		glDrawElementsInstanced(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL, instances);
 		//glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
 	}
 
-	GLuint Model::GetVertexArray() const
+	GLuint Model::getVertexArray() const
 	{
 		return vertexArray;
 	}
 
-	int Model::GetVertexCount() const
+	int Model::getVertexCount() const
 	{
 		return vertexCount;
 	}
 
-	int Model::GetIndexCount() const
+	int Model::getIndexCount() const
 	{
 		return indexCount;
 	}

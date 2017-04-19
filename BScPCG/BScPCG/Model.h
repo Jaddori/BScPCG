@@ -19,14 +19,14 @@ namespace Assets
 		Model();
 		~Model();
 
-		bool Load(const std::string& path);
-		void Unload();
-		void Upload();
-		void Render(int instances);
+		bool load(const std::string& path);
+		void unload();
+		void upload();
+		void render(int instances);
 
-		GLuint GetVertexArray() const;
-		int GetVertexCount() const;
-		int GetIndexCount() const;
+		GLuint getVertexArray() const;
+		int getVertexCount() const;
+		int getIndexCount() const;
 
 	private:
 		Vertex* vertices;
