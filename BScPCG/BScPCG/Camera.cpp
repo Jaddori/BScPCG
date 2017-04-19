@@ -14,7 +14,7 @@ namespace Rendering
 	{
 	}
 	
-	void Camera::UpdatePosition(const glm::vec3& localMovement)
+	void Camera::updatePosition(const glm::vec3& localMovement)
 	{
 		// move backwards and forwards
 		if(fabs(localMovement.z) > EPSILON)
@@ -42,7 +42,7 @@ namespace Rendering
 		viewMatrixNeedsUpdate = true;
 	}
 	
-	void Camera::UpdateDirection(int deltaX, int deltaY)
+	void Camera::updateDirection(int deltaX, int deltaY)
 	{
 		direction = glm::normalize(direction);
 		
@@ -74,29 +74,29 @@ namespace Rendering
 		viewMatrixNeedsUpdate = true;
 	}
 	
-	void Camera::UpdateProjection(int width, int height)
+	void Camera::updateProjection(int width, int height)
 	{
 		projectionMatrix = glm::perspectiveFov(45.0f, (float)width, (float)height, 0.1f, 100.0f);
 	}
 
-	void Camera::SetPosition(const glm::vec3& p)
+	void Camera::setPosition(const glm::vec3& p)
 	{
 		position = p;
 		viewMatrixNeedsUpdate = true;
 	}
 
-	/*void Camera::SetLookAt(const glm::vec3& l)
+	/*void Camera::setLookAt(const glm::vec3& l)
 	{
 		lookAt = l;
 	}*/
 	
-	void Camera::SetDirection(const glm::vec3& d)
+	void Camera::setDirection(const glm::vec3& d)
 	{
 		direction = d;
 		viewMatrixNeedsUpdate = true;
 	}
 
-	const glm::mat4& Camera::GetViewMatrix()
+	const glm::mat4& Camera::getViewMatrix()
 	{
 		if(viewMatrixNeedsUpdate)
 		{
@@ -106,12 +106,12 @@ namespace Rendering
 		return viewMatrix;
 	}
 
-	const glm::mat4& Camera::GetProjectionMatrix() const
+	const glm::mat4& Camera::getProjectionMatrix() const
 	{
 		return projectionMatrix;
 	}
 
-	const glm::vec3& Camera::GetPosition() const
+	const glm::vec3& Camera::getPosition() const
 	{
 		return position;
 	}
@@ -121,7 +121,7 @@ namespace Rendering
 		return lookAt;
 	}*/
 	
-	const glm::vec3& Camera::GetDirection() const
+	const glm::vec3& Camera::getDirection() const
 	{
 		return direction;
 	}

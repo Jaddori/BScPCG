@@ -11,19 +11,19 @@ namespace Rendering
 		~Camera();
 
 		//void Update( float deltaTime );
-		void UpdatePosition(const glm::vec3& localMovement);
-		void UpdateDirection(int deltaX, int deltaY);
-		void UpdateProjection(int width, int height);
+		void updatePosition(const glm::vec3& localMovement);
+		void updateDirection(int deltaX, int deltaY);
+		void updateProjection(int width, int height);
 
-		void SetPosition(const glm::vec3& position);
-		//void SetLookAt(const glm::vec3& lookAt);
-		void SetDirection(const glm::vec3& direction);
+		void setPosition(const glm::vec3& position);
+		//void setLookAt(const glm::vec3& lookAt);
+		void setDirection(const glm::vec3& direction);
 
-		const glm::mat4& GetViewMatrix();
-		const glm::mat4& GetProjectionMatrix() const;
-		const glm::vec3& GetPosition() const;
-		//const glm::vec3& GetLookAt() const;
-		const glm::vec3& GetDirection() const;
+		const glm::mat4& getViewMatrix();
+		const glm::mat4& getProjectionMatrix() const;
+		const glm::vec3& getPosition() const;
+		//const glm::vec3& getLookAt() const;
+		const glm::vec3& getDirection() const;
 
 	private:
 		glm::vec3 position;

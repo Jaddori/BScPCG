@@ -9,10 +9,10 @@ namespace Rendering
 
 	Shader::~Shader()
 	{
-		Unload();
+		unload();
 	}
 
-	bool Shader::Load(const char* vertex, const char* geometry, const char* fragment)
+	bool Shader::load(const char* vertex, const char* geometry, const char* fragment)
 	{
 		assert( vertex || geometry || fragment );
 
@@ -26,17 +26,17 @@ namespace Rendering
 
 		if(vertex)
 		{
-			vertexShader = ReadFile(vertex, GL_VERTEX_SHADER);
+			vertexShader = readFile(vertex, GL_VERTEX_SHADER);
 			assert(vertexShader > 0);
 		}
 		if(geometry)
 		{
-			geometryShader = ReadFile(geometry, GL_GEOMETRY_SHADER);
+			geometryShader = readFile(geometry, GL_GEOMETRY_SHADER);
 			assert(geometryShader > 0);
 		}
 		if(fragment)
 		{
-			fragmentShader = ReadFile(fragment, GL_FRAGMENT_SHADER);
+			fragmentShader = readFile(fragment, GL_FRAGMENT_SHADER);
 			assert(fragmentShader > 0 );
 		}
 
@@ -47,7 +47,7 @@ namespace Rendering
 		if(fragmentShader > 0)
 			glAttachShader(shaderProgram, fragmentShader);
 
-		if(!LinkProgram())
+		if(!linkProgram())
 		{
 			glDeleteProgram(shaderProgram);
 			shaderProgram = 0;
@@ -67,7 +67,7 @@ namespace Rendering
 		return result;
 	}
 
-	void Shader::Unload()
+	void Shader::unload()
 	{
 		if(shaderProgram)
 		{
@@ -77,17 +77,17 @@ namespace Rendering
 		shaderProgram = 0;
 	}
 
-	GLuint Shader::GetUniform( const std::string& name )
+	GLuint Shader::getUniform( const std::string& name )
 	{
 		return glGetUniformLocation(shaderProgram, name.c_str());
 	}
 
-	void Shader::Bind()
+	void Shader::bind()
 	{
 		glUseProgram(shaderProgram);
 	}
 
-	GLuint Shader::ReadFile(const char* path, GLenum shaderType)
+	GLuint Shader::readFile(const char* path, GLenum shaderType)
 	{
 		assert(shaderType == GL_VERTEX_SHADER || shaderType == GL_GEOMETRY_SHADER || shaderType == GL_FRAGMENT_SHADER);
 		assert(path);
@@ -112,7 +112,7 @@ namespace Rendering
 
 			delete[] text;
 			
-			if(!CompileShader(result))
+			if(!compileShader(result))
 			{
 				glDeleteShader(result);
 				result = 0;
@@ -122,7 +122,7 @@ namespace Rendering
 		return result;
 	}
 
-	bool Shader::CompileShader(GLuint shader)
+	bool Shader::compileShader(GLuint shader)
 	{
 		bool result = true;
 
@@ -144,7 +144,7 @@ namespace Rendering
 		return result;
 	}
 
-	bool Shader::LinkProgram()
+	bool Shader::linkProgram()
 	{
 		bool result = true;
 
@@ -166,37 +166,37 @@ namespace Rendering
 		return result;
 	}
 
-	void Shader::SetInt(GLuint location, int value)
+	void Shader::setInt(GLuint location, int value)
 	{
 		glUniform1i(location, value);
 	}
 
-	void Shader::SetFloat(GLuint location, float value)
+	void Shader::setFloat(GLuint location, float value)
 	{
 		glUniform1f(location, value);
 	}
 
-	void Shader::SetVec2(GLuint location, const glm::vec2& value)
+	void Shader::setVec2(GLuint location, const glm::vec2& value)
 	{
 		glUniform2f(location, value.x, value.y);
 	}
 
-	void Shader::SetVec3(GLuint location, const glm::vec3& value)
+	void Shader::setVec3(GLuint location, const glm::vec3& value)
 	{
 		glUniform3f(location, value.x, value.y, value.z);
 	}
 
-	void Shader::SetVec4(GLuint location, const glm::vec4& value)
+	void Shader::setVec4(GLuint location, const glm::vec4& value)
 	{
 		glUniform4f(location, value.x, value.y, value.z, value.w);
 	}
 
-	void Shader::SetMat4(GLuint location, const glm::mat4& value)
+	void Shader::setMat4(GLuint location, const glm::mat4& value)
 	{
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 	
-	void Shader::SetMat4v(GLuint location, const glm::mat4* value, int n)
+	void Shader::setMat4v(GLuint location, const glm::mat4* value, int n)
 	{
 		glUniformMatrix4fv(location, n, GL_FALSE, glm::value_ptr(*value));
 	}

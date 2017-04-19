@@ -2,10 +2,10 @@
 
 namespace Rendering
 {
-	int CompareElements(const void* a, const void* b)
+	int compareElements(const void* a, const void* b)
 	{
 		uint64_t akey = *(uint64_t*)a;
-		uint16_t bkey = *(uint64_t*)b;
+		uint64_t bkey = *(uint64_t*)b;
 
 		return (int)(akey - bkey);
 	}
@@ -18,29 +18,29 @@ namespace Rendering
 	{
 	}
 
-	void Renderer::Load()
+	void Renderer::load()
 	{
-		shader.Load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
+		shader.load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
 
-		worldMatrixLocation = shader.GetUniform("WorldMatrices");
-		projectionMatrixLocation = shader.GetUniform("ProjectionMatrix");
-		viewMatrixLocation = shader.GetUniform("ViewMatrix");
+		worldMatrixLocation = shader.getUniform("WorldMatrices");
+		projectionMatrixLocation = shader.getUniform("ProjectionMatrix");
+		viewMatrixLocation = shader.getUniform("ViewMatrix");
 
-		camera.SetPosition(glm::vec3(0,0,-10));
-		camera.UpdateDirection(0,0);
+		camera.setPosition(glm::vec3(0,0,-10));
+		camera.updateDirection(0,0);
 	}
 
-	void Renderer::AddElement(int model, int texture, const glm::vec3& position)
+	void Renderer::addElement(int model, int texture, const glm::vec3& position)
 	{
 		RenderElement element = { model, texture, position };
 		elements.push_back(element);
 		worldMatrices.push_back(glm::mat4());
 	}
 
-	void Renderer::Render( Assets::AssetManager* assets )
+	void Renderer::render( Assets::AssetManager* assets )
 	{
 		// sort elements
-		std::qsort(elements.data(), elements.size(), sizeof(RenderElement), CompareElements);
+		std::qsort(elements.data(), elements.size(), sizeof(RenderElement), compareElements);
 
 		// create world matrices from positions
 		const glm::mat4 IDENT;
@@ -50,9 +50,9 @@ namespace Rendering
 		}
 
 		// update uniforms
-		shader.Bind();
-		shader.SetMat4(projectionMatrixLocation, camera.GetProjectionMatrix());
-		shader.SetMat4(viewMatrixLocation, camera.GetViewMatrix());
+		shader.bind();
+		shader.setMat4(projectionMatrixLocation, camera.getProjectionMatrix());
+		shader.setMat4(viewMatrixLocation, camera.getViewMatrix());
 		
 		// render all elements
 		int first = 0;
@@ -71,7 +71,7 @@ namespace Rendering
 			}
 
 			int instances = last-first+1;
-			shader.SetMat4v(worldMatrixLocation, &worldMatrices[first], instances);
+			shader.setMat4v(worldMatrixLocation, &worldMatrices[first], instances);
 			assets->BindTexture(curTexture);
 			assets->RenderModel(curModel, instances);
 
@@ -83,12 +83,12 @@ namespace Rendering
 		worldMatrices.clear();
 	}
 
-	Shader* Renderer::GetShader()
+	Shader* Renderer::getShader()
 	{
 		return &shader;
 	}
 
-	Camera* Renderer::GetCamera()
+	Camera* Renderer::getCamera()
 	{
 		return &camera;
 	}
