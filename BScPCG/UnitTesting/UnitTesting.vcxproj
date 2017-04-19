@@ -126,6 +126,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArrayTest.cpp" />
     <ClCompile Include="AssetsTest.cpp" />
     <ClCompile Include="CameraTest.cpp" />
     <ClCompile Include="main.cpp" />
