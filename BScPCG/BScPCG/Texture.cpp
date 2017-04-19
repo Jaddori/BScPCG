@@ -11,7 +11,7 @@ namespace Assets
 	{
 	}
 
-	bool Texture::Load(const std::string& path)
+	bool Texture::load(const std::string& path)
 	{
 		bool result = false;
 
@@ -50,7 +50,7 @@ namespace Assets
 		return result;
 	}
 
-	void Texture::Unload()
+	void Texture::unload()
 	{
 		if(id)
 		{
@@ -67,7 +67,7 @@ namespace Assets
 		}
 	}
 
-	void Texture::Upload()
+	void Texture::upload()
 	{
 		glGenTextures(1, &id);
 		glBindTexture(GL_TEXTURE_2D, id);
@@ -80,23 +80,23 @@ namespace Assets
 		pixels = nullptr;
 	}
 
-	void Texture::Bind(GLenum target)
+	void Texture::bind(GLenum target)
 	{
 		glActiveTexture(target);
 		glBindTexture(GL_TEXTURE_2D, id);
 	}
 
-	GLuint Texture::GetID() const
+	GLuint Texture::getID() const
 	{
 		return id;
 	}
 
-	int Texture::GetWidth() const
+	int Texture::getWidth() const
 	{
 		return width;
 	}
 
-	int Texture::GetHeight() const
+	int Texture::getHeight() const
 	{
 		return height;
 	}

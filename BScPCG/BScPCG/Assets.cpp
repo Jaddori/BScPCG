@@ -10,14 +10,14 @@ namespace Assets
 	{
 	}
 
-	int AssetManager::LoadModel(const std::string& path)
+	int AssetManager::loadModel(const std::string& path)
 	{
 		int result = -1;
 
 		Model model;
-		if(model.Load(path))
+		if(model.load(path))
 		{
-			model.Upload();
+			model.upload();
 
 			result = models.size();
 
@@ -28,19 +28,19 @@ namespace Assets
 		return result;
 	}
 
-	void AssetManager::RenderModel(int index, int instances)
+	void AssetManager::renderModel(int index, int instances)
 	{
-		models[index].Render(instances);
+		models[index].render(instances);
 	}
 
-	int AssetManager::LoadTexture(const std::string& path)
+	int AssetManager::loadTexture(const std::string& path)
 	{
 		int result = -1;
 
 		Texture texture;
-		if(texture.Load(path))
+		if(texture.load(path))
 		{
-			texture.Upload();
+			texture.upload();
 
 			result = textures.size();
 
@@ -51,21 +51,21 @@ namespace Assets
 		return result;
 	}
 
-	void AssetManager::BindTexture(int index)
+	void AssetManager::bindTexture(int index)
 	{
-		textures[index].Bind();
+		textures[index].bind();
 	}
 
-	void AssetManager::Unload()
+	void AssetManager::unload()
 	{
 		for(size_t i=0; i<models.size(); i++)
 		{
-			models[i].Unload();
+			models[i].unload();
 		}
 
 		for(size_t i=0; i<textures.size(); i++)
 		{
-			textures[i].Unload();
+			textures[i].unload();
 		}
 
 		models.clear();

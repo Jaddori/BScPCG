@@ -12,13 +12,13 @@ namespace Assets
 		AssetManager();
 		~AssetManager();
 
-		int LoadModel(const std::string& path);
-		void RenderModel(int index, int instances);
+		int loadModel(const std::string& path);
+		void renderModel(int index, int instances);
 
-		int LoadTexture(const std::string& path);
-		void BindTexture(int index);
+		int loadTexture(const std::string& path);
+		void bindTexture(int index);
 
-		void Unload();
+		void unload();
 
 	private:
 		std::vector<Model> models;

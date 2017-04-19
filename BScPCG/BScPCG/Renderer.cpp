@@ -72,8 +72,8 @@ namespace Rendering
 
 			int instances = last-first+1;
 			shader.setMat4v(worldMatrixLocation, &worldMatrices[first], instances);
-			assets->BindTexture(curTexture);
-			assets->RenderModel(curModel, instances);
+			assets->bindTexture(curTexture);
+			assets->renderModel(curModel, instances);
 
 			first = last+1;
 		}
