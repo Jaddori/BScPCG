@@ -8,10 +8,10 @@ namespace Utilities
 	public:
 		static const int DEFAULT_SIZE = 10;
 
-		Array(){};
-		Array(const Array& ref){};
-		Array(int initialSize){};
-		virtual ~Array(){};
+		Array(){ data = new T[DEFAULT_SIZE]; };
+		Array(const Array& ref){ data = new T[ref.getSize()]; };
+		Array(int initialSize){ data = new T[initialSize];};
+		virtual ~Array(){ delete[] data; };
 
 		Array& operator=(const Array& ref){ return *this;};
 		T& operator[](int index){return *data;};
