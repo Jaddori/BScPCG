@@ -20,7 +20,6 @@ namespace Assets
 		int getHeight() const;
 		int getWidth(char letter) const;
 		glm::vec2 getOffset(char letter) const;
-		glm::vec2 getUV(char letter) const;
 
 	private:
 		struct FontInfo

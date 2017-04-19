@@ -15,6 +15,8 @@ namespace Assets
 	{
 		bool result = false;
 
+		info.height = 0;
+
 		FILE* file = fopen(path.c_str(), "rb");
 		if(file)
 		{
@@ -34,21 +36,18 @@ namespace Assets
 
 	int Font::getHeight() const
 	{
-		return 0;
+		return info.height;
 	}
 
 	int Font::getWidth(char letter) const
 	{
-		return 0;
+		assert(letter >= FONT_START && letter < FONT_END);
+		return info.widths[letter];
 	}
 
 	glm::vec2 Font::getOffset(char letter) const
 	{
-		return glm::vec2(0.0f);
-	}
-
-	glm::vec2 Font::getUV(char letter) const
-	{
-		return glm::vec2(0.0f);
+		assert(letter >= FONT_START && letter < FONT_END);
+		return glm::vec2(info.xoffsets[letter], info.yoffsets[letter]);
 	}
 }

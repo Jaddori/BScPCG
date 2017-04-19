@@ -14,34 +14,30 @@ TEST(FontTest, Load)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
+	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
 
-	EXPECT_EQ(font.getHeight(), 8);
-	EXPECT_EQ(font.getWidth('A'), 12);
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, 0.0f);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, 0.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').x, 1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, 1.0f);
+	EXPECT_EQ(font.getHeight(), 15);
+	EXPECT_EQ(font.getWidth('0'), 6);
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
 
 	Font font2;
 
-	EXPECT_FALSE(font2.load("./assets/fonts/invalid_font"));
+	EXPECT_FALSE(font2.load("./assets/fonts/invalid_font.bin"));
 
-	EXPECT_EQ(font.getHeight(), 0);
+	EXPECT_EQ(font2.getHeight(), 0);
 }
 
 TEST(FontTest, Unload)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
+	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
 
-	EXPECT_EQ(font.getHeight(), 8);
-	EXPECT_EQ(font.getWidth('A'), 12);
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, 0.0f);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, 0.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').x, 1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, 1.0f);
+	EXPECT_EQ(font.getHeight(), 15);
+	EXPECT_EQ(font.getWidth('0'), 6);
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
 
 	font.unload();
 
@@ -52,32 +48,23 @@ TEST(FontTest, GetHeight)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
-	EXPECT_EQ(font.getHeight(), 8);
+	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
+	EXPECT_EQ(font.getHeight(), 15);
 }
 
 TEST(FontTest, GetWidth)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
-	EXPECT_EQ(font.getWidth('A'), 8);
+	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
+	EXPECT_EQ(font.getWidth('0'), 6);
 }
 
 TEST(FontTest, GetOffset)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, 8);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, 8);
-}
-
-TEST(FontTest, GetUV)
-{
-	Font font;
-
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font"));
-	EXPECT_FLOAT_EQ(font.getUV('A').x, 8);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, 8);
+	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
 }
