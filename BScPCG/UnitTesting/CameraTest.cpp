@@ -7,7 +7,7 @@ TEST(CameraTest, Constructor)
 {
 	Camera camera;
 
-	glm::vec3 position = camera.GetPosition();
+	glm::vec3 position = camera.getPosition();
 
 	EXPECT_FLOAT_EQ( position.x, 0.0f );
 	EXPECT_FLOAT_EQ( position.y, 0.0f );

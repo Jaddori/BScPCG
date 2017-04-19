@@ -20,13 +20,13 @@ namespace Rendering
 		Renderer();
 		~Renderer();
 
-		void Load();
+		void load();
 
-		void AddElement(int model, int texture, const glm::vec3& position);
-		void Render(Assets::AssetManager* assets);
+		void addElement(int model, int texture, const glm::vec3& position);
+		void render(Assets::AssetManager* assets);
 
-		Shader* GetShader();
-		Camera* GetCamera();
+		Shader* getShader();
+		Camera* getCamera();
 
 	private:
 		Shader shader;
