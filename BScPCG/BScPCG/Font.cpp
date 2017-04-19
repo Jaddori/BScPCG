@@ -3,6 +3,7 @@
 namespace Assets
 {
 	Font::Font()
+		: info{0}
 	{
 	}
 
@@ -12,11 +13,23 @@ namespace Assets
 
 	bool Font::load(const std::string& path)
 	{
-		return false;
+		bool result = false;
+
+		FILE* file = fopen(path.c_str(), "rb");
+		if(file)
+		{
+			fread(&info, sizeof(info), 1, file);
+			fclose(file);
+
+			result = true;
+		}
+
+		return result;
 	}
 
 	void Font::unload()
 	{
+		info.height = 0;
 	}
 
 	int Font::getHeight() const

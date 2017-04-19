@@ -23,9 +23,14 @@ namespace Assets
 		glm::vec2 getUV(char letter) const;
 
 	private:
-		uint8_t height;
-		uint8_t widths[FONT_RANGE];
-		uint16_t xoffsets[FONT_RANGE];
-		uint16_t yoffsets[FONT_RANGE];
+		struct FontInfo
+		{
+			uint8_t height;
+			uint8_t widths[FONT_RANGE];
+			uint16_t xoffsets[FONT_RANGE];
+			uint16_t yoffsets[FONT_RANGE];
+		};
+
+		FontInfo info;
 	};
 }

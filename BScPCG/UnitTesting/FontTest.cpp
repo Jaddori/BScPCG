@@ -7,12 +7,7 @@ TEST(FontTest, Constructor)
 {
 	Font font;
 
-	EXPECT_EQ(font.getHeight(), -1);
-	EXPECT_EQ(font.getWidth('A'), -1);
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, -1.0f);
+	EXPECT_EQ(font.getHeight(), 0);
 }
 
 TEST(FontTest, Load)
@@ -32,12 +27,7 @@ TEST(FontTest, Load)
 
 	EXPECT_FALSE(font2.load("./assets/fonts/invalid_font"));
 
-	EXPECT_EQ(font.getHeight(), -1);
-	EXPECT_EQ(font.getWidth('A'), -1);
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, -1.0f);
+	EXPECT_EQ(font.getHeight(), 0);
 }
 
 TEST(FontTest, Unload)
@@ -55,12 +45,7 @@ TEST(FontTest, Unload)
 
 	font.unload();
 
-	EXPECT_EQ(font.getHeight(), -1);
-	EXPECT_EQ(font.getWidth('A'), -1);
-	EXPECT_FLOAT_EQ(font.getOffset('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getOffset('A').y, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').x, -1.0f);
-	EXPECT_FLOAT_EQ(font.getUV('A').y, -1.0f);
+	EXPECT_EQ(font.getHeight(), 0);
 }
 
 TEST(FontTest, GetHeight)
