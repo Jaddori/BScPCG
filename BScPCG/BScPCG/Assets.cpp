@@ -110,7 +110,7 @@ namespace Assets
 		fontPaths.clear();
 	}
 
-	int AssetManager::find(const Array<string>& paths, const string& path)
+	int AssetManager::find(Array<string>& paths, const string& path)
 	{
 		int result = -1;
 		for(int i=0; i<paths.getSize() && result < 0; i++)

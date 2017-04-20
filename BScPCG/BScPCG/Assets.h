@@ -24,7 +24,7 @@ namespace Assets
 		void unload();
 
 	private:
-		int find(const Utilities::Array<std::string>& paths, const std::string& path);
+		int find(Utilities::Array<std::string>& paths, const std::string& path);
 
 		Utilities::Array<Model> models;
 		Utilities::Array<std::string> modelPaths;
