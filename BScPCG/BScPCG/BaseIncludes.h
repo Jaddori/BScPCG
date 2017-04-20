@@ -1,12 +1,12 @@
 #pragma once
 
 #include <stdint.h>
-#include <vector>
 #include <string>
 #include <map>
 #include <assert.h>
 #include <cstdlib>
 #include <math.h>
+#include "Array.h"
 
 #ifdef WIN32
 

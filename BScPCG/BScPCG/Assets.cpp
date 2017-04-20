@@ -1,4 +1,6 @@
 #include "Assets.h"
+using namespace Utilities;
+using namespace std;
 
 namespace Assets
 {
@@ -12,17 +14,20 @@ namespace Assets
 
 	int AssetManager::loadModel(const std::string& path)
 	{
-		int result = -1;
+		int result = find(modelPaths, path);
 
-		Model model;
-		if(model.load(path))
+		if(result < 0)
 		{
-			model.upload();
+			Model model;
+			if(model.load(path))
+			{
+				model.upload();
 
-			result = models.size();
+				result = models.getSize();
 
-			models.push_back(model);
-			modelPaths.push_back(path);
+				models.add(model);
+				modelPaths.add(path);
+			}
 		}
 
 		return result;
@@ -35,17 +40,20 @@ namespace Assets
 
 	int AssetManager::loadTexture(const std::string& path)
 	{
-		int result = -1;
+		int result = find(texturePaths, path);
 
-		Texture texture;
-		if(texture.load(path))
+		if(result < 0)
 		{
-			texture.upload();
+			Texture texture;
+			if(texture.load(path))
+			{
+				texture.upload();
 
-			result = textures.size();
+				result = textures.getSize();
 
-			textures.push_back(texture);
-			texturePaths.push_back(path);
+				textures.add(texture);
+				texturePaths.add(path);
+			}
 		}
 
 		return result;
@@ -56,16 +64,40 @@ namespace Assets
 		textures[index].bind();
 	}
 
+	Font* AssetManager::loadFont(const std::string& path)
+	{
+		int result = find(fontPaths, path);
+
+		if(result < 0)
+		{
+			Font font;
+			if(font.load(path))
+			{
+				result = fonts.getSize();
+
+				fonts.add(font);
+				fontPaths.add(path);
+			}
+		}
+
+		return &fonts[result];
+	}
+
 	void AssetManager::unload()
 	{
-		for(size_t i=0; i<models.size(); i++)
+		for(size_t i=0; i<models.getSize(); i++)
 		{
 			models[i].unload();
 		}
 
-		for(size_t i=0; i<textures.size(); i++)
+		for(size_t i=0; i<textures.getSize(); i++)
 		{
 			textures[i].unload();
+		}
+
+		for(int i=0; i<fonts.getSize(); i++)
+		{
+			fonts[i].unload();
 		}
 
 		models.clear();
@@ -73,5 +105,22 @@ namespace Assets
 
 		textures.clear();
 		texturePaths.clear();
+
+		fonts.clear();
+		fontPaths.clear();
+	}
+
+	int AssetManager::find(Array<string>& paths, const string& path)
+	{
+		int result = -1;
+		for(int i=0; i<paths.getSize() && result < 0; i++)
+		{
+			if(paths[i] == path)
+			{
+				result = i;
+			}
+		}
+
+		return result;
 	}
 }
