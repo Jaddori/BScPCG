@@ -3,6 +3,7 @@
 #include "BaseIncludes.h"
 #include "Model.h"
 #include "Texture.h"
+#include "Font.h"
 
 namespace Assets
 {
@@ -18,13 +19,20 @@ namespace Assets
 		int loadTexture(const std::string& path);
 		void bindTexture(int index);
 
+		Font* loadFont(const std::string& path);
+
 		void unload();
 
 	private:
-		std::vector<Model> models;
-		std::vector<std::string> modelPaths;
+		int find(const Utilities::Array<std::string>& paths, const std::string& path);
 
-		std::vector<Texture> textures;
-		std::vector<std::string> texturePaths;
+		Utilities::Array<Model> models;
+		Utilities::Array<std::string> modelPaths;
+
+		Utilities::Array<Texture> textures;
+		Utilities::Array<std::string> texturePaths;
+
+		Utilities::Array<Font> fonts;
+		Utilities::Array<std::string> fontPaths;
 	};
 }
