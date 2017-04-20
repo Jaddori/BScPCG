@@ -4,6 +4,7 @@
 #include "Assets.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "Array.h"
 
 namespace Rendering
 {
@@ -29,11 +30,15 @@ namespace Rendering
 		Camera* getCamera();
 
 	private:
+		static const int MAX_INSTANCES_PER_DRAW = 100;
+
 		Shader shader;
 		Camera camera;
 
-		std::vector<RenderElement> elements;
-		std::vector<glm::mat4> worldMatrices;
+		//std::vector<RenderElement> elements;
+		//std::vector<glm::mat4> worldMatrices;
+		Utilities::Array<RenderElement> elements;
+		Utilities::Array<glm::mat4> worldMatrices;
 
 		GLuint worldMatrixLocation;
 		GLuint viewMatrixLocation;

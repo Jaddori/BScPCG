@@ -38,12 +38,12 @@ void GLWidget::initializeGL()
     glEnable(GL_DEPTH_TEST);
 
     // load assets
-    model = assets.LoadModel("./assets/models/valid_model.model");
-    texture = assets.LoadTexture("./assets/textures/valid_texture.dds");
-    otherTexture = assets.LoadTexture("./assets/textures/other_texture.dds");
+    model = assets.loadModel("./assets/models/valid_model.model");
+    texture = assets.loadTexture("./assets/textures/valid_texture.dds");
+    otherTexture = assets.loadTexture("./assets/textures/other_texture.dds");
 
     // load the renderer
-    renderer.Load();
+    renderer.load();
 }
 
 void GLWidget::paintGL()
@@ -55,7 +55,7 @@ void GLWidget::paintGL()
         glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
         for(int i=0; i<10; i++)
         {
-            renderer.AddElement(model, texture, position);
+            renderer.addElement(model, texture, position);
             position.x += 4.0f;
         }
     }
@@ -63,7 +63,7 @@ void GLWidget::paintGL()
     glm::vec3 position(-20.0f, 0.0f, 40.0f);
     for(int i=0; i<2; i++)
     {
-        renderer.AddElement(model, texture, position);
+        renderer.addElement(model, texture, position);
         position.x += 4.0f;
     }
 
@@ -75,12 +75,12 @@ void GLWidget::paintGL()
         position.x += 4.0f;
     }*/
 
-    renderer.Render(&assets);
+    renderer.render(&assets);
 }
 
 void GLWidget::resizeGL(int w, int h)
 {
-    renderer.GetCamera()->UpdateProjection(w, h);
+    renderer.getCamera()->updateProjection(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
@@ -97,7 +97,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
         if(mouseX >= 0 && mouseY >= 0)
         {
             // move the camera with the mouse
-            renderer.GetCamera()->UpdateDirection(deltaX, deltaY);
+            renderer.getCamera()->updateDirection(deltaX, deltaY);
             update();
         }
 
@@ -147,7 +147,7 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
         QOpenGLWidget::keyPressEvent(event);
     }
 
-    renderer.GetCamera()->UpdatePosition(movement);
+    renderer.getCamera()->updatePosition(movement);
     update();
 }
 

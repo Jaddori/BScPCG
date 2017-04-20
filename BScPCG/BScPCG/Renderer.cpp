@@ -33,18 +33,23 @@ namespace Rendering
 	void Renderer::addElement(int model, int texture, const glm::vec3& position)
 	{
 		RenderElement element = { model, texture, position };
-		elements.push_back(element);
-		worldMatrices.push_back(glm::mat4());
+		//elements.push_back(element);
+		//worldMatrices.push_back(glm::mat4());
+
+		elements.add(element);
+		worldMatrices.add(glm::mat4());
 	}
 
 	void Renderer::render( Assets::AssetManager* assets )
 	{
 		// sort elements
-		std::qsort(elements.data(), elements.size(), sizeof(RenderElement), compareElements);
+		//std::qsort(elements.data(), elements.size(), sizeof(RenderElement), compareElements);
+		std::qsort(elements.getData(), elements.getSize(), sizeof(RenderElement), compareElements);
 
 		// create world matrices from positions
 		const glm::mat4 IDENT;
-		for(size_t i=0; i<elements.size(); i++)
+		//for(size_t i=0; i<elements.size(); i++)
+		for(int i=0; i<elements.getSize(); i++)
 		{
 			worldMatrices[i] = glm::translate(IDENT, elements[i].position);
 		}
@@ -56,13 +61,15 @@ namespace Rendering
 		
 		// render all elements
 		int first = 0;
-		while(first < elements.size())
+		//while(first < elements.size())
+		while(first < elements.getSize())
 		{
 			int last = first;
 			int curModel = elements[first].model;
 			int curTexture = elements[first].texture;
 
-			for(size_t i=first+1; i<elements.size() && last-first+1 < 100; i++, last++)
+			//for(size_t i=first+1; i<elements.size() && last-first+1 < 100; i++, last++)
+			for(int i=first+1; i<elements.getSize() && last-first+1 < MAX_INSTANCES_PER_DRAW; i++, last++)
 			{
 				if(elements[i].model != curModel || elements[i].texture != curTexture)
 				{
