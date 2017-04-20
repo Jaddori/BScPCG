@@ -42,6 +42,7 @@ private:
     Renderer renderer;
 
     int model, texture, otherTexture;
+    int font, fontTexture;
 
     int mouseX, mouseY;
 };

@@ -20,83 +20,114 @@ namespace Rendering
 
 	void Renderer::load()
 	{
-		shader.load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
+		// Load the object shader
+		objectShader.load("./assets/shaders/basic.vs", nullptr, "./assets/shaders/basic.fs");
 
-		worldMatrixLocation = shader.getUniform("WorldMatrices");
-		projectionMatrixLocation = shader.getUniform("ProjectionMatrix");
-		viewMatrixLocation = shader.getUniform("ViewMatrix");
+		objectWorldLocation = objectShader.getUniform("WorldMatrices");
+		objectProjectionLocation = objectShader.getUniform("ProjectionMatrix");
+		objectViewLocation = objectShader.getUniform("ViewMatrix");
 
-		camera.setPosition(glm::vec3(0,0,-10));
-		camera.updateDirection(0,0);
+		// Load the text shader
+		textShader.load("./assets/shaders/text.vs", nullptr, "./assets/shaders/text.fs");
+
+		textWorldLocation = textShader.getUniform("WorldMatrix");
+		textProjectionLocation = textShader.getUniform("ProjectionMatrix");
+
+		// Set default values for the camera
+		perspectiveCamera.setPosition(glm::vec3(0,0,-10));
+		perspectiveCamera.updateDirection(0,0);
 	}
 
 	void Renderer::addElement(int model, int texture, const glm::vec3& position)
 	{
-		RenderElement element = { model, texture, position };
-		//elements.push_back(element);
-		//worldMatrices.push_back(glm::mat4());
+		ObjectElement element = { model, texture, position };
 
-		elements.add(element);
+		objectElements.add(element);
 		worldMatrices.add(glm::mat4());
+	}
+
+	void Renderer::addText(int font, int texture, const char* text, const glm::vec2& position)
+	{
+		TextElement element = { font, texture, position };
+		strcpy(element.text, text);
+
+		textElements.add(element);
 	}
 
 	void Renderer::render( Assets::AssetManager* assets )
 	{
 		// sort elements
-		//std::qsort(elements.data(), elements.size(), sizeof(RenderElement), compareElements);
-		std::qsort(elements.getData(), elements.getSize(), sizeof(RenderElement), compareElements);
+		std::qsort(objectElements.getData(), objectElements.getSize(), sizeof(ObjectElement), compareElements);
 
 		// create world matrices from positions
 		const glm::mat4 IDENT;
-		//for(size_t i=0; i<elements.size(); i++)
-		for(int i=0; i<elements.getSize(); i++)
+		for(int i=0; i<objectElements.getSize(); i++)
 		{
-			worldMatrices[i] = glm::translate(IDENT, elements[i].position);
+			worldMatrices[i] = glm::translate(IDENT, objectElements[i].position);
 		}
 
 		// update uniforms
-		shader.bind();
-		shader.setMat4(projectionMatrixLocation, camera.getProjectionMatrix());
-		shader.setMat4(viewMatrixLocation, camera.getViewMatrix());
+		objectShader.bind();
+		objectShader.setMat4(objectProjectionLocation, perspectiveCamera.getProjectionMatrix());
+		objectShader.setMat4(objectViewLocation, perspectiveCamera.getViewMatrix());
 		
 		// render all elements
 		int first = 0;
-		//while(first < elements.size())
-		while(first < elements.getSize())
+		while(first < objectElements.getSize())
 		{
 			int last = first;
-			int curModel = elements[first].model;
-			int curTexture = elements[first].texture;
+			int curModel = objectElements[first].model;
+			int curTexture = objectElements[first].texture;
 
-			//for(size_t i=first+1; i<elements.size() && last-first+1 < 100; i++, last++)
-			for(int i=first+1; i<elements.getSize() && last-first+1 < MAX_INSTANCES_PER_DRAW; i++, last++)
+			for(int i=first+1; i<objectElements.getSize() && last-first+1 < MAX_INSTANCES_PER_DRAW; i++, last++)
 			{
-				if(elements[i].model != curModel || elements[i].texture != curTexture)
+				if(objectElements[i].model != curModel || objectElements[i].texture != curTexture)
 				{
 					break;
 				}
 			}
 
 			int instances = last-first+1;
-			shader.setMat4v(worldMatrixLocation, &worldMatrices[first], instances);
+			objectShader.setMat4v(objectWorldLocation, &worldMatrices[first], instances);
 			assets->bindTexture(curTexture);
 			assets->renderModel(curModel, instances);
 
 			first = last+1;
 		}
 
+		// update uniforms
+		textShader.bind();
+		textShader.setMat4(textProjectionLocation, orthographicCamera.getProjectionMatrix());
+
+		// render all text
+		for(int i=0; i<textElements.getSize(); i++)
+		{
+
+		}
+
 		// clear lists
-		elements.clear();
+		objectElements.clear();
 		worldMatrices.clear();
+		textElements.clear();
 	}
 
-	Shader* Renderer::getShader()
+	Shader* Renderer::getObjectShader()
 	{
-		return &shader;
+		return &objectShader;
 	}
 
-	Camera* Renderer::getCamera()
+	Shader* Renderer::getTextShader()
 	{
-		return &camera;
+		return &textShader;
+	}
+
+	Camera* Renderer::getPerspectiveCamera()
+	{
+		return &perspectiveCamera;
+	}
+
+	Camera* Renderer::getOrthographicCamera()
+	{
+		return &orthographicCamera;
 	}
 }

@@ -41,6 +41,8 @@ void GLWidget::initializeGL()
     model = assets.loadModel("./assets/models/valid_model.model");
     texture = assets.loadTexture("./assets/textures/valid_texture.dds");
     otherTexture = assets.loadTexture("./assets/textures/other_texture.dds");
+    font = assets.loadFont("./assets/fonts/valid_font.bin");
+    fontTexture = assets.loadTexture("./assets/fonts/valid_font.dds");
 
     // load the renderer
     renderer.load();
@@ -67,20 +69,14 @@ void GLWidget::paintGL()
         position.x += 4.0f;
     }
 
-    /*position.x = -20.0f;
-    position.z = 4.0f;
-    for(int i=0; i<10; i++)
-    {
-        renderer.AddElement(model, otherTexture, position);
-        position.x += 4.0f;
-    }*/
+    renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));
 
     renderer.render(&assets);
 }
 
 void GLWidget::resizeGL(int w, int h)
 {
-    renderer.getCamera()->updateProjection(w, h);
+    renderer.getPerspectiveCamera()->updateProjection(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
@@ -97,7 +93,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
         if(mouseX >= 0 && mouseY >= 0)
         {
             // move the camera with the mouse
-            renderer.getCamera()->updateDirection(deltaX, deltaY);
+            renderer.getPerspectiveCamera()->updateDirection(deltaX, deltaY);
             update();
         }
 
@@ -147,7 +143,7 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
         QOpenGLWidget::keyPressEvent(event);
     }
 
-    renderer.getCamera()->updatePosition(movement);
+    renderer.getPerspectiveCamera()->updatePosition(movement);
     update();
 }
 

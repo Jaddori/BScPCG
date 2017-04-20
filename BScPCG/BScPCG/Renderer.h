@@ -8,11 +8,20 @@
 
 namespace Rendering
 {
-	struct RenderElement
+	struct ObjectElement
 	{
 		int32_t model;
 		int32_t texture;
 		glm::vec3 position;
+	};
+
+#define TEXT_ELEMENT_MAX_LENGTH 128
+	struct TextElement
+	{
+		int font;
+		int texture;
+		glm::vec2 position;
+		char text[TEXT_ELEMENT_MAX_LENGTH];
 	};
 
 	class Renderer
@@ -24,24 +33,36 @@ namespace Rendering
 		void load();
 
 		void addElement(int model, int texture, const glm::vec3& position);
+		void addText(int font, int texture, const char* text, const glm::vec2& position);
 		void render(Assets::AssetManager* assets);
 
-		Shader* getShader();
-		Camera* getCamera();
+		Shader* getObjectShader();
+		Shader* getTextShader();
+
+		Camera* getPerspectiveCamera();
+		Camera* getOrthographicCamera();
 
 	private:
 		static const int MAX_INSTANCES_PER_DRAW = 100;
 
-		Shader shader;
-		Camera camera;
+		// Object variables
+		Shader objectShader;
+		Camera perspectiveCamera;
 
-		//std::vector<RenderElement> elements;
-		//std::vector<glm::mat4> worldMatrices;
-		Utilities::Array<RenderElement> elements;
+		Utilities::Array<ObjectElement> objectElements;
 		Utilities::Array<glm::mat4> worldMatrices;
 
-		GLuint worldMatrixLocation;
-		GLuint viewMatrixLocation;
-		GLuint projectionMatrixLocation;
+		GLuint objectWorldLocation;
+		GLuint objectProjectionLocation;
+		GLuint objectViewLocation;
+
+		// Text variables
+		Shader textShader;
+		Camera orthographicCamera;
+
+		Utilities::Array<TextElement> textElements;
+
+		GLuint textWorldLocation;
+		GLuint textProjectionLocation;
 	};
 }

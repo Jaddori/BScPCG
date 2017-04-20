@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QWidget>
@@ -24,6 +25,7 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
+    QGridLayout *gridLayout;
     GLWidget *widget;
 
     void setupUi(QMainWindow *MainWindow)
@@ -33,12 +35,18 @@ public:
         MainWindow->resize(860, 660);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         widget = new GLWidget(centralWidget);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 20, 800, 600));
         widget->setMouseTracking(false);
         widget->setFocusPolicy(Qt::ClickFocus);
         widget->setAutoFillBackground(false);
+
+        gridLayout->addWidget(widget, 0, 0, 1, 1);
+
         MainWindow->setCentralWidget(centralWidget);
 
         retranslateUi(MainWindow);
