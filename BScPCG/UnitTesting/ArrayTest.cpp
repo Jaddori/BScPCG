@@ -152,13 +152,13 @@ TEST(ArrayTest, Add)
 	for( int i=0; i<Array<int>::DEFAULT_SIZE; i++ )
 	{
 		arr.add(5);
-		EXPECT_EQ(arr.getSize(), i);
+		EXPECT_EQ(arr.getSize(), i+1);
 		EXPECT_EQ(arr.getCapacity(), Array<int>::DEFAULT_SIZE);
 		EXPECT_EQ(arr.getData(), initialData); // make sure we're not allocating new memory
 	}
 
 	arr.add(5);
-	EXPECT_EQ(arr.getSize(), 6);
+	EXPECT_EQ(arr.getSize(), 11);
 	EXPECT_EQ(arr.getCapacity(), Array<int>::DEFAULT_SIZE*2);
 	EXPECT_NE(arr.getData(), initialData); // make sure we did allocate new memory
 }
@@ -182,7 +182,7 @@ TEST(ArrayTest, RemoveItem)
 	EXPECT_EQ(arr.getSize(), 2);
 	EXPECT_EQ(arr.getCapacity(), Array<int>::DEFAULT_SIZE);
 	EXPECT_EQ(arr[0], 1);
-	EXPECT_EQ(arr[2], 3);
+	EXPECT_EQ(arr[1], 3);
 }
 
 TEST(ArrayTest, RemoveAt)
@@ -204,7 +204,7 @@ TEST(ArrayTest, RemoveAt)
 	EXPECT_EQ(arr.getSize(), 2);
 	EXPECT_EQ(arr.getCapacity(), Array<int>::DEFAULT_SIZE);
 	EXPECT_EQ(arr[0], 1);
-	EXPECT_EQ(arr[2], 3);
+	EXPECT_EQ(arr[1], 3);
 }
 
 TEST(ArrayTest, Clear)
