@@ -41,8 +41,8 @@ private:
     AssetManager assets;
     Renderer renderer;
 
-    int model, texture, otherTexture;
-    int font, fontTexture;
+    int model, texture, otherTexture, fontTexture;
+    Assets::Font* font;
 
     int mouseX, mouseY;
 };

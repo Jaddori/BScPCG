@@ -34,15 +34,13 @@ void GLWidget::initializeGL()
 
     // setup OpenGL flags
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
 
     // load assets
     model = assets.loadModel("./assets/models/valid_model.model");
     texture = assets.loadTexture("./assets/textures/valid_texture.dds");
-    otherTexture = assets.loadTexture("./assets/textures/other_texture.dds");
-    font = assets.loadFont("./assets/fonts/valid_font.bin");
-    fontTexture = assets.loadTexture("./assets/fonts/valid_font.dds");
+    //otherTexture = assets.loadTexture("./assets/textures/other_texture.dds");
+    font = assets.loadFont("./assets/fonts/verdana_18.bin");
+    fontTexture = assets.loadTexture("./assets/fonts/verdana_18.dds");
 
     // load the renderer
     renderer.load();
@@ -77,6 +75,7 @@ void GLWidget::paintGL()
 void GLWidget::resizeGL(int w, int h)
 {
     renderer.getPerspectiveCamera()->updateProjection(w, h);
+    renderer.getOrthographicCamera()->updateProjection(0.0f, (float)w, 0.0f, (float)h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)

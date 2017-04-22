@@ -4,7 +4,6 @@
 #include "Assets.h"
 #include "Shader.h"
 #include "Camera.h"
-#include "Array.h"
 
 namespace Rendering
 {
@@ -16,12 +15,19 @@ namespace Rendering
 	};
 
 #define TEXT_ELEMENT_MAX_LENGTH 128
+	struct Glyph
+	{
+		glm::vec2 position;
+		glm::vec4 uv;
+		float width;
+	};
+
 	struct TextElement
 	{
-		int font;
 		int texture;
-		glm::vec2 position;
-		char text[TEXT_ELEMENT_MAX_LENGTH];
+		int textLength;
+		float height;
+		Glyph glyphs[TEXT_ELEMENT_MAX_LENGTH];
 	};
 
 	class Renderer
@@ -31,9 +37,10 @@ namespace Rendering
 		~Renderer();
 
 		void load();
+		void unload();
 
 		void addElement(int model, int texture, const glm::vec3& position);
-		void addText(int font, int texture, const char* text, const glm::vec2& position);
+		void addText(Assets::Font* font, int texture, const char* text, const glm::vec2& position);
 		void render(Assets::AssetManager* assets);
 
 		Shader* getObjectShader();
@@ -62,7 +69,8 @@ namespace Rendering
 
 		Utilities::Array<TextElement> textElements;
 
-		GLuint textWorldLocation;
+		GLuint textVAO, textVBO;
 		GLuint textProjectionLocation;
+		GLuint textHeightLocation;
 	};
 }

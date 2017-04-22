@@ -3,8 +3,8 @@
 namespace Assets
 {
 	Font::Font()
-		: info{0}
 	{
+		info.height = 0;
 	}
 
 	Font::~Font()
@@ -42,12 +42,19 @@ namespace Assets
 	int Font::getWidth(char letter) const
 	{
 		assert(letter >= FONT_START && letter < FONT_END);
+		letter -= FONT_START;
 		return info.widths[letter];
 	}
 
 	glm::vec2 Font::getOffset(char letter) const
 	{
 		assert(letter >= FONT_START && letter < FONT_END);
+		letter -= FONT_START;
 		return glm::vec2(info.xoffsets[letter], info.yoffsets[letter]);
+	}
+
+	int Font::getTextureSize() const
+	{
+		return info.textureSize;
 	}
 }
