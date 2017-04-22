@@ -74,8 +74,8 @@ void GLWidget::paintGL()
 
 void GLWidget::resizeGL(int w, int h)
 {
-    renderer.getPerspectiveCamera()->updateProjection(w, h);
-    renderer.getOrthographicCamera()->updateProjection(0.0f, (float)w, 0.0f, (float)h);
+    renderer.getPerspectiveCamera()->updatePerspective(w, h);
+    renderer.getOrthographicCamera()->updateOrthographic(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
