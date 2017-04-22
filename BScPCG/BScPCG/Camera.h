@@ -13,8 +13,8 @@ namespace Rendering
 		//void Update( float deltaTime );
 		void updatePosition(const glm::vec3& localMovement);
 		void updateDirection(int deltaX, int deltaY);
-		void updateProjection(float width, float height);
-		void updateProjection(float left, float right, float top, float bottom);
+		void updatePerspective(float width, float height);
+		void updateOrthographic(float width, float height);
 
 		void setPosition(const glm::vec3& position);
 		//void setLookAt(const glm::vec3& lookAt);
