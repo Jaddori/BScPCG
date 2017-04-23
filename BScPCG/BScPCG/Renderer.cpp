@@ -38,7 +38,8 @@ namespace Rendering
 		textHeightLocation = textShader.getUniform("Height");
 
 		// Create VAO and VBO for text rendering
-		glCreateVertexArrays(1, &textVAO);
+		//glCreateVertexArrays(1, &textVAO);
+		glGenVertexArrays(1, &textVAO);
 		glBindVertexArray(textVAO);
 		glEnableVertexAttribArray(0);
 		glEnableVertexAttribArray(1);
@@ -77,7 +78,7 @@ namespace Rendering
 
 	void Renderer::addText(Assets::Font* font, int texture, const char* text, const glm::vec2& position)
 	{
-		TextElement element = { texture, strlen(text), font->getHeight() };
+		TextElement element = { texture, (int)strlen(text), (float)font->getHeight() };
 		if(element.textLength > TEXT_ELEMENT_MAX_LENGTH)
 		{
 			element.textLength = TEXT_ELEMENT_MAX_LENGTH;

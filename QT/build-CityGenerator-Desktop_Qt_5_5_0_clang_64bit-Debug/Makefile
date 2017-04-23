@@ -625,6 +625,7 @@ moc_glwidget.cpp: ../../BScPCG/include/GL/glew.h \
 		/Users/Nix/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../BScPCG/BScPCG/Assets.h \
 		../../BScPCG/BScPCG/BaseIncludes.h \
+		../../BScPCG/BScPCG/Array.h \
 		../../BScPCG/include/glm/glm.hpp \
 		../../BScPCG/include/glm/detail/_fixes.hpp \
 		../../BScPCG/include/glm/fwd.hpp \
@@ -714,6 +715,7 @@ moc_glwidget.cpp: ../../BScPCG/include/GL/glew.h \
 		../../BScPCG/include/glm/gtc/type_ptr.inl \
 		../../BScPCG/BScPCG/Model.h \
 		../../BScPCG/BScPCG/Texture.h \
+		../../BScPCG/BScPCG/Font.h \
 		../../BScPCG/BScPCG/Renderer.h \
 		../../BScPCG/BScPCG/Shader.h \
 		../../BScPCG/BScPCG/Camera.h \
@@ -741,6 +743,7 @@ ui_mainwindow.h: ../CityGenerator/mainwindow.ui \
 		/Users/Nix/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../BScPCG/BScPCG/Assets.h \
 		../../BScPCG/BScPCG/BaseIncludes.h \
+		../../BScPCG/BScPCG/Array.h \
 		../../BScPCG/include/glm/glm.hpp \
 		../../BScPCG/include/glm/detail/_fixes.hpp \
 		../../BScPCG/include/glm/fwd.hpp \
@@ -830,6 +833,7 @@ ui_mainwindow.h: ../CityGenerator/mainwindow.ui \
 		../../BScPCG/include/glm/gtc/type_ptr.inl \
 		../../BScPCG/BScPCG/Model.h \
 		../../BScPCG/BScPCG/Texture.h \
+		../../BScPCG/BScPCG/Font.h \
 		../../BScPCG/BScPCG/Renderer.h \
 		../../BScPCG/BScPCG/Shader.h \
 		../../BScPCG/BScPCG/Camera.h
@@ -870,6 +874,7 @@ mainwindow.o: ../CityGenerator/mainwindow.cpp ../CityGenerator/mainwindow.h \
 		/Users/Nix/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../BScPCG/BScPCG/Assets.h \
 		../../BScPCG/BScPCG/BaseIncludes.h \
+		../../BScPCG/BScPCG/Array.h \
 		../../BScPCG/include/glm/glm.hpp \
 		../../BScPCG/include/glm/detail/_fixes.hpp \
 		../../BScPCG/include/glm/fwd.hpp \
@@ -959,6 +964,7 @@ mainwindow.o: ../CityGenerator/mainwindow.cpp ../CityGenerator/mainwindow.h \
 		../../BScPCG/include/glm/gtc/type_ptr.inl \
 		../../BScPCG/BScPCG/Model.h \
 		../../BScPCG/BScPCG/Texture.h \
+		../../BScPCG/BScPCG/Font.h \
 		../../BScPCG/BScPCG/Renderer.h \
 		../../BScPCG/BScPCG/Shader.h \
 		../../BScPCG/BScPCG/Camera.h
@@ -976,6 +982,7 @@ glwidget.o: ../CityGenerator/glwidget.cpp ../CityGenerator/glwidget.h \
 		/Users/Nix/Qt/5.8/clang_64/lib/QtCore.framework/Headers/qdebug.h \
 		../../BScPCG/BScPCG/Assets.h \
 		../../BScPCG/BScPCG/BaseIncludes.h \
+		../../BScPCG/BScPCG/Array.h \
 		../../BScPCG/include/glm/glm.hpp \
 		../../BScPCG/include/glm/detail/_fixes.hpp \
 		../../BScPCG/include/glm/fwd.hpp \
@@ -1065,6 +1072,7 @@ glwidget.o: ../CityGenerator/glwidget.cpp ../CityGenerator/glwidget.h \
 		../../BScPCG/include/glm/gtc/type_ptr.inl \
 		../../BScPCG/BScPCG/Model.h \
 		../../BScPCG/BScPCG/Texture.h \
+		../../BScPCG/BScPCG/Font.h \
 		../../BScPCG/BScPCG/Renderer.h \
 		../../BScPCG/BScPCG/Shader.h \
 		../../BScPCG/BScPCG/Camera.h
