@@ -130,7 +130,11 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="BaseIncludes.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="DataHolder.h" />
+    <ClInclude Include="DataManager.h" />
+    <ClInclude Include="District.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Renderer.h" />
@@ -139,7 +143,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DataHolder.cpp" />
+    <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="District.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Renderer.cpp" />
