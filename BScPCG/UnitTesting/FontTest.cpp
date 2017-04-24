@@ -14,12 +14,12 @@ TEST(FontTest, Load)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
+	ASSERT_TRUE(font.load("./assets/fonts/helvetica_24.bin"));
 
-	EXPECT_EQ(font.getHeight(), 15);
-	EXPECT_EQ(font.getWidth('0'), 6);
-	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
-	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
+	EXPECT_EQ(font.getHeight(), 30);
+	EXPECT_EQ(font.getWidth('0'), 16);
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 200);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 0);
 
 	Font font2;
 
@@ -32,12 +32,12 @@ TEST(FontTest, Unload)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
+	ASSERT_TRUE(font.load("./assets/fonts/helvetica_24.bin"));
 
-	EXPECT_EQ(font.getHeight(), 15);
-	EXPECT_EQ(font.getWidth('0'), 6);
-	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
-	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
+	EXPECT_EQ(font.getHeight(), 30);
+	EXPECT_EQ(font.getWidth('0'), 16);
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 200);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 0);
 
 	font.unload();
 
@@ -48,23 +48,23 @@ TEST(FontTest, GetHeight)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
-	EXPECT_EQ(font.getHeight(), 15);
+	ASSERT_TRUE(font.load("./assets/fonts/helvetica_24.bin"));
+	EXPECT_EQ(font.getHeight(), 30);
 }
 
 TEST(FontTest, GetWidth)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
-	EXPECT_EQ(font.getWidth('0'), 6);
+	ASSERT_TRUE(font.load("./assets/fonts/helvetica_24.bin"));
+	EXPECT_EQ(font.getWidth('0'), 16);
 }
 
 TEST(FontTest, GetOffset)
 {
 	Font font;
 
-	ASSERT_TRUE(font.load("./assets/fonts/valid_font.bin"));
-	EXPECT_FLOAT_EQ(font.getOffset('0').x, 58);
-	EXPECT_FLOAT_EQ(font.getOffset('0').y, 70);
+	ASSERT_TRUE(font.load("./assets/fonts/helvetica_24.bin"));
+	EXPECT_FLOAT_EQ(font.getOffset('0').x, 200);
+	EXPECT_FLOAT_EQ(font.getOffset('0').y, 0);
 }

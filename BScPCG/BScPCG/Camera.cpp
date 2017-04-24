@@ -74,9 +74,14 @@ namespace Rendering
 		viewMatrixNeedsUpdate = true;
 	}
 	
-	void Camera::updateProjection(int width, int height)
+	void Camera::updatePerspective(float width, float height)
 	{
-		projectionMatrix = glm::perspectiveFov(45.0f, (float)width, (float)height, 0.1f, 100.0f);
+		projectionMatrix = glm::perspectiveFov(45.0f, width, height, 0.1f, 100.0f);
+	}
+
+	void Camera::updateOrthographic(float width, float height)
+	{
+		projectionMatrix = glm::ortho(0.0f, width, height, 0.0f);
 	}
 
 	void Camera::setPosition(const glm::vec3& p)

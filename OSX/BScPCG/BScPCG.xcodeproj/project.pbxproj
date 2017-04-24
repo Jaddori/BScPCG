@@ -21,6 +21,9 @@
 		5054DCF51E97F8BE009787B4 /* Shader.h in Headers */ = {isa = PBXBuildFile; fileRef = 5054DCF11E97F8BE009787B4 /* Shader.h */; };
 		5054DCF81E97F8CC009787B4 /* BaseIncludes.h in Headers */ = {isa = PBXBuildFile; fileRef = 5054DCF71E97F8CC009787B4 /* BaseIncludes.h */; };
 		5054DCFA1E97FB36009787B4 /* libelicras.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5054DCD51E97F84D009787B4 /* libelicras.a */; };
+		508F04091EAD1FBC00BE4191 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508F04071EAD1FBC00BE4191 /* Font.cpp */; };
+		508F040A1EAD1FBC00BE4191 /* Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 508F04081EAD1FBC00BE4191 /* Font.h */; };
+		508F040C1EAD1FCA00BE4191 /* Array.h in Headers */ = {isa = PBXBuildFile; fileRef = 508F040B1EAD1FCA00BE4191 /* Array.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -51,6 +54,9 @@
 		5054DCF01E97F8BE009787B4 /* Shader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Shader.cpp; path = ../../BScPCG/BScPCG/Shader.cpp; sourceTree = "<group>"; };
 		5054DCF11E97F8BE009787B4 /* Shader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Shader.h; path = ../../BScPCG/BScPCG/Shader.h; sourceTree = "<group>"; };
 		5054DCF71E97F8CC009787B4 /* BaseIncludes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseIncludes.h; path = ../../BScPCG/BScPCG/BaseIncludes.h; sourceTree = "<group>"; };
+		508F04071EAD1FBC00BE4191 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../BScPCG/BScPCG/Font.cpp; sourceTree = "<group>"; };
+		508F04081EAD1FBC00BE4191 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../../BScPCG/BScPCG/Font.h; sourceTree = "<group>"; };
+		508F040B1EAD1FCA00BE4191 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Array.h; path = ../../BScPCG/BScPCG/Array.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +104,8 @@
 		5054DCDD1E97F870009787B4 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				508F04071EAD1FBC00BE4191 /* Font.cpp */,
+				508F04081EAD1FBC00BE4191 /* Font.h */,
 				5054DCDE1E97F88B009787B4 /* Assets.cpp */,
 				5054DCDF1E97F88B009787B4 /* Assets.h */,
 				5054DCE61E97F8A7009787B4 /* Model.cpp */,
@@ -111,6 +119,7 @@
 		5054DCF61E97F8C2009787B4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				508F040B1EAD1FCA00BE4191 /* Array.h */,
 				5054DCF71E97F8CC009787B4 /* BaseIncludes.h */,
 			);
 			name = Core;
@@ -123,9 +132,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508F040C1EAD1FCA00BE4191 /* Array.h in Headers */,
 				5054DCF81E97F8CC009787B4 /* BaseIncludes.h in Headers */,
 				5054DCE91E97F8A7009787B4 /* Model.h in Headers */,
 				5054DCE51E97F897009787B4 /* Texture.h in Headers */,
+				508F040A1EAD1FBC00BE4191 /* Font.h in Headers */,
 				5054DCE11E97F88B009787B4 /* Assets.h in Headers */,
 				5054DCF51E97F8BE009787B4 /* Shader.h in Headers */,
 				5054DCF31E97F8BE009787B4 /* Renderer.h in Headers */,
@@ -197,6 +208,7 @@
 				5054DCE01E97F88B009787B4 /* Assets.cpp in Sources */,
 				5054DCF41E97F8BE009787B4 /* Shader.cpp in Sources */,
 				5054DCE41E97F897009787B4 /* Texture.cpp in Sources */,
+				508F04091EAD1FBC00BE4191 /* Font.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +351,7 @@
 				5054DCDB1E97F84D009787B4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

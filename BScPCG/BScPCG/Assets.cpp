@@ -66,31 +66,34 @@ namespace Assets
 
 	Font* AssetManager::loadFont(const std::string& path)
 	{
-		int result = find(fontPaths, path);
+		Font* result = nullptr;
+		int index = find(fontPaths, path);
 
-		if(result < 0)
+		if(index < 0)
 		{
 			Font font;
 			if(font.load(path))
 			{
-				result = fonts.getSize();
+				index = fonts.getSize();
 
 				fonts.add(font);
 				fontPaths.add(path);
+				
+				result = &fonts[index];
 			}
 		}
 
-		return &fonts[result];
+		return result;
 	}
 
 	void AssetManager::unload()
 	{
-		for(size_t i=0; i<models.getSize(); i++)
+		for(int i=0; i<models.getSize(); i++)
 		{
 			models[i].unload();
 		}
 
-		for(size_t i=0; i<textures.getSize(); i++)
+		for(int i=0; i<textures.getSize(); i++)
 		{
 			textures[i].unload();
 		}
