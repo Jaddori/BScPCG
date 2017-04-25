@@ -1,14 +1,13 @@
 #pragma once
 #include "DataHolder.h"
 #include "DataManager.h"
-
 namespace PCG
 {
-	class Building : public DataHolder
+	class Block : public DataHolder
 	{
 	public:
-		Building();
-		~Building();
+		Block();
+		~Block();
 		void getData(DataManager* dataManager) override;
 	};
 }

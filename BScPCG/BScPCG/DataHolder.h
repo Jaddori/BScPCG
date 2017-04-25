@@ -1,13 +1,15 @@
 #pragma once
 #include "Array.h"
-
-class DataManager;
-
-class DataHolder
+namespace PCG
 {
-public:
-	DataHolder();
-	virtual ~DataHolder();
-	virtual void getData(DataManager* dataManager) = 0;
-};
+	class DataManager;
 
+	class DataHolder
+	{
+	public:
+		DataHolder();
+		virtual ~DataHolder();
+		virtual void getData(DataManager* dataManager) = 0;
+	};
+
+}

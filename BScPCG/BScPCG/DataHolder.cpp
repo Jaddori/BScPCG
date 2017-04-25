@@ -1,12 +1,14 @@
 #include "DataHolder.h"
 
 // Fully virtual class
-
-DataHolder::DataHolder()
+namespace PCG
 {
-}
+	DataHolder::DataHolder()
+	{
+	}
 
 
-DataHolder::~DataHolder()
-{
+	DataHolder::~DataHolder()
+	{
+	}
 }

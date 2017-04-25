@@ -2,17 +2,19 @@
 
 
 
-
-District::District()
+namespace PCG
 {
-}
+	District::District()
+	{
+	}
 
 
-District::~District()
-{
-}
+	District::~District()
+	{
+	}
 
-void District::getData(DataManager * dataManager)
-{
-	dataManager->addData("District", 1.0f);
+	void District::getData(DataManager * dataManager)
+	{
+		dataManager->addData("District", 1.0f);
+	}
 }
