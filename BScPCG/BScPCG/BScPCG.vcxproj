@@ -130,6 +130,7 @@
     <ClInclude Include="Array.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="BaseIncludes.h" />
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="DataHolder.h" />
@@ -143,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DataHolder.cpp" />
