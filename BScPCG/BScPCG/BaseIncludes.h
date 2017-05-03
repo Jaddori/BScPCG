@@ -24,3 +24,5 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #endif
+
+const int MAX_DISTRICTS = 3;
