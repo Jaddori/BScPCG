@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <cstdlib>
 #include <math.h>
+#include <sstream>
 #include "Array.h"
 
 #ifdef WIN32

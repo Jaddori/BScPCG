@@ -2,7 +2,7 @@
 #include "BaseIncludes.h"
 #include "DataHolder.h"
 #include "DataManager.h"
-#include "NoiseGenerator.h"
+#include "Noise.h"
 
 namespace PCG
 {
@@ -37,13 +37,13 @@ namespace PCG
 		void addSection(int district, Section section, int type);
 		Structure generate(int district, int height, const glm::vec2& position);
 
-		void setNoiseGenerator(NoiseGenerator* noise);
+		void setNoiseGenerator(Noise* noise);
 		void setDimensions(float width, float height);
 
 		void getData(DataManager* dataManager) override;
 
 	private:
-		NoiseGenerator* noise;
+		Noise* noise;
 		float width;
 		float height;
 

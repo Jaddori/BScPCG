@@ -36,11 +36,50 @@ void GLWidget::initializeGL()
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
 
     // load assets
-    model = assets.loadModel("./assets/models/valid_model.model");
-    texture = assets.loadTexture("./assets/textures/valid_texture.dds");
-    //otherTexture = assets.loadTexture("./assets/textures/other_texture.dds");
     font = assets.loadFont("./assets/fonts/verdana_18.bin");
     fontTexture = assets.loadTexture("./assets/fonts/verdana_18.dds");
+
+    int houseBottomSection = assets.loadModel("./assets/models/house_bot_section.model");
+    int houseMiddleSection = assets.loadModel("./assets/models/house_mid_section.model");
+    int houseTopSection = assets.loadModel("./assets/models/house_top_section.model");
+    int houseTopSection2 = assets.loadModel("./assets/models/house_top_section2.model");
+
+    int houseBottomTexture = assets.loadTexture("./assets/textures/concrete1.dds");
+    int houseBottomTexture2 = assets.loadTexture("./assets/textures/concrete2.dds");
+    int houseBottomTexture3 = assets.loadTexture("./assets/textures/concrete3.dds");
+    int houseMiddleTexture = assets.loadTexture("./assets/textures/bricks1.dds");
+    int houseMiddleTexture2 = assets.loadTexture("./assets/textures/bricks2.dds");
+    int houseMiddleTexture3 = assets.loadTexture("./assets/textures/bricks3.dds");
+    int houseTopTexture = assets.loadTexture("./assets/textures/roof1.dds");
+    int houseTopTexture2 = assets.loadTexture("./assets/textures/roof2.dds");
+
+    // initialize the noise generator
+    building.setNoiseGenerator(&perlin);
+    building.setDimensions(10, 10);
+
+    // add some house bottom sections
+    building.addSection(0, {houseBottomSection, houseBottomTexture}, SECTION_BOTTOM);
+    building.addSection(0, {houseBottomSection, houseBottomTexture2}, SECTION_BOTTOM);
+    building.addSection(0, {houseBottomSection, houseBottomTexture3}, SECTION_BOTTOM);
+
+    // add some house middle sections
+    building.addSection(0, {houseMiddleSection, houseMiddleTexture}, SECTION_MIDDLE);
+    building.addSection(0, {houseMiddleSection, houseMiddleTexture2}, SECTION_MIDDLE);
+    building.addSection(0, {houseMiddleSection, houseMiddleTexture3}, SECTION_MIDDLE);
+
+    // add some house top sections
+    building.addSection(0, {houseTopSection, houseTopTexture}, SECTION_TOP);
+    building.addSection(0, {houseTopSection, houseTopTexture2}, SECTION_TOP);
+    building.addSection(0, {houseTopSection2, houseTopTexture}, SECTION_TOP);
+    building.addSection(0, {houseTopSection2, houseTopTexture2}, SECTION_TOP);
+
+    for(int i=0; i<10; i++)
+    {
+        for(int j=0; j<10; j++)
+        {
+            structures.add(building.generate(0, 10, glm::vec2(i,j)));
+        }
+    }
 
     // load the renderer
     renderer.load();
@@ -50,7 +89,7 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for(int j=0; j<10; j++)
+    /*for(int j=0; j<10; j++)
     {
         glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
         for(int i=0; i<10; i++)
@@ -65,6 +104,26 @@ void GLWidget::paintGL()
     {
         renderer.addElement(model, texture, position);
         position.x += 4.0f;
+    }*/
+
+    for(int i=0; i<structures.getSize(); i++)
+    {
+        Structure& s = structures[i];
+        glm::vec3 position((i % 10) * 2, 0.0f, (i / 10) * 2);
+
+        // render bottom section
+        renderer.addElement(s.bottom.model, s.bottom.texture, position);
+        position.y += 0.7f;
+
+        // render middle sections
+        for(int j=0; j<s.height; j++)
+        {
+            renderer.addElement(s.middle.model, s.middle.texture, position);
+            position.y += 2.0f;
+        }
+
+        // render top section
+        renderer.addElement(s.top.model, s.top.texture, position);
     }
 
     renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));

@@ -405,6 +405,7 @@ release\moc_glwidget.cpp: ..\..\BScPCG\include\GL\glew.h \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
 		..\..\BScPCG\BScPCG\BaseIncludes.h \
+		..\..\BScPCG\BScPCG\Array.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -494,10 +495,10 @@ release\moc_glwidget.cpp: ..\..\BScPCG\include\GL\glew.h \
 		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
 		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Font.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
 		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\BScPCG\Array.h \
 		..\CityGenerator\glwidget.h \
 		release\moc_predefs.h \
 		D:\Qt\5.8\msvc2015\bin\moc.exe
@@ -633,6 +634,7 @@ ui_mainwindow.h: ..\CityGenerator\mainwindow.ui \
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
 		..\..\BScPCG\BScPCG\BaseIncludes.h \
+		..\..\BScPCG\BScPCG\Array.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -722,10 +724,10 @@ ui_mainwindow.h: ..\CityGenerator\mainwindow.ui \
 		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
 		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Font.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\BScPCG\Array.h
+		..\..\BScPCG\BScPCG\Camera.h
 	D:\Qt\5.8\msvc2015\bin\uic.exe ..\CityGenerator\mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -1017,6 +1019,7 @@ release\mainwindow.obj: ..\CityGenerator\mainwindow.cpp ../CityGenerator/mainwin
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
 		..\..\BScPCG\BScPCG\BaseIncludes.h \
+		..\..\BScPCG\BScPCG\Array.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -1106,10 +1109,10 @@ release\mainwindow.obj: ..\CityGenerator\mainwindow.cpp ../CityGenerator/mainwin
 		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
 		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Font.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\BScPCG\Array.h
+		..\..\BScPCG\BScPCG\Camera.h
 
 release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h \
 		..\..\BScPCG\include\GL\glew.h \
@@ -1234,6 +1237,7 @@ release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h 
 		D:\Qt\5.8\msvc2015\include\QtCore\QDebug \
 		..\..\BScPCG\BScPCG\Assets.h \
 		..\..\BScPCG\BScPCG\BaseIncludes.h \
+		..\..\BScPCG\BScPCG\Array.h \
 		..\..\BScPCG\include\glm\glm.hpp \
 		..\..\BScPCG\include\glm\detail\_fixes.hpp \
 		..\..\BScPCG\include\glm\fwd.hpp \
@@ -1323,10 +1327,10 @@ release\glwidget.obj: ..\CityGenerator\glwidget.cpp ../CityGenerator/glwidget.h 
 		..\..\BScPCG\include\glm\gtc\type_ptr.inl \
 		..\..\BScPCG\BScPCG\Model.h \
 		..\..\BScPCG\BScPCG\Texture.h \
+		..\..\BScPCG\BScPCG\Font.h \
 		..\..\BScPCG\BScPCG\Renderer.h \
 		..\..\BScPCG\BScPCG\Shader.h \
-		..\..\BScPCG\BScPCG\Camera.h \
-		..\..\BScPCG\BScPCG\Array.h
+		..\..\BScPCG\BScPCG\Camera.h
 
 release\moc_mainwindow.obj: release\moc_mainwindow.cpp 
 

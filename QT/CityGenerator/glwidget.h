@@ -14,9 +14,13 @@
 #include <QDebug>
 #include "Assets.h"
 #include "Renderer.h"
+#include "Building.h"
+#include "PerlinNoise.h"
 
 using namespace Assets;
 using namespace Rendering;
+using namespace PCG;
+using namespace Utilities;
 
 class GLWidget : public QOpenGLWidget
 {
@@ -41,8 +45,12 @@ private:
     AssetManager assets;
     Renderer renderer;
 
-    int model, texture, otherTexture, fontTexture;
+    int fontTexture;
     Assets::Font* font;
+
+    Array<Structure> structures;
+    Building building;
+    PerlinNoise perlin;
 
     int mouseX, mouseY;
 };

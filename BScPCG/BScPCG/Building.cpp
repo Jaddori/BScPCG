@@ -29,10 +29,12 @@ namespace PCG
 		Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
 		Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
 
-		int botSection = noiseResult * botSections.getSize();
-		int midSection = noiseResult * midSections.getSize();
-		int topSection = noiseResult * topSections.getSize();
-		int structureHeight = noiseResult * height;
+		const int ARBITRARY_LARGE_NUMBER = 100;
+		int sectionOffset = (int)(noiseResult*(float)ARBITRARY_LARGE_NUMBER);
+		int botSection = sectionOffset % botSections.getSize();
+		int midSection = sectionOffset % midSections.getSize();
+		int topSection = sectionOffset % topSections.getSize();
+		int structureHeight = (noiseResult * height) + 1;
 
 		Structure result =
 		{
@@ -45,7 +47,7 @@ namespace PCG
 		return result;
 	}
 
-	void Building::setNoiseGenerator(NoiseGenerator* n)
+	void Building::setNoiseGenerator(Noise* n)
 	{
 		noise = n;
 	}
@@ -58,6 +60,20 @@ namespace PCG
 
 	void Building::getData(DataManager * dataManager)
 	{
-		dataManager->addData("building", 2.0f);
+		//dataManager->addData("building", 2.0f);
+
+		std::stringstream ss;
+		for(int i=0; i<MAX_DISTRICTS; i++)
+		{
+			for(int j=0; j<MAX_SECTIONS; j++)
+			{
+				int sections = districtSections[i][j].getSize();
+
+				ss.clear();
+				ss << "district" << i << "sections";
+
+				dataManager->addData(ss.str(), sections);
+			}
+		}
 	}
 }
