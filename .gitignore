@@ -7,7 +7,6 @@
 *.userosscache
 *.sln.docstates
 *.orig
-*.filters
 *.lib
 *.exe
 
