@@ -88,4 +88,8 @@ namespace PCG
 	{
 		dataManager->addData("perlinNoise", this->counter);
 	}
+	double PerlinNoise::generate(double x, double y, double width, double height)
+	{
+		return this->noise(x,y,width,height);
+	}
 }

@@ -140,7 +140,9 @@
     <ClInclude Include="Model.h" />
     <ClInclude Include="Noise.h" />
     <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="RandomNoise.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SeedConverter.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
@@ -156,7 +158,9 @@
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Noise.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
+    <ClCompile Include="RandomNoise.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SeedConverter.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>

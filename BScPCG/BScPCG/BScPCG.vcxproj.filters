@@ -43,6 +43,12 @@
     <ClCompile Include="PerlinNoise.cpp">
       <Filter>Source\PCG</Filter>
     </ClCompile>
+    <ClCompile Include="RandomNoise.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="SeedConverter.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Array.h">
@@ -91,6 +97,12 @@
       <Filter>Header\PCG</Filter>
     </ClInclude>
     <ClInclude Include="PerlinNoise.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomNoise.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="SeedConverter.h">
       <Filter>Header\PCG</Filter>
     </ClInclude>
   </ItemGroup>
