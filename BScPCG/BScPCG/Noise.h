@@ -8,6 +8,7 @@ namespace PCG
 	public:
 		Noise();
 		~Noise();
+		virtual double generate(double x, double y, double width, double height) = 0;
 	};
 
 }
