@@ -2,6 +2,7 @@
 #include "DataManager.h"
 #include "District.h"
 #include "Building.h"
+#include "PerlinNoise.h"
 
 using namespace PCG;
 
@@ -22,6 +23,9 @@ int main( int argc, char** argv )
 	dataManager->showData();
 	float t1 = dataManager->getData("building");
 	int derp;
+
+	PerlinNoise perlin(34534575);
+	
 	std::cin >> derp;
 	return RUN_ALL_TESTS( );
 }

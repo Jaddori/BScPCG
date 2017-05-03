@@ -138,6 +138,7 @@
     <ClInclude Include="District.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Noise.h" />
     <ClInclude Include="PerlinNoise.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Shader.h" />
@@ -153,6 +154,7 @@
     <ClCompile Include="District.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Noise.cpp" />
     <ClCompile Include="PerlinNoise.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Shader.cpp" />
