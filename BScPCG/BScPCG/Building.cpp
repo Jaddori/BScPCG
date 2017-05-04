@@ -1,4 +1,5 @@
 #include "Building.h"
+using namespace Utilities;
 
 namespace PCG
 {
@@ -13,13 +14,21 @@ namespace PCG
 
 	void Building::addSection(int district, Section section, int type)
 	{
-		assert(district >= 0 && district <= MAX_DISTRICTS);
+		assert(district >= 0 && district < MAX_DISTRICTS);
 		assert(type >= SECTION_BOTTOM && type <= SECTION_TOP);
 
 		districtSections[district][type].add(section);
 	}
 
-	Structure Building::generate(int district, int height, const glm::vec2& position)
+	void Building::addHeight(int district, int height)
+	{
+		assert(district >= 0 && district < MAX_DISTRICTS);
+		assert(height > 0);
+
+		districtHeights[district] = height;
+	}
+
+	/*Structure Building::generate(int district, int height, const glm::vec2& position)
 	{
 		assert(district >= 0 && district <= MAX_DISTRICTS);
 
@@ -34,7 +43,7 @@ namespace PCG
 		int botSection = sectionOffset % botSections.getSize();
 		int midSection = sectionOffset % midSections.getSize();
 		int topSection = sectionOffset % topSections.getSize();
-		int structureHeight = (noiseResult * height) + 1;
+		int structureHeight = (int)(noiseResult * (float)height + 0.5f);
 
 		Structure result =
 		{
@@ -45,6 +54,45 @@ namespace PCG
 		};
 
 		return result;
+	}*/
+
+	void Building::generate(Array<Array<int>>& map, Array<Structure>& structures)
+	{
+		const int WIDTH = map.getSize();
+		for(int x=0; x<WIDTH; x++)
+		{
+			const int HEIGHT = map[x].getSize();
+			for(int y=0; y<HEIGHT; y++)
+			{
+				int district = map[x][y];
+				if(district >= 0)
+				{
+					float noiseResult = noise->generate(x, y, width, height);
+
+					Utilities::Array<Section>& botSections = districtSections[district][SECTION_BOTTOM];
+					Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
+					Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
+					int districtHeight = districtHeights[district];
+
+					const int ARBITRARY_LARGE_NUMBER = 100;
+					int sectionOffset = (int)(noiseResult*(float)ARBITRARY_LARGE_NUMBER);
+					int botSection = sectionOffset % botSections.getSize();
+					int midSection = sectionOffset % midSections.getSize();
+					int topSection = sectionOffset % topSections.getSize();
+					int structureHeight = (int)(noiseResult * (float)districtHeight + 0.5f);
+
+					Structure structure =
+					{
+						botSections[botSection],
+						midSections[midSection],
+						topSections[topSection],
+						structureHeight
+					};
+
+					structures.add(structure);
+				}
+			}
+		}
 	}
 
 	void Building::setNoiseGenerator(Noise* n)
@@ -67,12 +115,12 @@ namespace PCG
 		{
 			for(int j=0; j<MAX_SECTIONS; j++)
 			{
-				int sections = districtSections[i][j].getSize();
+				int parts = districtSections[i][j].getSize();
 
 				ss.clear();
-				ss << "district" << i << "sections";
+				ss << "district" << i << "section" << j << "parts";
 
-				dataManager->addData(ss.str(), sections);
+				dataManager->addData(ss.str(), parts);
 			}
 		}
 	}
