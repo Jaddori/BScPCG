@@ -67,29 +67,40 @@ namespace PCG
 				int district = map[x][y];
 				if(district >= 0)
 				{
-					float noiseResult = noise->generate(x, y, width, height);
+					// TODO: This should probably come from a user interface variable?
+					const float BUILDING_DENSITY = 0.35f;
 
-					Utilities::Array<Section>& botSections = districtSections[district][SECTION_BOTTOM];
-					Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
-					Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
-					int districtHeight = districtHeights[district];
-
-					const int ARBITRARY_LARGE_NUMBER = 100;
-					int sectionOffset = (int)(noiseResult*(float)ARBITRARY_LARGE_NUMBER);
-					int botSection = sectionOffset % botSections.getSize();
-					int midSection = sectionOffset % midSections.getSize();
-					int topSection = sectionOffset % topSections.getSize();
-					int structureHeight = (int)(noiseResult * (float)districtHeight + 0.5f);
-
-					Structure structure =
+					float chanceForBuilding = noise->generate(x*10, y*10, width, height);
+					if(chanceForBuilding > BUILDING_DENSITY)
 					{
-						botSections[botSection],
-						midSections[midSection],
-						topSections[topSection],
-						structureHeight
-					};
+						float noiseResult = noise->generate(x*10, y*10, width, height);
 
-					structures.add(structure);
+						Utilities::Array<Section>& botSections = districtSections[district][SECTION_BOTTOM];
+						Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
+						Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
+						int districtHeight = districtHeights[district];
+
+						const int ARBITRARY_LARGE_NUMBER = 100;
+						int sectionOffset = (int)(noiseResult*(float)ARBITRARY_LARGE_NUMBER);
+						int botSection = sectionOffset % botSections.getSize();
+						int midSection = sectionOffset % midSections.getSize();
+						int topSection = sectionOffset % topSections.getSize();
+						int structureHeight = (int)(noiseResult * (float)districtHeight + 0.5f);
+
+						Structure structure =
+						{
+							botSections[botSection],
+							midSections[midSection],
+							topSections[topSection],
+							structureHeight,
+						};
+
+						structures.add(structure);
+					}
+					else
+					{
+						map[x][y] = -3;
+					}
 				}
 			}
 		}
