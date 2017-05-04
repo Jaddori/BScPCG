@@ -35,7 +35,9 @@ namespace PCG
 		~Building();
 
 		void addSection(int district, Section section, int type);
-		Structure generate(int district, int height, const glm::vec2& position);
+		void addHeight(int district, int height);
+		//Structure Building::generate(int district, int height, const glm::vec2& position)
+		void generate(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<Structure>& structures);
 
 		void setNoiseGenerator(Noise* noise);
 		void setDimensions(float width, float height);
@@ -48,5 +50,6 @@ namespace PCG
 		float height;
 
 		Utilities::Array<Section> districtSections[MAX_DISTRICTS][MAX_SECTIONS];
+		int districtHeights[MAX_DISTRICTS];
 	};
 }
