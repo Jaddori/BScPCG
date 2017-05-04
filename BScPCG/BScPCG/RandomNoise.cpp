@@ -23,4 +23,9 @@ namespace PCG
 		// return number between 0-1 just like perlin
 		return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
 	}
+	double RandomNoise::generate(double x, double y, double z, double width, double height)
+	{
+		// return number between 0-1 just like perlin
+		return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+	}
 }

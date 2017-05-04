@@ -68,6 +68,64 @@ namespace PCG
 		return (res + 1.0) / 2.0;
 	}
 
+	double PerlinNoise::noise(double x, double y, double z, double xMaxValue, double yMaxValue)
+	{
+		this->counter++;
+		x /= xMaxValue;
+		y /= yMaxValue;
+
+		int X = (int)floor(x) & 255;
+		int Y = (int)floor(y) & 255;
+		int Z = (int)floor(z) & 255;
+
+		x -= floor(x);
+		y -= floor(y);
+		z -= floor(z);
+
+		double u = fade(x);
+		double v = fade(y);
+		double w = fade(z);
+
+		int A = permutations[X] + Y;
+		int AA = permutations[A] + Z;
+		int AB = permutations[A + 1] + Z;
+		int B = permutations[X + 1] + Y;
+		int BA = permutations[B] + Z;
+		int BB = permutations[B + 1] + Z;
+
+		double res = lerp(w, lerp(v, lerp(u, grad(permutations[AA], x, y, z), grad(permutations[BA], x - 1, y, z)), lerp(u, grad(permutations[AB], x, y - 1, z), grad(permutations[BB], x - 1, y - 1, z))), lerp(v, lerp(u, grad(permutations[AA + 1], x, y, z - 1), grad(permutations[BA + 1], x - 1, y, z - 1)), lerp(u, grad(permutations[AB + 1], x, y - 1, z - 1), grad(permutations[BB + 1], x - 1, y - 1, z - 1))));
+		return (res + 1.0) / 2.0;
+	}
+
+	double PerlinNoise::noise(double x, double y, double z) {
+		// Find the unit cube that contains the point
+		int X = (int)floor(x) & 255;
+		int Y = (int)floor(y) & 255;
+		int Z = (int)floor(z) & 255;
+
+		// Find relative x, y,z of point in cube
+		x -= floor(x);
+		y -= floor(y);
+		z -= floor(z);
+
+		// Compute fade curves for each of x, y, z
+		double u = fade(x);
+		double v = fade(y);
+		double w = fade(z);
+
+		// Hash coordinates of the 8 cube corners
+		int A = permutations[X] + Y;
+		int AA = permutations[A] + Z;
+		int AB = permutations[A + 1] + Z;
+		int B = permutations[X + 1] + Y;
+		int BA = permutations[B] + Z;
+		int BB = permutations[B + 1] + Z;
+
+		// Add blended results from 8 corners of cube
+		double res = lerp(w, lerp(v, lerp(u, grad(permutations[AA], x, y, z), grad(permutations[BA], x - 1, y, z)), lerp(u, grad(permutations[AB], x, y - 1, z), grad(permutations[BB], x - 1, y - 1, z))), lerp(v, lerp(u, grad(permutations[AA + 1], x, y, z - 1), grad(permutations[BA + 1], x - 1, y, z - 1)), lerp(u, grad(permutations[AB + 1], x, y - 1, z - 1), grad(permutations[BB + 1], x - 1, y - 1, z - 1))));
+		return (res + 1.0) / 2.0;
+	}
+
 	double PerlinNoise::fade(double t) {
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
@@ -91,5 +149,9 @@ namespace PCG
 	double PerlinNoise::generate(double x, double y, double width, double height)
 	{
 		return this->noise(x,y,width,height);
+	}
+	double PerlinNoise::generate(double x, double y, double z, double width, double height)
+	{
+		return this->noise(x, y, z, width, height);
 	}
 }

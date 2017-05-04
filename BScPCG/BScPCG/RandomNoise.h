@@ -12,6 +12,7 @@ namespace PCG
 		// overrides
 		void getData(DataManager* dataManager) override;
 		double generate(double x, double y, double width, double height) override;
+		double generate(double x, double y, double z, double width, double height) override;
 	};
 
 }
