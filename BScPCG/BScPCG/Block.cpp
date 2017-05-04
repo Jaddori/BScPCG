@@ -22,7 +22,8 @@ namespace PCG
 		// generate main roads
 		for(int x=0; x<WIDTH; x++)
 		{
-			float noiseResult = noise->generate(x, 0.0, width, height);
+			float noiseResult = noise->generate(x*10.0f, 0.0, width, height);
+			noiseResult *= noiseResult;
 			if(noiseResult > MAIN_ROAD_THRESHOLD)
 			{
 				const int HEIGHT = map[x].getSize();
@@ -34,7 +35,7 @@ namespace PCG
 		}
 
 		// generate smaller roads
-		for(int x=0; x<WIDTH; x++)
+		/*for(int x=0; x<WIDTH; x++)
 		{
 			int startX = x;
 			while(x < WIDTH && map[x][0] >= 0)
@@ -47,13 +48,53 @@ namespace PCG
 			const int HEIGHT = map[startX].getSize();
 			for(int y=0; y<HEIGHT; y++)
 			{
-				float noiseResult = noise->generate(x, y, width, height);
+				float noiseResult = noise->generate(x*20.0f, y*20.0f, width, height);
+				noiseResult *= noiseResult * noiseResult;
 				if(noiseResult > SMALL_ROAD_THRESHOLD)
 				{
 					for(int i=startX; i<endX; i++)
 					{
 						map[i][y] = -2;
 					}
+				}
+			}
+		}*/
+
+		for(int x=0; x<WIDTH; x++)
+		{
+			int startX = x;
+			while(x < WIDTH && map[x][0] >= 0)
+			{
+				x++;
+			}
+
+			int endX = x;
+
+			const int HEIGHT = map[startX].getSize();
+			
+			int next = 0;
+			if(rand() % 10 < 5)
+				next = 2;
+			else
+				next = 1;
+
+			for(int y=0; y<HEIGHT; y++)
+			{
+				if(next > 0)
+				{
+					next--;
+				}
+				else
+				{
+					for(int i=startX; i<endX; i++)
+					{
+						map[i][y] = -2;
+					}
+
+					if(rand() % 10 < 5)
+						next = 2;
+					else
+						next = 1;
 				}
 			}
 		}

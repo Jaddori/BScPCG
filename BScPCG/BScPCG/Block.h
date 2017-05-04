@@ -3,8 +3,8 @@
 #include "DataManager.h"
 #include "Noise.h"
 
-#define MAIN_ROAD_THRESHOLD 0.65f
-#define SMALL_ROAD_THRESHOLD 0.5f
+#define MAIN_ROAD_THRESHOLD 0.35f
+#define SMALL_ROAD_THRESHOLD 0.2f
 
 namespace PCG
 {
