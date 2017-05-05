@@ -136,6 +136,7 @@
     <ClInclude Include="DataHolder.h" />
     <ClInclude Include="DataManager.h" />
     <ClInclude Include="District.h" />
+    <ClInclude Include="Elicras.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="Noise.h" />
@@ -154,6 +155,7 @@
     <ClCompile Include="DataHolder.cpp" />
     <ClCompile Include="DataManager.cpp" />
     <ClCompile Include="District.cpp" />
+    <ClCompile Include="Elicras.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Noise.cpp" />

@@ -12,7 +12,7 @@ namespace PCG
 	{
 	}
 
-	void Building::addSection(int district, Section section, int type)
+	void Building::addSection(int district, const Section& section, int type)
 	{
 		assert(district >= 0 && district < MAX_DISTRICTS);
 		assert(type >= SECTION_BOTTOM && type <= SECTION_TOP);
@@ -20,7 +20,7 @@ namespace PCG
 		districtSections[district][type].add(section);
 	}
 
-	void Building::addHeight(int district, int height)
+	void Building::setHeight(int district, int height)
 	{
 		assert(district >= 0 && district < MAX_DISTRICTS);
 		assert(height > 0);

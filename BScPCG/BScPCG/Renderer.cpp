@@ -70,6 +70,9 @@ namespace Rendering
 
 	void Renderer::addElement(int model, int texture, const glm::vec3& position)
 	{
+		assert(model >= 0);
+		assert(texture >= 0);
+
 		ObjectElement element = { model, texture, position };
 
 		objectElements.add(element);
