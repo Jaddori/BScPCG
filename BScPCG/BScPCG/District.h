@@ -28,14 +28,14 @@ namespace PCG
 		~District();
 		void getData(DataManager* dataManager) override;
 		DistrictStruct getDistrictValue(float x, float y, float width, float height);
-		void setDistrict(DistrictStruct* first, DistrictStruct* second, DistrictStruct* third, float width, float height);
+		void setDistrict(float width, float height);
 		void calculateMap(Utilities::Array<Utilities::Array<int>>& map);
 
 	private:
 		Noise* noise;
 		const int DISTRICT_AMOUNT = 3;
 		Utilities::Array<glm::vec2> positions;
-		DistrictStruct* first, *second, *third;
+		//DistrictStruct* first, *second, *third;
 		const float PROCENTUAL_BORDER_EFFECT = 0.2;
 		double width, height;
 

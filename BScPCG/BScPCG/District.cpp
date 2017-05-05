@@ -11,9 +11,6 @@ namespace PCG
 		{
 			this->positions.add(glm::vec2());
 		}
-		this->first = nullptr;
-		this->second = nullptr;
-		this->third = nullptr;
 	}
 
 	District::District(Noise * noise)
@@ -23,9 +20,6 @@ namespace PCG
 		{
 			this->positions.add(glm::vec2());
 		}
-		this->first = nullptr;
-		this->second = nullptr;
-		this->third = nullptr;
 	}
 
 
@@ -41,12 +35,9 @@ namespace PCG
 	{
 		return DistrictStruct();
 	}
-	void District::setDistrict(DistrictStruct* first, DistrictStruct* second, DistrictStruct* third, float width, float height)
+	void District::setDistrict(float width, float height)
 	{
-		// Saves district and gives initial position in NDC space
-		this->first = first;
-		this->second = second;
-		this->third = third;
+		// gives districts initial position 
 		this->width = width;
 		this->height = height;
 
