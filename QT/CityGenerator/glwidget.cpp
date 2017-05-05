@@ -39,11 +39,13 @@ void GLWidget::initializeGL()
     font = assets.loadFont("./assets/fonts/verdana_18.bin");
     fontTexture = assets.loadTexture("./assets/fonts/verdana_18.dds");
 
+    // house sections
     int houseBottomSection = assets.loadModel("./assets/models/house_bot_section.model");
     int houseMiddleSection = assets.loadModel("./assets/models/house_mid_section.model");
     int houseTopSection = assets.loadModel("./assets/models/house_top_section.model");
     int houseTopSection2 = assets.loadModel("./assets/models/house_top_section2.model");
 
+    // house textures
     int houseBottomTexture = assets.loadTexture("./assets/textures/concrete1.dds");
     int houseBottomTexture2 = assets.loadTexture("./assets/textures/concrete2.dds");
     int houseBottomTexture3 = assets.loadTexture("./assets/textures/concrete3.dds");
@@ -53,33 +55,66 @@ void GLWidget::initializeGL()
     int houseTopTexture = assets.loadTexture("./assets/textures/roof1.dds");
     int houseTopTexture2 = assets.loadTexture("./assets/textures/roof2.dds");
 
-    // initialize the noise generator
-    building.setNoiseGenerator(&perlin);
-    building.setDimensions(10, 10);
+    // skyscraper sections
+    int skyBottomSection = assets.loadModel("./assets/models/skyscraper_bot_section.model");
+    int skyMiddleSection = assets.loadModel("./assets/models/skyscraper_mid_section.model");
+    int skyTopSection = assets.loadModel("./assets/models/skyscraper_top_section.model");
+
+    // skyscraper textures
+    int skyBottomTexture = houseBottomTexture;
+    int skyBottomTexture2 = houseBottomTexture2;
+    int skyBottomTexture3 = houseBottomTexture3;
+    int skyMiddleTexture = assets.loadTexture("./assets/textures/skyscraper1.dds");
+    int skyMiddleTexture2 = assets.loadTexture("./assets/textures/skyscraper2.dds");
+    int skyMiddleTexture3 = assets.loadTexture("./assets/textures/skyscraper3.dds");
+    int skyMiddleTexture4 = assets.loadTexture("./assets/textures/skyscraper4.dds");
+    int skyMiddleTexture5 = assets.loadTexture("./assets/textures/skyscraper5.dds");
+    int skyTopTexture = houseBottomTexture;
+    int skyTopTexture2 = houseBottomTexture2;
+    int skyTopTexture3 = houseBottomTexture3;
+
+    elicras.setDimensions(CITY_WIDTH, CITY_HEIGHT);
 
     // add some house bottom sections
-    building.addSection(0, {houseBottomSection, houseBottomTexture}, SECTION_BOTTOM);
-    building.addSection(0, {houseBottomSection, houseBottomTexture2}, SECTION_BOTTOM);
-    building.addSection(0, {houseBottomSection, houseBottomTexture3}, SECTION_BOTTOM);
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture}, SECTION_BOTTOM);
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture2}, SECTION_BOTTOM);
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture3}, SECTION_BOTTOM);
 
     // add some house middle sections
-    building.addSection(0, {houseMiddleSection, houseMiddleTexture}, SECTION_MIDDLE);
-    building.addSection(0, {houseMiddleSection, houseMiddleTexture2}, SECTION_MIDDLE);
-    building.addSection(0, {houseMiddleSection, houseMiddleTexture3}, SECTION_MIDDLE);
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture2}, SECTION_MIDDLE);
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture3}, SECTION_MIDDLE);
 
     // add some house top sections
-    building.addSection(0, {houseTopSection, houseTopTexture}, SECTION_TOP);
-    building.addSection(0, {houseTopSection, houseTopTexture2}, SECTION_TOP);
-    building.addSection(0, {houseTopSection2, houseTopTexture}, SECTION_TOP);
-    building.addSection(0, {houseTopSection2, houseTopTexture2}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection, houseTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection, houseTopTexture2}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture2}, SECTION_TOP);
 
-    for(int i=0; i<10; i++)
-    {
-        for(int j=0; j<10; j++)
-        {
-            structures.add(building.generate(0, 10, glm::vec2(i,j)));
-        }
-    }
+    // add house height
+    elicras.setDistrictHeight(0, 0, 2);
+
+    // add some skyscraper bottom sections
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture}, SECTION_BOTTOM);
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture2}, SECTION_BOTTOM);
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture3}, SECTION_BOTTOM);
+
+    // add some skyscraper middle sections
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture2}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture3}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture4}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture5}, SECTION_MIDDLE);
+
+    // add some skyscraper top sections
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture2}, SECTION_TOP);
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture3}, SECTION_TOP);
+
+    // add skyscraper height
+    elicras.loadAssets(&assets);
+    elicras.setDistrictHeight(1, 0, 10);
+    elicras.generate();
 
     // load the renderer
     renderer.load();
@@ -89,42 +124,7 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    /*for(int j=0; j<10; j++)
-    {
-        glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
-        for(int i=0; i<10; i++)
-        {
-            renderer.addElement(model, texture, position);
-            position.x += 4.0f;
-        }
-    }
-
-    glm::vec3 position(-20.0f, 0.0f, 40.0f);
-    for(int i=0; i<2; i++)
-    {
-        renderer.addElement(model, texture, position);
-        position.x += 4.0f;
-    }*/
-
-    for(int i=0; i<structures.getSize(); i++)
-    {
-        Structure& s = structures[i];
-        glm::vec3 position((i % 10) * 2, 0.0f, (i / 10) * 2);
-
-        // render bottom section
-        renderer.addElement(s.bottom.model, s.bottom.texture, position);
-        position.y += 0.7f;
-
-        // render middle sections
-        for(int j=0; j<s.height; j++)
-        {
-            renderer.addElement(s.middle.model, s.middle.texture, position);
-            position.y += 2.0f;
-        }
-
-        // render top section
-        renderer.addElement(s.top.model, s.top.texture, position);
-    }
+    elicras.render(&renderer);
 
     renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));
 

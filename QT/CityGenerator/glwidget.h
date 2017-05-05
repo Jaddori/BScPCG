@@ -14,8 +14,7 @@
 #include <QDebug>
 #include "Assets.h"
 #include "Renderer.h"
-#include "Building.h"
-#include "PerlinNoise.h"
+#include "Elicras.h"
 
 using namespace Assets;
 using namespace Rendering;
@@ -40,7 +39,8 @@ protected:
     void keyReleaseEvent(QKeyEvent* event);
 
 private:
-   // QTimer timer;
+    static const int CITY_WIDTH = 30;
+    static const int CITY_HEIGHT = 30;
 
     AssetManager assets;
     Renderer renderer;
@@ -48,9 +48,7 @@ private:
     int fontTexture;
     Assets::Font* font;
 
-    Array<Structure> structures;
-    Building building;
-    PerlinNoise perlin;
+    Elicras elicras;
 
     int mouseX, mouseY;
 };
