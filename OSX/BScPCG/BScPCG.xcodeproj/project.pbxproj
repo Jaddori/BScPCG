@@ -24,6 +24,26 @@
 		508F04091EAD1FBC00BE4191 /* Font.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 508F04071EAD1FBC00BE4191 /* Font.cpp */; };
 		508F040A1EAD1FBC00BE4191 /* Font.h in Headers */ = {isa = PBXBuildFile; fileRef = 508F04081EAD1FBC00BE4191 /* Font.h */; };
 		508F040C1EAD1FCA00BE4191 /* Array.h in Headers */ = {isa = PBXBuildFile; fileRef = 508F040B1EAD1FCA00BE4191 /* Array.h */; };
+		509A3A5D1EBD2BDA006A5A31 /* Block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A5B1EBD2BDA006A5A31 /* Block.cpp */; };
+		509A3A5E1EBD2BDA006A5A31 /* Block.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A5C1EBD2BDA006A5A31 /* Block.h */; };
+		509A3A611EBD2BE7006A5A31 /* Building.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A5F1EBD2BE7006A5A31 /* Building.cpp */; };
+		509A3A621EBD2BE7006A5A31 /* Building.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A601EBD2BE7006A5A31 /* Building.h */; };
+		509A3A6B1EBD2BF6006A5A31 /* DataHolder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A631EBD2BF6006A5A31 /* DataHolder.cpp */; };
+		509A3A6C1EBD2BF6006A5A31 /* DataHolder.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A641EBD2BF6006A5A31 /* DataHolder.h */; };
+		509A3A6D1EBD2BF6006A5A31 /* DataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A651EBD2BF6006A5A31 /* DataManager.cpp */; };
+		509A3A6E1EBD2BF6006A5A31 /* DataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A661EBD2BF6006A5A31 /* DataManager.h */; };
+		509A3A6F1EBD2BF6006A5A31 /* District.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A671EBD2BF6006A5A31 /* District.cpp */; };
+		509A3A701EBD2BF6006A5A31 /* District.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A681EBD2BF6006A5A31 /* District.h */; };
+		509A3A711EBD2BF6006A5A31 /* Elicras.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A691EBD2BF6006A5A31 /* Elicras.cpp */; };
+		509A3A721EBD2BF6006A5A31 /* Elicras.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A6A1EBD2BF6006A5A31 /* Elicras.h */; };
+		509A3A791EBD2C05006A5A31 /* Noise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A731EBD2C05006A5A31 /* Noise.cpp */; };
+		509A3A7A1EBD2C05006A5A31 /* Noise.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A741EBD2C05006A5A31 /* Noise.h */; };
+		509A3A7B1EBD2C05006A5A31 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A751EBD2C05006A5A31 /* PerlinNoise.cpp */; };
+		509A3A7C1EBD2C05006A5A31 /* PerlinNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A761EBD2C05006A5A31 /* PerlinNoise.h */; };
+		509A3A7D1EBD2C05006A5A31 /* RandomNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A771EBD2C05006A5A31 /* RandomNoise.cpp */; };
+		509A3A7E1EBD2C05006A5A31 /* RandomNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A781EBD2C05006A5A31 /* RandomNoise.h */; };
+		509A3A811EBD2C11006A5A31 /* SeedConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 509A3A7F1EBD2C11006A5A31 /* SeedConverter.cpp */; };
+		509A3A821EBD2C11006A5A31 /* SeedConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = 509A3A801EBD2C11006A5A31 /* SeedConverter.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +77,26 @@
 		508F04071EAD1FBC00BE4191 /* Font.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Font.cpp; path = ../../BScPCG/BScPCG/Font.cpp; sourceTree = "<group>"; };
 		508F04081EAD1FBC00BE4191 /* Font.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Font.h; path = ../../BScPCG/BScPCG/Font.h; sourceTree = "<group>"; };
 		508F040B1EAD1FCA00BE4191 /* Array.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Array.h; path = ../../BScPCG/BScPCG/Array.h; sourceTree = "<group>"; };
+		509A3A5B1EBD2BDA006A5A31 /* Block.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Block.cpp; path = ../../BScPCG/BScPCG/Block.cpp; sourceTree = "<group>"; };
+		509A3A5C1EBD2BDA006A5A31 /* Block.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Block.h; path = ../../BScPCG/BScPCG/Block.h; sourceTree = "<group>"; };
+		509A3A5F1EBD2BE7006A5A31 /* Building.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Building.cpp; path = ../../BScPCG/BScPCG/Building.cpp; sourceTree = "<group>"; };
+		509A3A601EBD2BE7006A5A31 /* Building.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Building.h; path = ../../BScPCG/BScPCG/Building.h; sourceTree = "<group>"; };
+		509A3A631EBD2BF6006A5A31 /* DataHolder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DataHolder.cpp; path = ../../BScPCG/BScPCG/DataHolder.cpp; sourceTree = "<group>"; };
+		509A3A641EBD2BF6006A5A31 /* DataHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataHolder.h; path = ../../BScPCG/BScPCG/DataHolder.h; sourceTree = "<group>"; };
+		509A3A651EBD2BF6006A5A31 /* DataManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = DataManager.cpp; path = ../../BScPCG/BScPCG/DataManager.cpp; sourceTree = "<group>"; };
+		509A3A661EBD2BF6006A5A31 /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataManager.h; path = ../../BScPCG/BScPCG/DataManager.h; sourceTree = "<group>"; };
+		509A3A671EBD2BF6006A5A31 /* District.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = District.cpp; path = ../../BScPCG/BScPCG/District.cpp; sourceTree = "<group>"; };
+		509A3A681EBD2BF6006A5A31 /* District.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = District.h; path = ../../BScPCG/BScPCG/District.h; sourceTree = "<group>"; };
+		509A3A691EBD2BF6006A5A31 /* Elicras.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Elicras.cpp; path = ../../BScPCG/BScPCG/Elicras.cpp; sourceTree = "<group>"; };
+		509A3A6A1EBD2BF6006A5A31 /* Elicras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Elicras.h; path = ../../BScPCG/BScPCG/Elicras.h; sourceTree = "<group>"; };
+		509A3A731EBD2C05006A5A31 /* Noise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Noise.cpp; path = ../../BScPCG/BScPCG/Noise.cpp; sourceTree = "<group>"; };
+		509A3A741EBD2C05006A5A31 /* Noise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Noise.h; path = ../../BScPCG/BScPCG/Noise.h; sourceTree = "<group>"; };
+		509A3A751EBD2C05006A5A31 /* PerlinNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PerlinNoise.cpp; path = ../../BScPCG/BScPCG/PerlinNoise.cpp; sourceTree = "<group>"; };
+		509A3A761EBD2C05006A5A31 /* PerlinNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PerlinNoise.h; path = ../../BScPCG/BScPCG/PerlinNoise.h; sourceTree = "<group>"; };
+		509A3A771EBD2C05006A5A31 /* RandomNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RandomNoise.cpp; path = ../../BScPCG/BScPCG/RandomNoise.cpp; sourceTree = "<group>"; };
+		509A3A781EBD2C05006A5A31 /* RandomNoise.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RandomNoise.h; path = ../../BScPCG/BScPCG/RandomNoise.h; sourceTree = "<group>"; };
+		509A3A7F1EBD2C11006A5A31 /* SeedConverter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SeedConverter.cpp; path = ../../BScPCG/BScPCG/SeedConverter.cpp; sourceTree = "<group>"; };
+		509A3A801EBD2C11006A5A31 /* SeedConverter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SeedConverter.h; path = ../../BScPCG/BScPCG/SeedConverter.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +113,7 @@
 		5054DCCC1E97F84D009787B4 = {
 			isa = PBXGroup;
 			children = (
+				509A3A5A1EBD2BBA006A5A31 /* PCG */,
 				5054DCDD1E97F870009787B4 /* Assets */,
 				5054DCF61E97F8C2009787B4 /* Core */,
 				5054DCD61E97F84D009787B4 /* Products */,
@@ -125,6 +166,33 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
+		509A3A5A1EBD2BBA006A5A31 /* PCG */ = {
+			isa = PBXGroup;
+			children = (
+				509A3A7F1EBD2C11006A5A31 /* SeedConverter.cpp */,
+				509A3A801EBD2C11006A5A31 /* SeedConverter.h */,
+				509A3A731EBD2C05006A5A31 /* Noise.cpp */,
+				509A3A741EBD2C05006A5A31 /* Noise.h */,
+				509A3A751EBD2C05006A5A31 /* PerlinNoise.cpp */,
+				509A3A761EBD2C05006A5A31 /* PerlinNoise.h */,
+				509A3A771EBD2C05006A5A31 /* RandomNoise.cpp */,
+				509A3A781EBD2C05006A5A31 /* RandomNoise.h */,
+				509A3A631EBD2BF6006A5A31 /* DataHolder.cpp */,
+				509A3A641EBD2BF6006A5A31 /* DataHolder.h */,
+				509A3A651EBD2BF6006A5A31 /* DataManager.cpp */,
+				509A3A661EBD2BF6006A5A31 /* DataManager.h */,
+				509A3A671EBD2BF6006A5A31 /* District.cpp */,
+				509A3A681EBD2BF6006A5A31 /* District.h */,
+				509A3A691EBD2BF6006A5A31 /* Elicras.cpp */,
+				509A3A6A1EBD2BF6006A5A31 /* Elicras.h */,
+				509A3A5F1EBD2BE7006A5A31 /* Building.cpp */,
+				509A3A601EBD2BE7006A5A31 /* Building.h */,
+				509A3A5B1EBD2BDA006A5A31 /* Block.cpp */,
+				509A3A5C1EBD2BDA006A5A31 /* Block.h */,
+			);
+			name = PCG;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -132,14 +200,24 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				509A3A701EBD2BF6006A5A31 /* District.h in Headers */,
 				508F040C1EAD1FCA00BE4191 /* Array.h in Headers */,
+				509A3A7E1EBD2C05006A5A31 /* RandomNoise.h in Headers */,
 				5054DCF81E97F8CC009787B4 /* BaseIncludes.h in Headers */,
+				509A3A6C1EBD2BF6006A5A31 /* DataHolder.h in Headers */,
+				509A3A821EBD2C11006A5A31 /* SeedConverter.h in Headers */,
 				5054DCE91E97F8A7009787B4 /* Model.h in Headers */,
+				509A3A6E1EBD2BF6006A5A31 /* DataManager.h in Headers */,
+				509A3A621EBD2BE7006A5A31 /* Building.h in Headers */,
 				5054DCE51E97F897009787B4 /* Texture.h in Headers */,
 				508F040A1EAD1FBC00BE4191 /* Font.h in Headers */,
 				5054DCE11E97F88B009787B4 /* Assets.h in Headers */,
 				5054DCF51E97F8BE009787B4 /* Shader.h in Headers */,
+				509A3A7A1EBD2C05006A5A31 /* Noise.h in Headers */,
 				5054DCF31E97F8BE009787B4 /* Renderer.h in Headers */,
+				509A3A721EBD2BF6006A5A31 /* Elicras.h in Headers */,
+				509A3A5E1EBD2BDA006A5A31 /* Block.h in Headers */,
+				509A3A7C1EBD2C05006A5A31 /* PerlinNoise.h in Headers */,
 				5054DCED1E97F8B4009787B4 /* Camera.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,9 +284,19 @@
 				5054DCF21E97F8BE009787B4 /* Renderer.cpp in Sources */,
 				5054DCE81E97F8A7009787B4 /* Model.cpp in Sources */,
 				5054DCE01E97F88B009787B4 /* Assets.cpp in Sources */,
+				509A3A811EBD2C11006A5A31 /* SeedConverter.cpp in Sources */,
 				5054DCF41E97F8BE009787B4 /* Shader.cpp in Sources */,
+				509A3A711EBD2BF6006A5A31 /* Elicras.cpp in Sources */,
+				509A3A5D1EBD2BDA006A5A31 /* Block.cpp in Sources */,
+				509A3A611EBD2BE7006A5A31 /* Building.cpp in Sources */,
+				509A3A7B1EBD2C05006A5A31 /* PerlinNoise.cpp in Sources */,
 				5054DCE41E97F897009787B4 /* Texture.cpp in Sources */,
 				508F04091EAD1FBC00BE4191 /* Font.cpp in Sources */,
+				509A3A6B1EBD2BF6006A5A31 /* DataHolder.cpp in Sources */,
+				509A3A6D1EBD2BF6006A5A31 /* DataManager.cpp in Sources */,
+				509A3A791EBD2C05006A5A31 /* Noise.cpp in Sources */,
+				509A3A6F1EBD2BF6006A5A31 /* District.cpp in Sources */,
+				509A3A7D1EBD2C05006A5A31 /* RandomNoise.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
