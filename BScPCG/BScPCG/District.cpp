@@ -94,6 +94,12 @@ namespace PCG
 
 	}
 
+	void District::generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height)
+	{
+		this->setDistrict(width, height);
+		this->calculateMap(map);
+	}
+
 	double District::vec2SquareDistance(glm::vec2 first, glm::vec2 second)
 	{
 		double xDistance = (first.x - second.x);

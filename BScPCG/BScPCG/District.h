@@ -31,6 +31,7 @@ namespace PCG
 		void setDistrict(float width, float height);
 		void setNoiseGenerator(Noise* noise);
 		void calculateMap(Utilities::Array<Utilities::Array<int>>& map);
+		void generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height);
 
 	private:
 		Noise* noise;
