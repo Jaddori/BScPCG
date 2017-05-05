@@ -29,6 +29,7 @@ namespace PCG
 		void getData(DataManager* dataManager) override;
 		DistrictStruct getDistrictValue(float x, float y, float width, float height);
 		void setDistrict(float width, float height);
+		void setNoiseGenerator(Noise* noise);
 		void calculateMap(Utilities::Array<Utilities::Array<int>>& map);
 
 	private:

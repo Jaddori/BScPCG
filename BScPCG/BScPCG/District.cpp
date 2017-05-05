@@ -64,6 +64,10 @@ namespace PCG
 		std::cout << floor(positions[2].x) << "," << floor(positions[2].y) << std::endl;
 						
 	}
+	void District::setNoiseGenerator(Noise * noise)
+	{
+		this->noise = noise;
+	}
 	void District::calculateMap(Utilities::Array<Utilities::Array<int>>& map)
 	{
 		const int WIDTH = map.getSize();
