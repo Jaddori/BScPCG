@@ -56,7 +56,7 @@ namespace PCG
 		return result;
 	}*/
 
-	void Building::generate(Array<Array<int>>& map, Array<Structure>& structures)
+	/*void Building::generate(Array<Array<int>>& map, Array<Structure>& structures)
 	{
 		const int WIDTH = map.getSize();
 		for(int x=0; x<WIDTH; x++)
@@ -100,6 +100,56 @@ namespace PCG
 					else
 					{
 						map[x][y] = -3;
+					}
+				}
+			}
+		}
+	}*/
+
+	void Building::generate(Array2D<int>& map, Array<Structure>& structures)
+	{
+		const int WIDTH = map.getWidth();
+		for(int x=0; x<WIDTH; x++)
+		{
+			const int HEIGHT = map.getHeight();
+			for(int y=0; y<HEIGHT; y++)
+			{
+				int district = map.at(x, y);
+				if(district >= 0)
+				{
+					// TODO: This should probably come from a user interface variable?
+					const float BUILDING_DENSITY = 0.35f;
+
+					float chanceForBuilding = noise->generate(x*10, y*10, width, height);
+					if(chanceForBuilding > BUILDING_DENSITY)
+					{
+						float noiseResult = noise->generate(x*10, y*10, width, height);
+
+						Utilities::Array<Section>& botSections = districtSections[district][SECTION_BOTTOM];
+						Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
+						Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
+						int districtHeight = districtHeights[district];
+
+						const int ARBITRARY_LARGE_NUMBER = 100;
+						int sectionOffset = (int)(noiseResult*(float)ARBITRARY_LARGE_NUMBER);
+						int botSection = sectionOffset % botSections.getSize();
+						int midSection = sectionOffset % midSections.getSize();
+						int topSection = sectionOffset % topSections.getSize();
+						int structureHeight = (int)(noiseResult * (float)districtHeight + 0.5f);
+
+						Structure structure =
+						{
+							botSections[botSection],
+							midSections[midSection],
+							topSections[topSection],
+							structureHeight,
+						};
+
+						structures.add(structure);
+					}
+					else
+					{
+						map.at(x, y) = -3;
 					}
 				}
 			}

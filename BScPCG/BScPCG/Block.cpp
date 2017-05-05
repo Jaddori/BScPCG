@@ -12,7 +12,7 @@ namespace PCG
 	{
 	}
 	
-	void Block::generate(Array<Array<int>>& map)
+	/*void Block::generate(Array<Array<int>>& map)
 	{
 		assert(noise != nullptr);
 
@@ -33,32 +33,6 @@ namespace PCG
 				}
 			}
 		}
-
-		// generate smaller roads
-		/*for(int x=0; x<WIDTH; x++)
-		{
-			int startX = x;
-			while(x < WIDTH && map[x][0] >= 0)
-			{
-				x++;
-			}
-
-			int endX = x;
-
-			const int HEIGHT = map[startX].getSize();
-			for(int y=0; y<HEIGHT; y++)
-			{
-				float noiseResult = noise->generate(x*20.0f, y*20.0f, width, height);
-				noiseResult *= noiseResult * noiseResult;
-				if(noiseResult > SMALL_ROAD_THRESHOLD)
-				{
-					for(int i=startX; i<endX; i++)
-					{
-						map[i][y] = -2;
-					}
-				}
-			}
-		}*/
 
 		for(int x=0; x<WIDTH; x++)
 		{
@@ -95,6 +69,72 @@ namespace PCG
 						next = 2;
 					else
 						next = 1;
+				}
+			}
+		}
+	}*/
+
+	void Block::generate(Array2D<int>& map)
+	{
+		assert(noise != nullptr);
+
+		const int WIDTH = map.getWidth();
+		const int HEIGHT = map.getHeight();
+		assert(WIDTH > 0);
+		assert(HEIGHT > 0 );
+
+		// generate main roads
+		for(int x=0; x<WIDTH; x++)
+		{
+			float noiseResult = noise->generate(x*10.0f, 0.0, width, height);
+			noiseResult *= noiseResult;
+			if(noiseResult > MAIN_ROAD_THRESHOLD)
+			{
+				const int HEIGHT = map.getHeight();
+				for(int y=0; y<HEIGHT; y++)
+				{
+					map.at(x, y) = -1;
+				}
+			}
+		}
+
+		for(int x=0; x<WIDTH; x++)
+		{
+			int startX = x;
+			while(x < WIDTH && map.at(x, 0) >= 0)
+			{
+				x++;
+			}
+
+			int endX = x;
+
+			int next = 0;
+			if(rand() % 10 < 5)
+				next = 2;
+			else
+				next = 1;
+
+			for(int y=0; y<HEIGHT; y++)
+			{
+				if(next > 0)
+				{
+					next--;
+				}
+				else
+				{
+					for(int i=startX; i<endX; i++)
+					{
+						map.at(i, y) = -2;
+					}
+
+					if(rand() % 10 < 5)
+					{
+						next = 2;
+					}
+					else
+					{
+						next = 1;
+					}
 				}
 			}
 		}

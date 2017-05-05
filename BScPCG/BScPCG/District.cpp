@@ -68,7 +68,7 @@ namespace PCG
 	{
 		this->noise = noise;
 	}
-	void District::calculateMap(Utilities::Array<Utilities::Array<int>>& map)
+	/*void District::calculateMap(Utilities::Array<Utilities::Array<int>>& map)
 	{
 		const int WIDTH = map.getSize();
 
@@ -92,9 +92,41 @@ namespace PCG
 
 		this->changeBorder(map,borderCoordinates,nodeEffectAmount);
 
+	}*/
+
+	void District::calculateMap(Utilities::Array2D<int>& map)
+	{
+		const int WIDTH = map.getWidth();
+		const int HEIGHT = map.getHeight();
+
+		for (int x = 0; x < WIDTH; x++) // closest district wins
+		{
+			for (int y = 0; y < HEIGHT; y++)
+			{
+				map.at(x, y) = this->closestDistrict(x, y);
+			}
+		}
+
+		//sprinkle some perlin randomness in there
+		Utilities::Array<glm::vec2> borderCoordinates;
+		this->findBorder(map,borderCoordinates); // get border to change
+
+		const int MIN_EFFECT_AMOUNT = 2; // calculate how many nodes to effect
+		int nodeEffectAmount = floor(width * PROCENTUAL_BORDER_EFFECT);
+		if (nodeEffectAmount < MIN_EFFECT_AMOUNT)
+			nodeEffectAmount = MIN_EFFECT_AMOUNT;
+
+		this->changeBorder(map,borderCoordinates,nodeEffectAmount);
+
 	}
 
-	void District::generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height)
+	/*void District::generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height)
+	{
+		this->setDistrict(width, height);
+		this->calculateMap(map);
+	}*/
+
+	void District::generate(Utilities::Array2D<int>& map, float width, float height)
 	{
 		this->setDistrict(width, height);
 		this->calculateMap(map);
@@ -124,7 +156,7 @@ namespace PCG
 
 		return closestDistric;
 	}
-	void District::findBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders)
+	/*void District::findBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders)
 	{
 		const int WIDTH = map.getSize();
 		const int HEIGHT = map[0].getSize();
@@ -141,8 +173,29 @@ namespace PCG
 				}
 			}
 		}
+	}*/
+
+	void District::findBorder(Utilities::Array2D<int>& map, Utilities::Array<glm::vec2>& borders)
+	{
+		const int WIDTH = map.getWidth();
+		const int HEIGHT = map.getHeight();
+		int previous = map.at(0, 0);
+
+		for (int y = 0; y < HEIGHT; y++)
+		{
+			previous = map.at(0, y);
+			for (int x = 0; x < WIDTH; x++)
+			{
+				if (previous != map.at(x, y)) // we found border
+				{
+					previous = map.at(x, y); // Change previous
+					borders.add(glm::vec2(x,y)); // change position
+				}
+			}
+		}
 	}
-	void District::changeBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange)
+
+	/*void District::changeBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange)
 	{
 		int x, y, firstDistrict, secondDistrict;
 		int minRangePos, maxRangePos;
@@ -176,6 +229,41 @@ namespace PCG
 					map[x2][y] = firstDistrict;
 				else
 					map[x2][y] = secondDistrict;
+			}
+		}
+	}*/
+
+	void District::changeBorder(Utilities::Array2D<int>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange)
+	{
+		int x, y, firstDistrict, secondDistrict;
+		int minRangePos, maxRangePos;
+		double noise;
+		int halfChangeRange = nodeChangeRange / 2;
+
+		for (int i = 0; i < borders.getSize(); i++)
+		{
+			x = borders.at(i).x;
+			y = borders.at(i).y;
+			firstDistrict = map.at(x, y);
+			secondDistrict = map.at(x - 1, y); // this should never go outside array borders
+
+			minRangePos = x - halfChangeRange; // calculate what nodes to change
+			maxRangePos = x + halfChangeRange;
+			if (minRangePos < 0)
+				minRangePos = 0;
+			if (maxRangePos >= width)
+				maxRangePos = width - 1;
+
+			for (int x2 = minRangePos; x2 <= maxRangePos; x2++) // loop through nodes to be changed
+			{
+				noise = 20 * this->noise->generate(1.134 * x2, 1.22 * y, 1, 1);
+				noise = (noise - floor(noise));
+
+
+				if (noise > 0.5)
+					map.at(x2, y) = firstDistrict;
+				else
+					map.at(x2, y) = secondDistrict;
 			}
 		}
 	}

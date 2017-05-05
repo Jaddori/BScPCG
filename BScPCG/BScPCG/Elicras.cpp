@@ -15,16 +15,7 @@ namespace PCG
 	void Elicras::generate(const CityParameters& parameters)
 	{
 		// clear the map
-		const int WIDTH = map.getSize();
-		for(int x=0; x<WIDTH; x++)
-		{
-			const int HEIGHT = map[x].getSize();
-			for(int y=0; y<HEIGHT; y++)
-			{
-				map[x][y] = -3;
-			}
-		}
-
+		map.fill(-3);
 		structures.clear();
 
 		// set settings
@@ -72,7 +63,8 @@ namespace PCG
 		{
 			for(int y=0; y<height; y++)
 			{
-				if(map[x][y] >= 0)
+				int cellValue = map.at(x, y);
+				if(cellValue >= 0)
 				{
 					const int NUM_STRUCTURES = structures.getSize();
 					Structure& s = structures[curStructure];
@@ -97,11 +89,11 @@ namespace PCG
 				else
 				{
 					int texture = verticalRoadTexture;
-					if(map[x][y] == -2)
+					if(cellValue == -2)
 					{
 						texture = horizontalRoadTexture;
 					}
-					else if(map[x][y] == -3)
+					else if(cellValue == -3)
 					{
 						texture = grassTexture;
 					}
@@ -117,25 +109,9 @@ namespace PCG
 		width = w;
 		height = h;
 
-		// remove old values
-		const int WIDTH = map.getSize();
-		for(int x=0; x<WIDTH; x++)
-		{
-			map[x].clear();
-		}
-		map.clear();
-
-		// add new values
-		map.reserve(width);
-		for(int x=0; x<width; x++)
-		{
-			Utilities::Array<int> line;
-			for(int y=0; y<height; y++)
-			{
-				line.add(-3);
-			}
-			map.add(line);
-		}
+		// clear map
+		map.resize(width, height);
+		map.fill(-3);
 
 		// set values in generators
 		block.setDimensions(width, height);

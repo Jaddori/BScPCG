@@ -46,7 +46,8 @@ namespace PCG
 		Block block;
 		Building building;
 
-		Utilities::Array<Utilities::Array<int>> map;
+		//Utilities::Array<Utilities::Array<int>> map;
+		Utilities::Array2D<int> map;
 		Utilities::Array<Structure> structures;
 
 		int width;

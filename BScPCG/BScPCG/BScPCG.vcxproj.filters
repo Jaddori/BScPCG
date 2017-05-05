@@ -111,6 +111,9 @@
     <ClInclude Include="Elicras.h">
       <Filter>Header\PCG</Filter>
     </ClInclude>
+    <ClInclude Include="Array2D.h">
+      <Filter>Header\Utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header">

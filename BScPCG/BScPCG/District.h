@@ -2,9 +2,8 @@
 #include "DataHolder.h"
 #include "DataManager.h"
 #include "Noise.h"
-#include "glm\glm.hpp"
-#include "glm\ext.hpp"
-#include "glm\gtx\rotate_vector.hpp"
+#include "BaseIncludes.h"
+
 namespace PCG
 {
 	struct DistrictStruct
@@ -30,8 +29,10 @@ namespace PCG
 		DistrictStruct getDistrictValue(float x, float y, float width, float height);
 		void setDistrict(float width, float height);
 		void setNoiseGenerator(Noise* noise);
-		void calculateMap(Utilities::Array<Utilities::Array<int>>& map);
-		void generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height);
+		//void calculateMap(Utilities::Array<Utilities::Array<int>>& map);
+		void calculateMap(Utilities::Array2D<int>& map);
+		//void generate(Utilities::Array<Utilities::Array<int>>& map, float width, float height);
+		void generate(Utilities::Array2D<int>& map, float width, float height);
 
 	private:
 		Noise* noise;
@@ -43,7 +44,9 @@ namespace PCG
 
 		double vec2SquareDistance(glm::vec2 first, glm::vec2 second);
 		inline int closestDistrict(int x, int y);
-		void findBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders);
-		void changeBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange);
+		//void findBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders);
+		void findBorder(Utilities::Array2D<int>& map, Utilities::Array<glm::vec2>& borders);
+		//void changeBorder(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange);
+		void changeBorder(Utilities::Array2D<int>& map, Utilities::Array<glm::vec2>& borders, int nodeChangeRange);
 	};
 }
