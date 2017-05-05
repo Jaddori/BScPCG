@@ -76,7 +76,7 @@ namespace Rendering
 	
 	void Camera::updatePerspective(float width, float height)
 	{
-		projectionMatrix = glm::perspectiveFov(45.0f, width, height, 0.1f, 100.0f);
+		projectionMatrix = glm::perspectiveFov(45.0f, width, height, 0.1f, 1000.0f);
 	}
 
 	void Camera::updateOrthographic(float width, float height)

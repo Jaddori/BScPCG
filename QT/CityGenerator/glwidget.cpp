@@ -19,6 +19,12 @@ GLWidget::~GLWidget()
 {
 }
 
+void GLWidget::generate(const CityParameters &parameters)
+{
+    elicras.generate(parameters);
+    update();
+}
+
 void GLWidget::initializeGL()
 {
     qDebug("OpenGL Version: %s", glGetString(GL_VERSION));
@@ -73,6 +79,18 @@ void GLWidget::initializeGL()
     int skyTopTexture2 = houseBottomTexture2;
     int skyTopTexture3 = houseBottomTexture3;
 
+    // factory sections
+    /*int factoryBottomSection = assets.loadModel("./assets/models/factory_bot_section.model");
+    int factoryMiddleSection = assets.loadModel("./assets/models/factory_mid_section.model");
+    int factoryTopSection = assets.loadModel("./assets/models/factory_top_section.model");*/
+    int factoryBottomSection = houseBottomSection;
+    int factoryMiddleSection = houseMiddleSection;
+    int factoryTopSection = houseTopSection;
+
+    int factoryBottomTexture = houseBottomTexture;
+    int factoryMiddleTexture = houseMiddleTexture;
+    int factoryTopTexture = houseBottomTexture;
+
     elicras.setDimensions(CITY_WIDTH, CITY_HEIGHT);
 
     // add some house bottom sections
@@ -90,9 +108,6 @@ void GLWidget::initializeGL()
     elicras.addBuildingSection(0, {houseTopSection, houseTopTexture2}, SECTION_TOP);
     elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture}, SECTION_TOP);
     elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture2}, SECTION_TOP);
-
-    // add house height
-    elicras.setDistrictHeight(0, 0, 2);
 
     // add some skyscraper bottom sections
     elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture}, SECTION_BOTTOM);
@@ -113,8 +128,15 @@ void GLWidget::initializeGL()
 
     // add skyscraper height
     elicras.loadAssets(&assets);
-    elicras.setDistrictHeight(1, 0, 10);
-    elicras.generate();
+
+    // add some factory bottom sections
+    elicras.addBuildingSection(2, {factoryBottomSection, factoryBottomTexture}, SECTION_BOTTOM);
+
+    // add some factory middle sections
+    elicras.addBuildingSection(2, {factoryMiddleSection, factoryMiddleTexture}, SECTION_MIDDLE);
+
+    // add some factory top sections
+    elicras.addBuildingSection(2, {factoryTopSection, factoryTopTexture}, SECTION_TOP);
 
     // load the renderer
     renderer.load();

@@ -18,7 +18,7 @@
     <item row="0" column="0">
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="GLWidget" name="widget" native="true">
+       <widget class="GLWidget" name="glWidget" native="true">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
@@ -55,7 +55,7 @@
       <property name="maximumSize">
        <size>
         <width>200</width>
-        <height>642</height>
+        <height>1080</height>
        </size>
       </property>
       <property name="layoutDirection">
@@ -397,7 +397,7 @@
          <number>1</number>
         </property>
        </widget>
-       <widget class="QSlider" name="slider_d3MinHeight_2">
+       <widget class="QSlider" name="slider_d3MaxHeight">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -460,7 +460,7 @@
        <property name="title">
         <string>Seed</string>
        </property>
-       <widget class="QLineEdit" name="lineEdit">
+       <widget class="QLineEdit" name="txt_seed">
         <property name="geometry">
          <rect>
           <x>20</x>

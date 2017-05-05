@@ -15,6 +15,14 @@ namespace PCG
 		RANDOM_NOISE
 	};
 
+	struct CityParameters
+	{
+		int seed;
+		int minHeights[MAX_DISTRICTS];
+		int maxHeights[MAX_DISTRICTS];
+		int blockSizes[MAX_DISTRICTS];
+	};
+
 	class Elicras
 	{
 	public:
@@ -22,31 +30,28 @@ namespace PCG
 		~Elicras();
 
 		// TODO(Niclas): Generate should take user input
-		void generate();
+		void generate(const CityParameters& parameters);
 		void addBuildingSection(int district, const Section& section, int type);
 		void useNoiseGenerator(int generator);
 
 		void render(Rendering::Renderer* renderer);
 
-		void setDistrictHeight(int district, int minHeight, int maxHeight);
 		void setDimensions(int width, int height);
 
 		// TEMP(Niclas): Should be somewhere else
 		void loadAssets(Assets::AssetManager* assets);
 
 	private:
-		//District district;
+		District district;
 		Block block;
 		Building building;
-
-		PerlinNoise perlinNoise;
-		RandomNoise randomNoise;
 
 		Utilities::Array<Utilities::Array<int>> map;
 		Utilities::Array<Structure> structures;
 
 		int width;
 		int height;
+		int noiseGenerator;
 
 		// TEMP(Niclas): Should probably put these somewhere else
 		int roadModel;

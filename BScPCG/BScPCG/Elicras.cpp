@@ -4,15 +4,15 @@ using namespace Rendering;
 namespace PCG
 {
 	Elicras::Elicras()
+		: noiseGenerator(PERLIN_NOISE)
 	{
-		useNoiseGenerator(PERLIN_NOISE);
 	}
 
 	Elicras::~Elicras()
 	{
 	}
 
-	void Elicras::generate()
+	void Elicras::generate(const CityParameters& parameters)
 	{
 		// clear the map
 		const int WIDTH = map.getSize();
@@ -21,13 +21,35 @@ namespace PCG
 			const int HEIGHT = map[x].getSize();
 			for(int y=0; y<HEIGHT; y++)
 			{
-				map[x][y] = 0;
+				map[x][y] = -3;
 			}
 		}
 
 		structures.clear();
 
+		// set settings
+		for(int i=0; i<MAX_DISTRICTS; i++)
+		{
+			// TEMP(Niclas): This is not how we should set height
+			building.setHeight(i, parameters.maxHeights[i] - parameters.minHeights[i]);
+		}
+
+		// set noise generators
+		PerlinNoise perlinNoise(parameters.seed);
+		RandomNoise randomNoise(parameters.seed);
+
+		Noise* noise = &perlinNoise;
+		if(noiseGenerator == RANDOM_NOISE)
+		{
+			noise = &randomNoise;
+		}
+
+		district.setNoiseGenerator(noise);
+		block.setNoiseGenerator(noise);
+		building.setNoiseGenerator(noise);
+
 		// generate everything
+		district.generate(map, width, height);
 		block.generate(map);
 		building.generate(map, structures);
 	}
@@ -37,18 +59,9 @@ namespace PCG
 		building.addSection(district, section, type);
 	}
 
-	void Elicras::useNoiseGenerator(int type)
+	void Elicras::useNoiseGenerator(int generator)
 	{
-		if(type == PERLIN_NOISE)
-		{
-			block.setNoiseGenerator(&perlinNoise);
-			building.setNoiseGenerator(&perlinNoise);
-		}
-		else
-		{
-			block.setNoiseGenerator(&randomNoise);
-			building.setNoiseGenerator(&randomNoise);
-		}
+		noiseGenerator = generator;
 	}
 
 	void Elicras::render(Renderer* renderer)
@@ -99,13 +112,6 @@ namespace PCG
 		}
 	}
 
-	void Elicras::setDistrictHeight(int district, int minHeight, int maxHeight)
-	{
-		// TEMP(Niclas): Building should take min and max height
-		int height = maxHeight - minHeight;
-		building.setHeight(district, height);
-	}
-
 	void Elicras::setDimensions(int w, int h)
 	{
 		width = w;
@@ -126,7 +132,7 @@ namespace PCG
 			Utilities::Array<int> line;
 			for(int y=0; y<height; y++)
 			{
-				line.add(0);
+				line.add(-3);
 			}
 			map.add(line);
 		}

@@ -29,6 +29,8 @@ public:
     GLWidget(QWidget* parent = 0);
     ~GLWidget();
 
+    void generate(const CityParameters& parameters);
+
 protected:
     void initializeGL();
     void paintGL();
@@ -39,8 +41,8 @@ protected:
     void keyReleaseEvent(QKeyEvent* event);
 
 private:
-    static const int CITY_WIDTH = 30;
-    static const int CITY_HEIGHT = 30;
+    static const int CITY_WIDTH = 50;
+    static const int CITY_HEIGHT = 50;
 
     AssetManager assets;
     Renderer renderer;

@@ -34,7 +34,7 @@ public:
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
-    GLWidget *widget;
+    GLWidget *glWidget;
     QFrame *frame;
     QGroupBox *gb_district1;
     QLabel *lbl_d1MinHeight;
@@ -55,10 +55,10 @@ public:
     QLabel *lbl_d3MaxHeight;
     QLabel *lbl_d3BlockSize;
     QSlider *slider_d3MinHeight;
-    QSlider *slider_d3MinHeight_2;
+    QSlider *slider_d3MaxHeight;
     QSlider *slider_d3BlockSize;
     QGroupBox *gb_seed;
-    QLineEdit *lineEdit;
+    QLineEdit *txt_seed;
     QPushButton *btn_generate;
 
     void setupUi(QMainWindow *MainWindow)
@@ -75,18 +75,18 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(6);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        widget = new GLWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
+        glWidget = new GLWidget(centralWidget);
+        glWidget->setObjectName(QStringLiteral("glWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
-        widget->setSizePolicy(sizePolicy);
-        widget->setMouseTracking(false);
-        widget->setFocusPolicy(Qt::ClickFocus);
-        widget->setAutoFillBackground(false);
+        sizePolicy.setHeightForWidth(glWidget->sizePolicy().hasHeightForWidth());
+        glWidget->setSizePolicy(sizePolicy);
+        glWidget->setMouseTracking(false);
+        glWidget->setFocusPolicy(Qt::ClickFocus);
+        glWidget->setAutoFillBackground(false);
 
-        horizontalLayout->addWidget(widget);
+        horizontalLayout->addWidget(glWidget);
 
 
         gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
@@ -96,7 +96,7 @@ public:
         sizePolicy.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy);
         frame->setMinimumSize(QSize(200, 642));
-        frame->setMaximumSize(QSize(200, 642));
+        frame->setMaximumSize(QSize(200, 1080));
         frame->setLayoutDirection(Qt::LeftToRight);
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
@@ -192,14 +192,14 @@ public:
         slider_d3MinHeight->setOrientation(Qt::Horizontal);
         slider_d3MinHeight->setTickPosition(QSlider::TicksAbove);
         slider_d3MinHeight->setTickInterval(1);
-        slider_d3MinHeight_2 = new QSlider(gb_district3);
-        slider_d3MinHeight_2->setObjectName(QStringLiteral("slider_d3MinHeight_2"));
-        slider_d3MinHeight_2->setGeometry(QRect(20, 90, 160, 19));
-        slider_d3MinHeight_2->setMinimum(1);
-        slider_d3MinHeight_2->setMaximum(20);
-        slider_d3MinHeight_2->setOrientation(Qt::Horizontal);
-        slider_d3MinHeight_2->setTickPosition(QSlider::TicksAbove);
-        slider_d3MinHeight_2->setTickInterval(1);
+        slider_d3MaxHeight = new QSlider(gb_district3);
+        slider_d3MaxHeight->setObjectName(QStringLiteral("slider_d3MaxHeight"));
+        slider_d3MaxHeight->setGeometry(QRect(20, 90, 160, 19));
+        slider_d3MaxHeight->setMinimum(1);
+        slider_d3MaxHeight->setMaximum(20);
+        slider_d3MaxHeight->setOrientation(Qt::Horizontal);
+        slider_d3MaxHeight->setTickPosition(QSlider::TicksAbove);
+        slider_d3MaxHeight->setTickInterval(1);
         slider_d3BlockSize = new QSlider(gb_district3);
         slider_d3BlockSize->setObjectName(QStringLiteral("slider_d3BlockSize"));
         slider_d3BlockSize->setGeometry(QRect(20, 140, 160, 19));
@@ -211,11 +211,11 @@ public:
         gb_seed = new QGroupBox(frame);
         gb_seed->setObjectName(QStringLiteral("gb_seed"));
         gb_seed->setGeometry(QRect(0, 0, 200, 50));
-        lineEdit = new QLineEdit(gb_seed);
-        lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(20, 20, 160, 20));
-        lineEdit->setMaxLength(20);
-        lineEdit->setClearButtonEnabled(false);
+        txt_seed = new QLineEdit(gb_seed);
+        txt_seed->setObjectName(QStringLiteral("txt_seed"));
+        txt_seed->setGeometry(QRect(20, 20, 160, 20));
+        txt_seed->setMaxLength(20);
+        txt_seed->setClearButtonEnabled(false);
         btn_generate = new QPushButton(frame);
         btn_generate->setObjectName(QStringLiteral("btn_generate"));
         btn_generate->setGeometry(QRect(20, 600, 160, 30));

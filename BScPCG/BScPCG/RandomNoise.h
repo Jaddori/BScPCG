@@ -6,7 +6,7 @@ namespace PCG
 	class RandomNoise : public Noise
 	{
 	public:
-		RandomNoise();
+		RandomNoise(unsigned int seed);
 		~RandomNoise();
 
 		// overrides

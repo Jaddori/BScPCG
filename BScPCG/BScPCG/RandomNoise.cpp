@@ -5,9 +5,9 @@
 
 namespace PCG
 {
-	RandomNoise::RandomNoise()
+	RandomNoise::RandomNoise(unsigned int seed)
 	{
-		srand(time(NULL));
+		srand(seed);
 	}
 
 
