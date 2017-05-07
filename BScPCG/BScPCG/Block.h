@@ -15,7 +15,6 @@ namespace PCG
 		Block();
 		~Block();
 
-		//void generate(Utilities::Array<Utilities::Array<int>>& map);
 		void generate(Utilities::Array2D<int>& map);
 
 		void setNoiseGenerator(Noise* noise);

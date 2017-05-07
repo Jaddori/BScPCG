@@ -12,68 +12,6 @@ namespace PCG
 	{
 	}
 	
-	/*void Block::generate(Array<Array<int>>& map)
-	{
-		assert(noise != nullptr);
-
-		const int WIDTH = map.getSize();
-		assert(WIDTH > 0);
-
-		// generate main roads
-		for(int x=0; x<WIDTH; x++)
-		{
-			float noiseResult = noise->generate(x*10.0f, 0.0, width, height);
-			noiseResult *= noiseResult;
-			if(noiseResult > MAIN_ROAD_THRESHOLD)
-			{
-				const int HEIGHT = map[x].getSize();
-				for(int y=0; y<HEIGHT; y++)
-				{
-					map[x][y] = -1;
-				}
-			}
-		}
-
-		for(int x=0; x<WIDTH; x++)
-		{
-			int startX = x;
-			while(x < WIDTH && map[x][0] >= 0)
-			{
-				x++;
-			}
-
-			int endX = x;
-
-			const int HEIGHT = map[startX].getSize();
-			
-			int next = 0;
-			if(rand() % 10 < 5)
-				next = 2;
-			else
-				next = 1;
-
-			for(int y=0; y<HEIGHT; y++)
-			{
-				if(next > 0)
-				{
-					next--;
-				}
-				else
-				{
-					for(int i=startX; i<endX; i++)
-					{
-						map[i][y] = -2;
-					}
-
-					if(rand() % 10 < 5)
-						next = 2;
-					else
-						next = 1;
-				}
-			}
-		}
-	}*/
-
 	void Block::generate(Array2D<int>& map)
 	{
 		assert(noise != nullptr);
@@ -98,6 +36,7 @@ namespace PCG
 			}
 		}
 
+		// TODO(Niclas): This code could use some comments
 		for(int x=0; x<WIDTH; x++)
 		{
 			int startX = x;

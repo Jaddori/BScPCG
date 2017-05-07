@@ -36,10 +36,9 @@ namespace PCG
 		~Building();
 
 		void addSection(int district, const Section& section, int type);
-		void setHeight(int district, int height);
+		void setHeight(int district, int minHeight, int maxHeight);
 		void setDensity(int district, float density);
 		
-		//void generate(Utilities::Array<Utilities::Array<int>>& map, Utilities::Array<Structure>& structures);
 		void generate(Utilities::Array2D<int>& map, Utilities::Array<Structure>& structures);
 
 		void setNoiseGenerator(Noise* noise);
@@ -53,7 +52,8 @@ namespace PCG
 		float height;
 
 		Utilities::Array<Section> districtSections[MAX_DISTRICTS][MAX_SECTIONS];
-		int districtHeights[MAX_DISTRICTS];
+		int districtMinHeights[MAX_DISTRICTS];
+		int districtMaxHeights[MAX_DISTRICTS];
 		float districtDensities[MAX_DISTRICTS];
 	};
 }

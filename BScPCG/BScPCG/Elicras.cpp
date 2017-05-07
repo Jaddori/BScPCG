@@ -21,8 +21,7 @@ namespace PCG
 		// set settings
 		for(int i=0; i<MAX_DISTRICTS; i++)
 		{
-			// TEMP(Niclas): This is not how we should set height
-			building.setHeight(i, parameters.maxHeights[i] - parameters.minHeights[i]);
+			building.setHeight(i, parameters.minHeights[i], parameters.maxHeights[i]);
 			building.setDensity(i, parameters.densities[i]);
 		}
 
