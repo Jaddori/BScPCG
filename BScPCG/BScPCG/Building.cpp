@@ -28,6 +28,14 @@ namespace PCG
 		districtHeights[district] = height;
 	}
 
+	void Building::setDensity(int district, float density)
+	{
+		assert(district >= 0 && district < MAX_DISTRICTS);
+		assert(density >= 0.0f && density <= 1.0f);
+
+		districtDensities[district] = density;
+	}
+
 	/*Structure Building::generate(int district, int height, const glm::vec2& position)
 	{
 		assert(district >= 0 && district <= MAX_DISTRICTS);
@@ -117,11 +125,10 @@ namespace PCG
 				int district = map.at(x, y);
 				if(district >= 0)
 				{
-					// TODO: This should probably come from a user interface variable?
-					const float BUILDING_DENSITY = 0.35f;
+					const float BUILDING_DENSITY = districtDensities[district];
 
 					float chanceForBuilding = noise->generate(x*10, y*10, width, height);
-					if(chanceForBuilding > BUILDING_DENSITY)
+					if(chanceForBuilding < BUILDING_DENSITY)
 					{
 						float noiseResult = noise->generate(x*10, y*10, width, height);
 

@@ -20,7 +20,7 @@ namespace PCG
 		int seed;
 		int minHeights[MAX_DISTRICTS];
 		int maxHeights[MAX_DISTRICTS];
-		int blockSizes[MAX_DISTRICTS];
+		float densities[MAX_DISTRICTS];
 	};
 
 	class Elicras

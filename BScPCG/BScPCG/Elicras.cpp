@@ -23,6 +23,7 @@ namespace PCG
 		{
 			// TEMP(Niclas): This is not how we should set height
 			building.setHeight(i, parameters.maxHeights[i] - parameters.minHeights[i]);
+			building.setDensity(i, parameters.densities[i]);
 		}
 
 		// set noise generators

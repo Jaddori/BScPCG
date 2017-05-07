@@ -20,6 +20,24 @@ public:
 private slots:
     void on_btn_generate_clicked();
 
+    void on_slider_d1MinHeight_valueChanged(int value);
+
+    void on_slider_d2MinHeight_valueChanged(int value);
+
+    void on_slider_d3MinHeight_valueChanged(int value);
+
+    void on_slider_d1MaxHeight_valueChanged(int value);
+
+    void on_slider_d2MaxHeight_valueChanged(int value);
+
+    void on_slider_d3MaxHeight_valueChanged(int value);
+
+    void on_slider_d1Density_valueChanged(int value);
+
+    void on_slider_d2Density_valueChanged(int value);
+
+    void on_slider_d3Density_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     SeedConverter seedConverter;

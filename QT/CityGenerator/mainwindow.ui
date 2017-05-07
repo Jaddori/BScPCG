@@ -84,7 +84,7 @@
          <rect>
           <x>20</x>
           <y>20</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -105,7 +105,7 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -122,7 +122,7 @@
          <rect>
           <x>20</x>
           <y>70</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -143,7 +143,10 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -155,20 +158,20 @@
          <number>1</number>
         </property>
        </widget>
-       <widget class="QLabel" name="lbl_d1BlockSize">
+       <widget class="QLabel" name="lbl_d1Density">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>120</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
         <property name="text">
-         <string>Block Size:</string>
+         <string>Density:</string>
         </property>
        </widget>
-       <widget class="QSlider" name="slider_d1BlockSize">
+       <widget class="QSlider" name="slider_d1Density">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -181,7 +184,10 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -191,6 +197,45 @@
         </property>
         <property name="tickInterval">
          <number>1</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d1MinHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>20</y>
+          <width>60</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d1MaxHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>70</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d1DensityValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>120</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>100%</string>
         </property>
        </widget>
       </widget>
@@ -211,7 +256,7 @@
          <rect>
           <x>20</x>
           <y>20</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -224,7 +269,7 @@
          <rect>
           <x>20</x>
           <y>70</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -232,17 +277,17 @@
          <string>Max. Height:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lbl_d2BlockSize">
+       <widget class="QLabel" name="lbl_d2Density">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>120</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
         <property name="text">
-         <string>Block Size:</string>
+         <string>Density:</string>
         </property>
        </widget>
        <widget class="QSlider" name="slider_d2MinHeight">
@@ -258,7 +303,7 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -283,7 +328,10 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -295,7 +343,7 @@
          <number>1</number>
         </property>
        </widget>
-       <widget class="QSlider" name="slider_d2BlockSize">
+       <widget class="QSlider" name="slider_d2Density">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -308,7 +356,13 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="singleStep">
+         <number>1</number>
+        </property>
+        <property name="sliderPosition">
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -318,6 +372,45 @@
         </property>
         <property name="tickInterval">
          <number>1</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d2MinHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>20</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d2MaxHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>70</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d2DensityValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>120</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>100%</string>
         </property>
        </widget>
       </widget>
@@ -338,7 +431,7 @@
          <rect>
           <x>20</x>
           <y>20</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -351,7 +444,7 @@
          <rect>
           <x>20</x>
           <y>70</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
@@ -359,17 +452,17 @@
          <string>Max. Height:</string>
         </property>
        </widget>
-       <widget class="QLabel" name="lbl_d3BlockSize">
+       <widget class="QLabel" name="lbl_d3Density">
         <property name="geometry">
          <rect>
           <x>20</x>
           <y>120</y>
-          <width>160</width>
+          <width>60</width>
           <height>13</height>
          </rect>
         </property>
         <property name="text">
-         <string>Block Size:</string>
+         <string>Density:</string>
         </property>
        </widget>
        <widget class="QSlider" name="slider_d3MinHeight">
@@ -385,7 +478,7 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -410,7 +503,10 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -422,7 +518,7 @@
          <number>1</number>
         </property>
        </widget>
-       <widget class="QSlider" name="slider_d3BlockSize">
+       <widget class="QSlider" name="slider_d3Density">
         <property name="geometry">
          <rect>
           <x>20</x>
@@ -435,7 +531,10 @@
          <number>1</number>
         </property>
         <property name="maximum">
-         <number>20</number>
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>10</number>
         </property>
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -445,6 +544,45 @@
         </property>
         <property name="tickInterval">
          <number>1</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d3MinHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>20</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>1</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d3MaxHeightValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>70</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d3DensityValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>120</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>100%</string>
         </property>
        </widget>
       </widget>
