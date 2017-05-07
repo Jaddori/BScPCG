@@ -12,18 +12,22 @@ Lots of work has been done in the field of PCG and it has been used within games
 In this thesis we are investigating the possibility of procedurally generating a city with Perlin noise that would be viable within a game. An implementation attempting to create such a city will be made and investigated through a user study along with data collection from the implementation.
 
 \subsection{background}
-Varför gör vi en pcg stad
-varför just Perlin.
-Finns många andra svåra tekniker.
-Vi vill va snabba.
+As future game developers, we are always looking for better ways to create games. PCG enables big games to be made in far less time. This is attractive for smaller game companies and is a technique we want to explore more.
+Perlin Noise is the PCG technique we chose to use for every single stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
+There are many ways to procedurally generate a city, but most of them are very complicated which often means long implementation time. From a developer perspective there is not much use for PCG if the implementation time equals the time it would take to handcraft every single element. 
 
 \subsection{Procedural content generation}
-vad är PCG egentligen
+Procedural content generation in games is defined as "PCG is the algorithmic creation of game content with limited or direct user input" in What is procedural content generation?(ref) This is the definition used in this thesis.
+PCG is also used in areas outside the gaming industry. Speedtree (ref) is using PCG methods to generate trees that are used in movies such as Avatar(ref). Perlin noise was first invented to be used in Disney's computer animated sci-fi picture Tron (ref)
+This thesis will focus on the use of PCG in games with the previous mentioned defenition.
 
 \subsection{City generation}
-Vad är en stad och varför vill vi generera den.
+A city has many different definitions in the real world. (maybe example) But a city viable in games is unlike real cities. They are not a large human settlement with governments and sanitary systems. The definition of a city explored in this thesis is "A large area occupied with different kinds of houses connected through a road system." (better definition plz)
+Unlike a real city, a city viable in games do not need logic, electricity connections nor gas stations. It simply needs to be an engaging place to experience a game in. With this great simplification, generation of such a city becomes far less complex.
+To generate a city viable to use in games, three different generation stages have been recognized: Districts, roads (creating blocks) and buildings. These generation stages are used in the implementation. (nothing about why we want to generate city. But already told in earlier stages?)
 
 \subsection{Problem statement}
+Cities are desirable in games and are widely used by bigger companies to great success. The reason cities are not as widely used in smaller companies is because of how much time and creative work a city requires to create. But with the help of PCG big open worlds such as cities may be viable for more companies to implement. 
 Vad är problemet vi försöker lösa i vår thesis.
 
 \subsection{Objectives}
