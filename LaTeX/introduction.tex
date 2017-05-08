@@ -27,11 +27,21 @@ Unlike a real city, a city viable in games do not need logic, electricity connec
 To generate a city viable to use in games, three different generation stages have been recognized: Districts, roads (creating blocks) and buildings. These generation stages are used in the implementation. (nothing about why we want to generate city. But already told in earlier stages?)
 
 \subsection{Problem statement}
-Cities are desirable in games and are widely used by bigger companies to great success. The reason cities are not as widely used in smaller companies is because of how much time and creative work a city requires to create. But with the help of PCG big open worlds such as cities may be viable for more companies to implement. 
-Vad är problemet vi försöker lösa i vår thesis.
+Cities are desirable in games and are widely used by bigger companies to great success. The reason cities are not as widely used in smaller companies is because of how much time and creative work a city requires to create. But with the help of PCG big open worlds such as cities may be viable for more companies to implement.
+To create a city purely using Perlin noise and test if it is viable in games is the problem explored.
 
 \subsection{Objectives}
-Målet med vår thesis
+Generating a city through the PCG technique Perlin noise and testing the viability in games is the goal. The creation of an implementation is therefore necessary.
+The following requirements have been set as a way to make sure the result will be viable.
+\begin{itemize}
+	\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city.
+	
+	\item \textbf{Determenism:} The generation should be determenistic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
+	
+	\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an on-line setting. A game should never have loading screens for any longer than 30 seconds, our implementation therefore have a time limit of ten seconds. Even if this limit is excedded the implementation may still be viable in a off-line setting.
+	
+	\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
+\end{itemize} 
 
 \subsection{Research question}
 Can Perlin noise be used in a hierarchical manner to procedurally generate a city viable in games?
