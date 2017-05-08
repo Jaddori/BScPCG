@@ -77,7 +77,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>District 1</string>
+        <string>Houses</string>
        </property>
        <widget class="QLabel" name="lbl_d1MinHeight">
         <property name="geometry">
@@ -249,7 +249,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>District 2</string>
+        <string>Skyscrapers</string>
        </property>
        <widget class="QLabel" name="lbl_d2MinHeight">
         <property name="geometry">
@@ -424,7 +424,7 @@
         </rect>
        </property>
        <property name="title">
-        <string>District 3</string>
+        <string>Factories</string>
        </property>
        <widget class="QLabel" name="lbl_d3MinHeight">
         <property name="geometry">
@@ -717,7 +717,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>D1 buildings:</string>
+         <string>Houses:</string>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_d2Buildings">
@@ -730,7 +730,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>D2 buildings:</string>
+         <string>Skyscrapers:</string>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_d3Buildings">
@@ -743,7 +743,7 @@
          </rect>
         </property>
         <property name="text">
-         <string>D3 buildings:</string>
+         <string>Factories:</string>
         </property>
        </widget>
        <widget class="QLabel" name="lbl_totalBuildings">

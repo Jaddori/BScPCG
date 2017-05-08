@@ -31,6 +31,7 @@ namespace PCG
 
 		// TODO(Niclas): Generate should take user input
 		void generate(const CityParameters& parameters);
+		void fullRandom();
 		void addBuildingSection(int district, const Section& section, int type);
 		void useNoiseGenerator(int generator);
 

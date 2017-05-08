@@ -48,9 +48,10 @@ namespace PCG
 
 		// generate buildings
 		const int WIDTH = map.getWidth();
+		const int HEIGHT = map.getHeight();
+
 		for(int x=0; x<WIDTH; x++)
 		{
-			const int HEIGHT = map.getHeight();
 			for(int y=0; y<HEIGHT; y++)
 			{
 				int district = map.at(x, y);
@@ -94,6 +95,41 @@ namespace PCG
 						map.at(x, y) = -3;
 						grassTiles[district]++;
 					}
+				}
+			}
+		}
+	}
+
+	void Building::fullRandom(Array2D<int>& map, Array<Structure>& structures)
+	{
+		const int WIDTH = map.getWidth();
+		const int HEIGHT = map.getHeight();
+
+		for(int x=0; x<WIDTH; x++)
+		{
+			for(int y=0; y<HEIGHT; y++)
+			{
+				int district = map.at(x, y);
+				if(district >= 0)
+				{
+					Utilities::Array<Section>& botSections = districtSections[district][SECTION_BOTTOM];
+					Utilities::Array<Section>& midSections = districtSections[district][SECTION_MIDDLE];
+					Utilities::Array<Section>& topSections = districtSections[district][SECTION_TOP];
+
+					int botSection = rand() % botSections.getSize();
+					int midSection = rand() % midSections.getSize();
+					int topSection = rand() % topSections.getSize();
+					int structureHeight = rand() % 10;
+
+					Structure structure =
+					{
+						botSections[botSection],
+						midSections[midSection],
+						topSections[topSection],
+						structureHeight,
+					};
+
+					structures.add(structure);
 				}
 			}
 		}

@@ -94,6 +94,75 @@ namespace PCG
 		dataManager.collectData();
 	}
 
+	void Elicras::fullRandom()
+	{
+		assert(renderer != nullptr);
+
+		// clear the map
+		map.fill(-3);
+		structures.clear();
+
+		// generate everything
+		for(int x=0; x<map.getWidth(); x++)
+		{
+			for(int y=0; y<map.getHeight(); y++)
+			{
+				int val = (rand() % 6)-3;
+				map.at(x, y) = val;
+			}
+		}
+		building.fullRandom(map, structures);
+
+		// add structures to render queue
+		renderer->begin();
+		// TODO(Niclas): Remove all the magic numbers
+		int curStructure = 0;
+		for(int x=0; x<width; x++)
+		{
+			for(int y=0; y<height; y++)
+			{
+				int cellValue = map.at(x, y);
+				if(cellValue >= 0)
+				{
+					const int NUM_STRUCTURES = structures.getSize();
+					Structure& s = structures[curStructure];
+					curStructure++;
+
+					glm::vec3 position(x*2, 0.0f, y*2);
+
+					// render bottom section
+					renderer->addElement(s.bottom.model, s.bottom.texture, position);
+					position.y += 0.7f;
+
+					// render middle sections
+					for(int i=0; i<s.height; i++)
+					{
+						renderer->addElement(s.middle.model, s.middle.texture, position);
+						position.y += 2.0f;
+					}
+
+					// render top section
+					renderer->addElement(s.top.model, s.top.texture, position);
+				}
+				else
+				{
+					int texture = verticalRoadTexture;
+					if(cellValue == -2)
+					{
+						texture = horizontalRoadTexture;
+					}
+					else if(cellValue == -3)
+					{
+						texture = grassTexture;
+					}
+
+					renderer->addElement(roadModel, texture, glm::vec3(x*2, 0, y*2));
+				}
+			}
+		}
+		renderer->end();
+	}
+
 	void Elicras::addBuildingSection(int district, const Section& section, int type)
 	{
 		building.addSection(district, section, type);

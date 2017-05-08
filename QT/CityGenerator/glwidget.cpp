@@ -22,6 +22,10 @@ GLWidget::~GLWidget()
 void GLWidget::generate(const CityParameters &parameters)
 {
     elicras.generate(parameters);
+
+    // ENABLE ME FOR FULL RANDOM GENERATION:
+    //elicras.fullRandom();
+
     update();
 }
 

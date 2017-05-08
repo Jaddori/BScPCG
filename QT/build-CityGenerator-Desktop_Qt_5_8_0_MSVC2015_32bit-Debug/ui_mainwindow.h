@@ -398,21 +398,21 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        gb_district1->setTitle(QApplication::translate("MainWindow", "District 1", Q_NULLPTR));
+        gb_district1->setTitle(QApplication::translate("MainWindow", "Houses", Q_NULLPTR));
         lbl_d1MinHeight->setText(QApplication::translate("MainWindow", "Min. Height:", Q_NULLPTR));
         lbl_d1MaxHeight->setText(QApplication::translate("MainWindow", "Max. Height:", Q_NULLPTR));
         lbl_d1Density->setText(QApplication::translate("MainWindow", "Density:", Q_NULLPTR));
         lbl_d1MinHeightValue->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         lbl_d1MaxHeightValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         lbl_d1DensityValue->setText(QApplication::translate("MainWindow", "100%", Q_NULLPTR));
-        gb_district2->setTitle(QApplication::translate("MainWindow", "District 2", Q_NULLPTR));
+        gb_district2->setTitle(QApplication::translate("MainWindow", "Skyscrapers", Q_NULLPTR));
         lbl_d2MinHeight->setText(QApplication::translate("MainWindow", "Min. Height:", Q_NULLPTR));
         lbl_d2MaxHeight->setText(QApplication::translate("MainWindow", "Max. Height:", Q_NULLPTR));
         lbl_d2Density->setText(QApplication::translate("MainWindow", "Density:", Q_NULLPTR));
         lbl_d2MinHeightValue->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         lbl_d2MaxHeightValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         lbl_d2DensityValue->setText(QApplication::translate("MainWindow", "100%", Q_NULLPTR));
-        gb_district3->setTitle(QApplication::translate("MainWindow", "District 3", Q_NULLPTR));
+        gb_district3->setTitle(QApplication::translate("MainWindow", "Factories", Q_NULLPTR));
         lbl_d3MinHeight->setText(QApplication::translate("MainWindow", "Min. Height:", Q_NULLPTR));
         lbl_d3MaxHeight->setText(QApplication::translate("MainWindow", "Max. Height:", Q_NULLPTR));
         lbl_d3Density->setText(QApplication::translate("MainWindow", "Density:", Q_NULLPTR));
@@ -425,9 +425,9 @@ public:
         lbl_perlinCalls->setText(QApplication::translate("MainWindow", "Perlin calls:", Q_NULLPTR));
         lbl_mainRoads->setText(QApplication::translate("MainWindow", "Main roads:", Q_NULLPTR));
         lbl_smallRoads->setText(QApplication::translate("MainWindow", "Small roads:", Q_NULLPTR));
-        lbl_d1Buildings->setText(QApplication::translate("MainWindow", "D1 buildings:", Q_NULLPTR));
-        lbl_d2Buildings->setText(QApplication::translate("MainWindow", "D2 buildings:", Q_NULLPTR));
-        lbl_d3Buildings->setText(QApplication::translate("MainWindow", "D3 buildings:", Q_NULLPTR));
+        lbl_d1Buildings->setText(QApplication::translate("MainWindow", "Houses:", Q_NULLPTR));
+        lbl_d2Buildings->setText(QApplication::translate("MainWindow", "Skyscrapers:", Q_NULLPTR));
+        lbl_d3Buildings->setText(QApplication::translate("MainWindow", "Factories:", Q_NULLPTR));
         lbl_totalBuildings->setText(QApplication::translate("MainWindow", "Total buildings:", Q_NULLPTR));
         lbl_d1Grass->setText(QApplication::translate("MainWindow", "D1 grass:", Q_NULLPTR));
         lbl_d2Grass->setText(QApplication::translate("MainWindow", "D2 grass:", Q_NULLPTR));

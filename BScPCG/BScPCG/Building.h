@@ -40,6 +40,7 @@ namespace PCG
 		void setDensity(int district, float density);
 		
 		void generate(Utilities::Array2D<int>& map, Utilities::Array<Structure>& structures);
+		void fullRandom(Utilities::Array2D<int>& map, Utilities::Array<Structure>& structures);
 
 		void setNoiseGenerator(Noise* noise);
 		void setDimensions(float width, float height);
