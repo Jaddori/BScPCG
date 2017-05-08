@@ -34,8 +34,7 @@ namespace PCG
 		void addBuildingSection(int district, const Section& section, int type);
 		void useNoiseGenerator(int generator);
 
-		void render(Rendering::Renderer* renderer);
-
+		void setRenderer(Rendering::Renderer* renderer);
 		void setDimensions(int width, int height);
 
 		float getStatistic(const std::string& name);
@@ -44,6 +43,7 @@ namespace PCG
 		void loadAssets(Assets::AssetManager* assets);
 
 	private:
+		Rendering::Renderer* renderer;
 		District district;
 		Block block;
 		Building building;

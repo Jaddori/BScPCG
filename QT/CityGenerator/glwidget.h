@@ -43,8 +43,8 @@ protected:
     void keyReleaseEvent(QKeyEvent* event);
 
 private:
-    static const int CITY_WIDTH = 50;
-    static const int CITY_HEIGHT = 50;
+    static const int CITY_WIDTH = 100;
+    static const int CITY_HEIGHT = 100;
 
     AssetManager assets;
     Renderer renderer;

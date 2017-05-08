@@ -14,6 +14,13 @@ namespace Rendering
 		glm::vec3 position;
 	};
 
+	struct ObjectInstance
+	{
+		int model;
+		int texture;
+		int instances;
+	};
+
 #define TEXT_ELEMENT_MAX_LENGTH 128
 	struct Glyph
 	{
@@ -39,6 +46,9 @@ namespace Rendering
 		void load();
 		void unload();
 
+		void begin();
+		void end();
+
 		void addElement(int model, int texture, const glm::vec3& position);
 		void addText(Assets::Font* font, int texture, const char* text, const glm::vec2& position);
 		void render(Assets::AssetManager* assets);
@@ -57,6 +67,7 @@ namespace Rendering
 		Camera perspectiveCamera;
 
 		Utilities::Array<ObjectElement> objectElements;
+		Utilities::Array<ObjectInstance> objectInstances;
 		Utilities::Array<glm::mat4> worldMatrices;
 
 		GLuint objectWorldLocation;

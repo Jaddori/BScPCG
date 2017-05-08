@@ -143,6 +143,11 @@ void GLWidget::initializeGL()
     // add some factory top sections
     elicras.addBuildingSection(2, {factoryTopSection, factoryTopTexture}, SECTION_TOP);
 
+    elicras.setRenderer(&renderer);
+
+    CityParameters tempParams = {};
+    elicras.generate(tempParams);
+
     // load the renderer
     renderer.load();
 }
@@ -151,10 +156,7 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    elicras.render(&renderer);
-
     renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));
-
     renderer.render(&assets);
 }
 

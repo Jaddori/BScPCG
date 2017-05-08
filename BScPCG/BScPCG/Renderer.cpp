@@ -68,6 +68,49 @@ namespace Rendering
 		glDeleteBuffers(1, &textVBO);
 	}
 
+	void Renderer::begin()
+	{
+		objectElements.clear();
+		objectInstances.clear();
+		worldMatrices.clear();
+	}
+
+	void Renderer::end()
+	{
+		// sort elements
+		std::qsort(objectElements.getData(), objectElements.getSize(), sizeof(ObjectElement), compareElements);
+
+		// create world matrices from positions
+		const glm::mat4 IDENT;
+		for(int i=0; i<objectElements.getSize(); i++)
+		{
+			worldMatrices[i] = glm::translate(IDENT, objectElements[i].position);
+		}
+
+		// convert elements to instances
+		int first = 0;
+		while(first < objectElements.getSize())
+		{
+			int last = first;
+			int curModel = objectElements[first].model;
+			int curTexture = objectElements[first].texture;
+
+			for(int i=first+1; i<objectElements.getSize() && last-first+1 < MAX_INSTANCES_PER_DRAW; i++, last++)
+			{
+				if(objectElements[i].model != curModel || objectElements[i].texture != curTexture)
+				{
+					break;
+				}
+			}
+
+			int instances = last-first+1;
+			ObjectInstance instance = { curModel, curTexture, instances };
+			objectInstances.add(instance);
+
+			first = last+1;
+		}
+	}
+
 	void Renderer::addElement(int model, int texture, const glm::vec3& position)
 	{
 		assert(model >= 0);
@@ -122,16 +165,6 @@ namespace Rendering
 
 	void Renderer::render( Assets::AssetManager* assets )
 	{
-		// sort elements
-		std::qsort(objectElements.getData(), objectElements.getSize(), sizeof(ObjectElement), compareElements);
-
-		// create world matrices from positions
-		const glm::mat4 IDENT;
-		for(int i=0; i<objectElements.getSize(); i++)
-		{
-			worldMatrices[i] = glm::translate(IDENT, objectElements[i].position);
-		}
-
 		// update uniforms
 		objectShader.bind();
 		objectShader.setMat4(objectProjectionLocation, perspectiveCamera.getProjectionMatrix());
@@ -142,7 +175,7 @@ namespace Rendering
 		glEnable(GL_CULL_FACE);
 		glDisable(GL_BLEND);
 
-		int first = 0;
+		/*int first = 0;
 		while(first < objectElements.getSize())
 		{
 			int last = first;
@@ -163,6 +196,16 @@ namespace Rendering
 			assets->renderModel(curModel, instances);
 
 			first = last+1;
+		}*/
+
+		int worldMatrixOffset = 0;
+		for(int i=0; i<objectInstances.getSize(); i++)
+		{
+			ObjectInstance& instance = objectInstances[i];
+			objectShader.setMat4v(objectWorldLocation, &worldMatrices[worldMatrixOffset], instance.instances);
+			assets->bindTexture(instance.texture);
+			assets->renderModel(instance.model, instance.instances);
+			worldMatrixOffset += instance.instances;
 		}
 
 		// update uniforms
@@ -188,8 +231,6 @@ namespace Rendering
 		glBindVertexArray(0);
 
 		// clear lists
-		objectElements.clear();
-		worldMatrices.clear();
 		textElements.clear();
 	}
 

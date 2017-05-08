@@ -19,6 +19,8 @@ namespace PCG
 
 	void Elicras::generate(const CityParameters& parameters)
 	{
+		assert(renderer != nullptr);
+
 		// clear the map
 		map.fill(-3);
 		structures.clear();
@@ -39,33 +41,8 @@ namespace PCG
 		block.generate(map);
 		building.generate(map, structures);
 
-		// collect statistics
-		dataManager.collectData();
-	}
-
-	void Elicras::addBuildingSection(int district, const Section& section, int type)
-	{
-		building.addSection(district, section, type);
-	}
-
-	void Elicras::useNoiseGenerator(int generator)
-	{
-		if(generator == PERLIN_NOISE)
-		{
-			district.setNoiseGenerator(&perlinNoise);
-			block.setNoiseGenerator(&perlinNoise);
-			building.setNoiseGenerator(&perlinNoise);
-		}
-		else
-		{
-			district.setNoiseGenerator(&randomNoise);
-			block.setNoiseGenerator(&randomNoise);
-			building.setNoiseGenerator(&randomNoise);
-		}
-	}
-
-	void Elicras::render(Renderer* renderer)
-	{
+		// add structures to render queue
+		renderer->begin();
 		// TODO(Niclas): Remove all the magic numbers
 		int curStructure = 0;
 		for(int x=0; x<width; x++)
@@ -111,6 +88,36 @@ namespace PCG
 				}
 			}
 		}
+		renderer->end();
+
+		// collect statistics
+		dataManager.collectData();
+	}
+
+	void Elicras::addBuildingSection(int district, const Section& section, int type)
+	{
+		building.addSection(district, section, type);
+	}
+
+	void Elicras::useNoiseGenerator(int generator)
+	{
+		if(generator == PERLIN_NOISE)
+		{
+			district.setNoiseGenerator(&perlinNoise);
+			block.setNoiseGenerator(&perlinNoise);
+			building.setNoiseGenerator(&perlinNoise);
+		}
+		else
+		{
+			district.setNoiseGenerator(&randomNoise);
+			block.setNoiseGenerator(&randomNoise);
+			building.setNoiseGenerator(&randomNoise);
+		}
+	}
+
+	void Elicras::setRenderer(Renderer* r)
+	{
+		renderer = r;
 	}
 
 	void Elicras::setDimensions(int w, int h)
