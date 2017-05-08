@@ -39,6 +39,14 @@ namespace PCG
 
 	void Building::generate(Array2D<int>& map, Array<Structure>& structures)
 	{
+		// reset counters
+		for(int i=0; i<MAX_DISTRICTS; i++)
+		{
+			buildings[i] = 0;
+			grassTiles[i] = 0;
+		}
+
+		// generate buildings
 		const int WIDTH = map.getWidth();
 		for(int x=0; x<WIDTH; x++)
 		{
@@ -79,10 +87,12 @@ namespace PCG
 						};
 
 						structures.add(structure);
+						buildings[district]++;
 					}
 					else
 					{
 						map.at(x, y) = -3;
+						grassTiles[district]++;
 					}
 				}
 			}
@@ -102,18 +112,14 @@ namespace PCG
 
 	void Building::getData(DataManager * dataManager)
 	{
-		std::stringstream ss;
-		for(int i=0; i<MAX_DISTRICTS; i++)
-		{
-			for(int j=0; j<MAX_SECTIONS; j++)
-			{
-				int parts = districtSections[i][j].getSize();
+		dataManager->addData("district1Buildings", buildings[0]);
+		dataManager->addData("district2Buildings", buildings[1]);
+		dataManager->addData("district3Buildings", buildings[2]);
+		dataManager->addData("totalBuildings", buildings[0]+buildings[1]+buildings[2]);
 
-				ss.clear();
-				ss << "district" << i << "section" << j << "parts";
-
-				dataManager->addData(ss.str(), parts);
-			}
-		}
+		dataManager->addData("district1Grass", grassTiles[0]);
+		dataManager->addData("district2Grass", grassTiles[1]);
+		dataManager->addData("district3Grass", grassTiles[2]);
+		dataManager->addData("totalGrass", grassTiles[0]+grassTiles[1]+grassTiles[2]);
 	}
 }

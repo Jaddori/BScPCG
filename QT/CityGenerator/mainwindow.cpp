@@ -15,6 +15,9 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btn_generate_clicked()
 {
+    clock_t startTime = clock();
+
+    // generate city based on user input
     CityParameters parameters;
 
     QString seedString = ui->txt_seed->text();
@@ -36,6 +39,29 @@ void MainWindow::on_btn_generate_clicked()
     parameters.densities[2] = (float)ui->slider_d3Density->value() * 0.1f;
 
     ui->glWidget->generate(parameters);
+
+    float timeElapsed = (float)(clock() - startTime) / (float)CLOCKS_PER_SEC;
+
+    // collect statistics
+    Elicras& elicras = ui->glWidget->getElicras();
+
+    ui->lbl_perlinCallsValue->setText(QString::number(elicras.getStatistic("perlinNoise")));
+
+    ui->lbl_mainRoadsValue->setText(QString::number(elicras.getStatistic("mainRoads")));
+    ui->lbl_smallRoadsValue->setText(QString::number(elicras.getStatistic("smallRoads")));
+
+    ui->lbl_d1BuildingsValue->setText(QString::number(elicras.getStatistic("district1Buildings")));
+    ui->lbl_d2BuildingsValue->setText(QString::number(elicras.getStatistic("district2Buildings")));
+    ui->lbl_d3BuildingsValue->setText(QString::number(elicras.getStatistic("district3Buildings")));
+    ui->lbl_totalBuildingsValue->setText(QString::number(elicras.getStatistic("totalBuildings")));
+
+    ui->lbl_d1GrassValue->setText(QString::number(elicras.getStatistic("district1Grass")));
+    ui->lbl_d2GrassValue->setText(QString::number(elicras.getStatistic("district2Grass")));
+    ui->lbl_d3GrassValue->setText(QString::number(elicras.getStatistic("district3Grass")));
+    ui->lbl_totalGrassValue->setText(QString::number(elicras.getStatistic("totalGrass")));
+
+    ui->lbl_integerSeedValue->setText(QString::number(parameters.seed));
+    ui->lbl_generationTimeValue->setText(QString::number(timeElapsed) + QString("s"));
 }
 
 void MainWindow::on_slider_d1MinHeight_valueChanged(int value)

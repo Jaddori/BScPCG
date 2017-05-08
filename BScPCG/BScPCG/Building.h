@@ -55,5 +55,8 @@ namespace PCG
 		int districtMinHeights[MAX_DISTRICTS];
 		int districtMaxHeights[MAX_DISTRICTS];
 		float districtDensities[MAX_DISTRICTS];
+
+		int buildings[MAX_DISTRICTS];
+		int grassTiles[MAX_DISTRICTS];
 	};
 }

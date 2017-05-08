@@ -21,6 +21,10 @@ namespace PCG
 		assert(WIDTH > 0);
 		assert(HEIGHT > 0 );
 
+		// reset counters
+		mainRoads = 0;
+		smallRoads = 0;
+
 		// generate main roads
 		for(int x=0; x<WIDTH; x++)
 		{
@@ -32,6 +36,7 @@ namespace PCG
 				for(int y=0; y<HEIGHT; y++)
 				{
 					map.at(x, y) = -1;
+					mainRoads++;
 				}
 			}
 		}
@@ -49,9 +54,13 @@ namespace PCG
 
 			int next = 0;
 			if(rand() % 10 < 5)
+			{
 				next = 2;
+			}
 			else
+			{
 				next = 1;
+			}
 
 			for(int y=0; y<HEIGHT; y++)
 			{
@@ -64,6 +73,7 @@ namespace PCG
 					for(int i=startX; i<endX; i++)
 					{
 						map.at(i, y) = -2;
+						smallRoads++;
 					}
 
 					if(rand() % 10 < 5)
@@ -92,6 +102,7 @@ namespace PCG
 
 	void Block::getData(DataManager * dataManager)
 	{
-		dataManager->addData("block", 4.20f);
+		dataManager->addData("mainRoads", mainRoads);
+		dataManager->addData("smallRoads", smallRoads);
 	}
 }

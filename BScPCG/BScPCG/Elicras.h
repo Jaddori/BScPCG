@@ -38,6 +38,8 @@ namespace PCG
 
 		void setDimensions(int width, int height);
 
+		float getStatistic(const std::string& name);
+
 		// TEMP(Niclas): Should be somewhere else
 		void loadAssets(Assets::AssetManager* assets);
 
@@ -45,14 +47,16 @@ namespace PCG
 		District district;
 		Block block;
 		Building building;
+		DataManager dataManager;
 
 		//Utilities::Array<Utilities::Array<int>> map;
 		Utilities::Array2D<int> map;
 		Utilities::Array<Structure> structures;
 
+		PerlinNoise perlinNoise;
+		RandomNoise randomNoise;
 		int width;
 		int height;
-		int noiseGenerator;
 
 		// TEMP(Niclas): Should probably put these somewhere else
 		int roadModel;

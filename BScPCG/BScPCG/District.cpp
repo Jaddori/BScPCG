@@ -58,10 +58,6 @@ namespace PCG
 													
 		noise = 10 * this->noise->generate(4.242, 7.965, 0.44, 1);
 		this->positions[2].y = (noise - floor(noise)) * height;
-
-		std::cout << floor(positions[0].x) << "," << floor(positions[0].y) << std::endl;
-		std::cout << floor(positions[1].x) << "," << floor(positions[1].y) << std::endl;
-		std::cout << floor(positions[2].x) << "," << floor(positions[2].y) << std::endl;
 						
 	}
 	void District::setNoiseGenerator(Noise * noise)

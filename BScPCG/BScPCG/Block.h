@@ -26,6 +26,9 @@ namespace PCG
 		Noise* noise;
 		float width;
 		float height;
+
+		int mainRoads;
+		int smallRoads;
 	};
 }
 

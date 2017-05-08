@@ -31,6 +31,8 @@ public:
 
     void generate(const CityParameters& parameters);
 
+    Elicras& getElicras();
+
 protected:
     void initializeGL();
     void paintGL();

@@ -25,6 +25,11 @@ void GLWidget::generate(const CityParameters &parameters)
     update();
 }
 
+Elicras& GLWidget::getElicras()
+{
+    return elicras;
+}
+
 void GLWidget::initializeGL()
 {
     qDebug("OpenGL Version: %s", glGetString(GL_VERSION));

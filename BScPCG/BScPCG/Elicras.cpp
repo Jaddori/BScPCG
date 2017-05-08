@@ -4,8 +4,13 @@ using namespace Rendering;
 namespace PCG
 {
 	Elicras::Elicras()
-		: noiseGenerator(PERLIN_NOISE)
 	{
+		dataManager.addDataHolder(&district);
+		dataManager.addDataHolder(&block);
+		dataManager.addDataHolder(&building);
+		dataManager.addDataHolder(&perlinNoise);
+
+		useNoiseGenerator(PERLIN_NOISE);
 	}
 
 	Elicras::~Elicras()
@@ -25,24 +30,17 @@ namespace PCG
 			building.setDensity(i, parameters.densities[i]);
 		}
 
-		// set noise generators
-		PerlinNoise perlinNoise(parameters.seed);
-		RandomNoise randomNoise(parameters.seed);
-
-		Noise* noise = &perlinNoise;
-		if(noiseGenerator == RANDOM_NOISE)
-		{
-			noise = &randomNoise;
-		}
-
-		district.setNoiseGenerator(noise);
-		block.setNoiseGenerator(noise);
-		building.setNoiseGenerator(noise);
+		// seed the noise generators
+		perlinNoise.seed(parameters.seed);
+		randomNoise.seed(parameters.seed);
 
 		// generate everything
 		district.generate(map, width, height);
 		block.generate(map);
 		building.generate(map, structures);
+
+		// collect statistics
+		dataManager.collectData();
 	}
 
 	void Elicras::addBuildingSection(int district, const Section& section, int type)
@@ -52,7 +50,18 @@ namespace PCG
 
 	void Elicras::useNoiseGenerator(int generator)
 	{
-		noiseGenerator = generator;
+		if(generator == PERLIN_NOISE)
+		{
+			district.setNoiseGenerator(&perlinNoise);
+			block.setNoiseGenerator(&perlinNoise);
+			building.setNoiseGenerator(&perlinNoise);
+		}
+		else
+		{
+			district.setNoiseGenerator(&randomNoise);
+			block.setNoiseGenerator(&randomNoise);
+			building.setNoiseGenerator(&randomNoise);
+		}
 	}
 
 	void Elicras::render(Renderer* renderer)
@@ -116,6 +125,11 @@ namespace PCG
 		// set values in generators
 		block.setDimensions(width, height);
 		building.setDimensions(width, height);
+	}
+
+	float Elicras::getStatistic(const std::string& name)
+	{
+		return dataManager.getData(name);
 	}
 
 	void Elicras::loadAssets(Assets::AssetManager* assets)
