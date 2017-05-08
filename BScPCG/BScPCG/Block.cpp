@@ -36,6 +36,10 @@ namespace PCG
 				for(int y=0; y<HEIGHT; y++)
 				{
 					map.at(x, y) = -1;
+				}
+
+				if(x == 0 || map.at(x-1,0) >= 0)
+				{
 					mainRoads++;
 				}
 			}
@@ -73,8 +77,9 @@ namespace PCG
 					for(int i=startX; i<endX; i++)
 					{
 						map.at(i, y) = -2;
-						smallRoads++;
 					}
+
+					smallRoads++;
 
 					if(rand() % 10 < 5)
 					{
