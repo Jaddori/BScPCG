@@ -34,4 +34,14 @@
 		The final stage of the generation process it the generation of buildings. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a district. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the districts parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a building or leave the cell vacant. If a building is placed, the algorithm uses Perlin noise to choose a bottom, middle and top sections. It chooses these sections from the list of available sections that belong to the district. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one. The final step of the algorithm determines the height of the building by multiplying the difference between the maximum height and the minimum height with the result from the Perlin noise and then adding the minimum height. (TODO: Math formula?) The results of the building generation is not stored in the map, but in a separate list of building sections that can later be rendered.(TODO: Images)
 
 	\subsection{Data collection}
-	Vilken data / hur mycket / hur samlas den
+	Aside from the core functionality of the application, an effort was made to record any significant data about the generation process. The observer pattern was used at the core of this effort. In Elicras there is a DataManager and many DataHolders. Any class whose data is worth collecting, inherits from the DataHolder base class. This results in a centralized way of collecting data that is easy to use and to setup. When Elicras requests the data from the DataManager, it notifies the registered DataHolders to supply their data. The application gathers the following information about the generation process:
+		\begin{itemize}
+			\item Number of Perlin noise calls
+			\item Number of main roads
+			\item Number of small roads
+			\item Number of buildings in district 1-3
+			\item Total number of buildings
+			\item Number of grass tiles in district 1-3
+			\item Total number of grass tiles
+			\item Generation time
+		\end{itemize}
