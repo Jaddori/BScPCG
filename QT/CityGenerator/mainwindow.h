@@ -29,6 +29,12 @@ private slots:
     void on_slider_d2Density_valueChanged(int value);
     void on_slider_d3Density_valueChanged(int value);
 
+    void on_slider_d1BlockSize_valueChanged(int value);
+
+    void on_slider_d2BlockSize_valueChanged(int value);
+
+    void on_slider_d3BlockSize_valueChanged(int value);
+
 private:
     Ui::MainWindow *ui;
     SeedConverter seedConverter;

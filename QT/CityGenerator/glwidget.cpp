@@ -150,6 +150,7 @@ void GLWidget::initializeGL()
     elicras.setRenderer(&renderer);
 
     CityParameters tempParams = {};
+    tempParams.blockSizes[0] = tempParams.blockSizes[1] = tempParams.blockSizes[2] = 2;
     elicras.generate(tempParams);
 
     // load the renderer

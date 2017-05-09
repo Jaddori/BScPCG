@@ -19,6 +19,7 @@ namespace PCG
 
 		void setNoiseGenerator(Noise* noise);
 		void setDimensions(float width, float height);
+		void setBlockSize(int district, int size);
 
 		void getData(DataManager* dataManager) override;
 
@@ -29,6 +30,8 @@ namespace PCG
 
 		int mainRoads;
 		int smallRoads;
+
+		int blockSizes[MAX_DISTRICTS];
 	};
 }
 

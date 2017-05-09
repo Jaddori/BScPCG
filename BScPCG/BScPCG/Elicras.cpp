@@ -30,6 +30,7 @@ namespace PCG
 		{
 			building.setHeight(i, parameters.minHeights[i], parameters.maxHeights[i]);
 			building.setDensity(i, parameters.densities[i]);
+			block.setBlockSize(i, parameters.blockSizes[i]);
 		}
 
 		// seed the noise generators

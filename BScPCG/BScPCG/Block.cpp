@@ -74,6 +74,7 @@ namespace PCG
 				}
 				else
 				{
+					const int DISTRICT = map.at(startX, y);
 					for(int i=startX; i<endX; i++)
 					{
 						map.at(i, y) = -2;
@@ -81,14 +82,7 @@ namespace PCG
 
 					smallRoads++;
 
-					if(rand() % 10 < 5)
-					{
-						next = 2;
-					}
-					else
-					{
-						next = 1;
-					}
+					next = blockSizes[DISTRICT] + (rand() % 2);
 				}
 			}
 		}
@@ -103,6 +97,14 @@ namespace PCG
 	{
 		width = w;
 		height = h;
+	}
+
+	void Block::setBlockSize(int district, int size)
+	{
+		assert(district >= 0 && district < MAX_DISTRICTS);
+		assert(size > 0);
+
+		blockSizes[district] = size;
 	}
 
 	void Block::getData(DataManager * dataManager)

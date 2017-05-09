@@ -46,6 +46,9 @@ public:
     QLabel *lbl_d1MinHeightValue;
     QLabel *lbl_d1MaxHeightValue;
     QLabel *lbl_d1DensityValue;
+    QLabel *lbl_d1BlockSize;
+    QLabel *lbl_d1BlockSizeValue;
+    QSlider *slider_d1BlockSize;
     QGroupBox *gb_district2;
     QLabel *lbl_d2MinHeight;
     QLabel *lbl_d2MaxHeight;
@@ -56,6 +59,9 @@ public:
     QLabel *lbl_d2MinHeightValue;
     QLabel *lbl_d2MaxHeightValue;
     QLabel *lbl_d2DensityValue;
+    QLabel *lbl_d2BlockSize;
+    QLabel *lbl_d2BlockSizeValue;
+    QSlider *slider_d2BlockSize;
     QGroupBox *gb_district3;
     QLabel *lbl_d3MinHeight;
     QLabel *lbl_d3MaxHeight;
@@ -66,6 +72,9 @@ public:
     QLabel *lbl_d3MinHeightValue;
     QLabel *lbl_d3MaxHeightValue;
     QLabel *lbl_d3DensityValue;
+    QLabel *lbl_d3BlockSize;
+    QLabel *lbl_d3BlockSizeValue;
+    QSlider *slider_d3BlockSize;
     QGroupBox *gb_seed;
     QLineEdit *txt_seed;
     QPushButton *btn_generate;
@@ -102,7 +111,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1060, 660);
+        MainWindow->resize(1060, 780);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -139,7 +148,7 @@ public:
         frame_parameters->setFrameShadow(QFrame::Raised);
         gb_district1 = new QGroupBox(frame_parameters);
         gb_district1->setObjectName(QStringLiteral("gb_district1"));
-        gb_district1->setGeometry(QRect(0, 50, 200, 180));
+        gb_district1->setGeometry(QRect(0, 50, 200, 220));
         lbl_d1MinHeight = new QLabel(gb_district1);
         lbl_d1MinHeight->setObjectName(QStringLiteral("lbl_d1MinHeight"));
         lbl_d1MinHeight->setGeometry(QRect(20, 20, 60, 13));
@@ -184,9 +193,26 @@ public:
         lbl_d1DensityValue = new QLabel(gb_district1);
         lbl_d1DensityValue->setObjectName(QStringLiteral("lbl_d1DensityValue"));
         lbl_d1DensityValue->setGeometry(QRect(90, 120, 47, 13));
+        lbl_d1BlockSize = new QLabel(gb_district1);
+        lbl_d1BlockSize->setObjectName(QStringLiteral("lbl_d1BlockSize"));
+        lbl_d1BlockSize->setGeometry(QRect(20, 170, 60, 13));
+        lbl_d1BlockSizeValue = new QLabel(gb_district1);
+        lbl_d1BlockSizeValue->setObjectName(QStringLiteral("lbl_d1BlockSizeValue"));
+        lbl_d1BlockSizeValue->setGeometry(QRect(90, 170, 47, 13));
+        slider_d1BlockSize = new QSlider(gb_district1);
+        slider_d1BlockSize->setObjectName(QStringLiteral("slider_d1BlockSize"));
+        slider_d1BlockSize->setGeometry(QRect(20, 190, 160, 19));
+        slider_d1BlockSize->setMinimum(1);
+        slider_d1BlockSize->setMaximum(10);
+        slider_d1BlockSize->setSliderPosition(2);
+        slider_d1BlockSize->setOrientation(Qt::Horizontal);
+        slider_d1BlockSize->setInvertedAppearance(false);
+        slider_d1BlockSize->setInvertedControls(false);
+        slider_d1BlockSize->setTickPosition(QSlider::TicksAbove);
+        slider_d1BlockSize->setTickInterval(1);
         gb_district2 = new QGroupBox(frame_parameters);
         gb_district2->setObjectName(QStringLiteral("gb_district2"));
-        gb_district2->setGeometry(QRect(0, 230, 200, 180));
+        gb_district2->setGeometry(QRect(0, 270, 200, 220));
         lbl_d2MinHeight = new QLabel(gb_district2);
         lbl_d2MinHeight->setObjectName(QStringLiteral("lbl_d2MinHeight"));
         lbl_d2MinHeight->setGeometry(QRect(20, 20, 60, 13));
@@ -232,9 +258,24 @@ public:
         lbl_d2DensityValue = new QLabel(gb_district2);
         lbl_d2DensityValue->setObjectName(QStringLiteral("lbl_d2DensityValue"));
         lbl_d2DensityValue->setGeometry(QRect(90, 120, 47, 13));
+        lbl_d2BlockSize = new QLabel(gb_district2);
+        lbl_d2BlockSize->setObjectName(QStringLiteral("lbl_d2BlockSize"));
+        lbl_d2BlockSize->setGeometry(QRect(20, 170, 60, 13));
+        lbl_d2BlockSizeValue = new QLabel(gb_district2);
+        lbl_d2BlockSizeValue->setObjectName(QStringLiteral("lbl_d2BlockSizeValue"));
+        lbl_d2BlockSizeValue->setGeometry(QRect(90, 170, 47, 13));
+        slider_d2BlockSize = new QSlider(gb_district2);
+        slider_d2BlockSize->setObjectName(QStringLiteral("slider_d2BlockSize"));
+        slider_d2BlockSize->setGeometry(QRect(20, 190, 160, 19));
+        slider_d2BlockSize->setMinimum(1);
+        slider_d2BlockSize->setMaximum(10);
+        slider_d2BlockSize->setSliderPosition(2);
+        slider_d2BlockSize->setOrientation(Qt::Horizontal);
+        slider_d2BlockSize->setTickPosition(QSlider::TicksAbove);
+        slider_d2BlockSize->setTickInterval(1);
         gb_district3 = new QGroupBox(frame_parameters);
         gb_district3->setObjectName(QStringLiteral("gb_district3"));
-        gb_district3->setGeometry(QRect(0, 410, 200, 180));
+        gb_district3->setGeometry(QRect(0, 490, 200, 220));
         lbl_d3MinHeight = new QLabel(gb_district3);
         lbl_d3MinHeight->setObjectName(QStringLiteral("lbl_d3MinHeight"));
         lbl_d3MinHeight->setGeometry(QRect(20, 20, 60, 13));
@@ -279,6 +320,21 @@ public:
         lbl_d3DensityValue = new QLabel(gb_district3);
         lbl_d3DensityValue->setObjectName(QStringLiteral("lbl_d3DensityValue"));
         lbl_d3DensityValue->setGeometry(QRect(90, 120, 47, 13));
+        lbl_d3BlockSize = new QLabel(gb_district3);
+        lbl_d3BlockSize->setObjectName(QStringLiteral("lbl_d3BlockSize"));
+        lbl_d3BlockSize->setGeometry(QRect(20, 170, 60, 13));
+        lbl_d3BlockSizeValue = new QLabel(gb_district3);
+        lbl_d3BlockSizeValue->setObjectName(QStringLiteral("lbl_d3BlockSizeValue"));
+        lbl_d3BlockSizeValue->setGeometry(QRect(90, 170, 47, 13));
+        slider_d3BlockSize = new QSlider(gb_district3);
+        slider_d3BlockSize->setObjectName(QStringLiteral("slider_d3BlockSize"));
+        slider_d3BlockSize->setGeometry(QRect(20, 190, 160, 19));
+        slider_d3BlockSize->setMinimum(1);
+        slider_d3BlockSize->setMaximum(10);
+        slider_d3BlockSize->setSliderPosition(2);
+        slider_d3BlockSize->setOrientation(Qt::Horizontal);
+        slider_d3BlockSize->setTickPosition(QSlider::TicksAbove);
+        slider_d3BlockSize->setTickInterval(1);
         gb_seed = new QGroupBox(frame_parameters);
         gb_seed->setObjectName(QStringLiteral("gb_seed"));
         gb_seed->setGeometry(QRect(0, 0, 200, 50));
@@ -289,7 +345,7 @@ public:
         txt_seed->setClearButtonEnabled(false);
         btn_generate = new QPushButton(frame_parameters);
         btn_generate->setObjectName(QStringLiteral("btn_generate"));
-        btn_generate->setGeometry(QRect(20, 600, 160, 30));
+        btn_generate->setGeometry(QRect(20, 720, 160, 30));
 
         gridLayout->addWidget(frame_parameters, 0, 2, 1, 1);
 
@@ -301,7 +357,7 @@ public:
         frame_info->setFrameShadow(QFrame::Raised);
         gb_statistics = new QGroupBox(frame_info);
         gb_statistics->setObjectName(QStringLiteral("gb_statistics"));
-        gb_statistics->setGeometry(QRect(0, 0, 100, 641));
+        gb_statistics->setGeometry(QRect(0, 0, 100, 760));
         QFont font;
         font.setBold(false);
         font.setWeight(50);
@@ -405,6 +461,8 @@ public:
         lbl_d1MinHeightValue->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         lbl_d1MaxHeightValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         lbl_d1DensityValue->setText(QApplication::translate("MainWindow", "100%", Q_NULLPTR));
+        lbl_d1BlockSize->setText(QApplication::translate("MainWindow", "Block Size:", Q_NULLPTR));
+        lbl_d1BlockSizeValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         gb_district2->setTitle(QApplication::translate("MainWindow", "Skyscrapers", Q_NULLPTR));
         lbl_d2MinHeight->setText(QApplication::translate("MainWindow", "Min. Height:", Q_NULLPTR));
         lbl_d2MaxHeight->setText(QApplication::translate("MainWindow", "Max. Height:", Q_NULLPTR));
@@ -412,6 +470,8 @@ public:
         lbl_d2MinHeightValue->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         lbl_d2MaxHeightValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         lbl_d2DensityValue->setText(QApplication::translate("MainWindow", "100%", Q_NULLPTR));
+        lbl_d2BlockSize->setText(QApplication::translate("MainWindow", "Block Size:", Q_NULLPTR));
+        lbl_d2BlockSizeValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         gb_district3->setTitle(QApplication::translate("MainWindow", "Factories", Q_NULLPTR));
         lbl_d3MinHeight->setText(QApplication::translate("MainWindow", "Min. Height:", Q_NULLPTR));
         lbl_d3MaxHeight->setText(QApplication::translate("MainWindow", "Max. Height:", Q_NULLPTR));
@@ -419,6 +479,8 @@ public:
         lbl_d3MinHeightValue->setText(QApplication::translate("MainWindow", "1", Q_NULLPTR));
         lbl_d3MaxHeightValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         lbl_d3DensityValue->setText(QApplication::translate("MainWindow", "100%", Q_NULLPTR));
+        lbl_d3BlockSize->setText(QApplication::translate("MainWindow", "Block Size:", Q_NULLPTR));
+        lbl_d3BlockSizeValue->setText(QApplication::translate("MainWindow", "2", Q_NULLPTR));
         gb_seed->setTitle(QApplication::translate("MainWindow", "Seed", Q_NULLPTR));
         btn_generate->setText(QApplication::translate("MainWindow", "Generate", Q_NULLPTR));
         gb_statistics->setTitle(QApplication::translate("MainWindow", "Statistics", Q_NULLPTR));

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1060</width>
-    <height>660</height>
+    <height>780</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -73,7 +73,7 @@
          <x>0</x>
          <y>50</y>
          <width>200</width>
-         <height>180</height>
+         <height>220</height>
         </rect>
        </property>
        <property name="title">
@@ -238,14 +238,74 @@
          <string>100%</string>
         </property>
        </widget>
+       <widget class="QLabel" name="lbl_d1BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>170</y>
+          <width>60</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Block Size:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d1BlockSizeValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>170</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="slider_d1BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>190</y>
+          <width>160</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="invertedAppearance">
+         <bool>false</bool>
+        </property>
+        <property name="invertedControls">
+         <bool>false</bool>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksAbove</enum>
+        </property>
+        <property name="tickInterval">
+         <number>1</number>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="gb_district2">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>230</y>
+         <y>270</y>
          <width>200</width>
-         <height>180</height>
+         <height>220</height>
         </rect>
        </property>
        <property name="title">
@@ -413,14 +473,68 @@
          <string>100%</string>
         </property>
        </widget>
+       <widget class="QLabel" name="lbl_d2BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>170</y>
+          <width>60</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Block Size:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d2BlockSizeValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>170</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="slider_d2BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>190</y>
+          <width>160</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksAbove</enum>
+        </property>
+        <property name="tickInterval">
+         <number>1</number>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="gb_district3">
        <property name="geometry">
         <rect>
          <x>0</x>
-         <y>410</y>
+         <y>490</y>
          <width>200</width>
-         <height>180</height>
+         <height>220</height>
         </rect>
        </property>
        <property name="title">
@@ -585,6 +699,60 @@
          <string>100%</string>
         </property>
        </widget>
+       <widget class="QLabel" name="lbl_d3BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>170</y>
+          <width>60</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Block Size:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="lbl_d3BlockSizeValue">
+        <property name="geometry">
+         <rect>
+          <x>90</x>
+          <y>170</y>
+          <width>47</width>
+          <height>13</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>2</string>
+        </property>
+       </widget>
+       <widget class="QSlider" name="slider_d3BlockSize">
+        <property name="geometry">
+         <rect>
+          <x>20</x>
+          <y>190</y>
+          <width>160</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>1</number>
+        </property>
+        <property name="maximum">
+         <number>10</number>
+        </property>
+        <property name="sliderPosition">
+         <number>2</number>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="tickPosition">
+         <enum>QSlider::TicksAbove</enum>
+        </property>
+        <property name="tickInterval">
+         <number>1</number>
+        </property>
+       </widget>
       </widget>
       <widget class="QGroupBox" name="gb_seed">
        <property name="geometry">
@@ -619,7 +787,7 @@
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>600</y>
+         <y>720</y>
          <width>160</width>
          <height>30</height>
         </rect>
@@ -656,7 +824,7 @@
          <x>0</x>
          <y>0</y>
          <width>100</width>
-         <height>641</height>
+         <height>760</height>
         </rect>
        </property>
        <property name="font">
