@@ -1,9 +1,31 @@
 \section{Method}
-\subsection{Implementation}
-Low level, opengl/QT - sexig bild?
 
-\subsection{City generation method}
-High och low level / distrikt, vägar, hus
+	\subsection{City generation method}
+	Most related work focus on one of two things: procedurally generating unique building meshes(ref) or procedurally generating large cities consisting of similar looking buildings(ref). This work focuses instead on the procedurally generated placement of authored meshes in varied districts. The concept of districts breaks up the repetitive and self-similar nature of city by introducing distinct changes in appearance between them. During research three stages of generation were recognized: Districts, Blocks and Buildings. Each of these steps use the result of the previous one as starting point, in a top-down, hierarchical manner. Going through these stages is intended to generate a city that feels and looks natural.
 
-\subsection{Data collection}
-Vilken data / hur mycket / hur samlas den
+		\subsubsection{Districts}
+		The generation process starts with the generation of Districts. A District is an abstract representation of an area of the city. It controls what type of buildings it contains, the minimum and maximum height of these buildings and how densely populated the area is with these buildings. With just these few variables, you can create anything from a sparse industrial district to a dense inner city.
+		
+		\subsubsection{Blocks}
+		The next stage in the process is the generation of Blocks. In this work, a Block is defined as an area enclosed by four roads. Looking at aerial photographs of large cities(ref) a certain pattern sometimes appears in the way roads are laid out. There is usually a few major roads stretched throughout the city and smaller, perpendicular roads connecting them together. We decided to mimic this style(TODO: Don't use we). Since a block is another abstract representation of an area, it is actually the roads that make them up. The first step of generating blocks is to generate the main roads running through the city. After the main roads have been generated, smaller roads are generated between, connecting them together. After all roads have been generated, the city has affectively been divided into a non-uniform grid. Each cell in this grid is a block. (TODO: This stage does not depend on the previous)
+		
+		\subsubsection{Buildings}
+		The final stage is the generation of Buildings. Each building is made up of three meshes: the bottom, middle and top meshes. By dividing a building into sections, it is possible to assemble different pieces and generate new buildings. This is a powerful way to use combinatorics to generate more content. For example, authoring two buildings would result in two unique buildings. Whereas authoring two bottom, middle and top parts would result in eight unique buildings. Upon generation of a buildings, the attributes of its district is taken into consideration. What sections to combine, the minimum and maximum height as well as the density of buildings, is all dictated by the district.
+
+	\subsection{Implementation}
+	To explore the procedural generation of a city, a desktop application was created. The application provides the end user with an interface that allows for the configuration of variables along with some statistics.
+	
+		\subsubsection{Interface}
+		Explain the interface, user input and Qt
+		
+		\subsubsection{Districts}
+		Explain how we generate districts
+		
+		\subsubsection{Blocks}
+		Explain how we generate blocks
+		
+		\subsubsection{Buildings}
+		Explain how we generate buildings
+
+	\subsection{Data collection}
+	Vilken data / hur mycket / hur samlas den
