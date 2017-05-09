@@ -89,16 +89,14 @@ void GLWidget::initializeGL()
     int skyTopTexture3 = houseBottomTexture3;
 
     // factory sections
-    /*int factoryBottomSection = assets.loadModel("./assets/models/factory_bot_section.model");
-    int factoryMiddleSection = assets.loadModel("./assets/models/factory_mid_section.model");
-    int factoryTopSection = assets.loadModel("./assets/models/factory_top_section.model");*/
     int factoryBottomSection = houseBottomSection;
     int factoryMiddleSection = houseMiddleSection;
-    int factoryTopSection = houseTopSection;
+    int factoryTopSection = skyTopSection;
 
     int factoryBottomTexture = houseBottomTexture;
-    int factoryMiddleTexture = houseMiddleTexture;
-    int factoryTopTexture = houseBottomTexture;
+    int factoryMiddleTexture = assets.loadTexture("./assets/textures/bricks_large1.dds");
+    int factoryMiddleTexture2 = assets.loadTexture("./assets/textures/bricks_large2.dds");
+    int factoryTopTexture = houseBottomTexture2;
 
     elicras.setDimensions(CITY_WIDTH, CITY_HEIGHT);
 
@@ -143,6 +141,7 @@ void GLWidget::initializeGL()
 
     // add some factory middle sections
     elicras.addBuildingSection(2, {factoryMiddleSection, factoryMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(2, {factoryMiddleSection, factoryMiddleTexture2}, SECTION_MIDDLE);
 
     // add some factory top sections
     elicras.addBuildingSection(2, {factoryTopSection, factoryTopTexture}, SECTION_TOP);
