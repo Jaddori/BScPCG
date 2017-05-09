@@ -1,48 +1,48 @@
 \section{Introduction}
-\subsection{Introduction}
-Exploring a huge open world environment is a desirable feature in games. But creating a big open city such as in the Grand Theft Auto series and Batman: Arkham City involves years of work for a lot of people. Making big open cities in games is simply not feasible for most game companies. These games all have massive success with their big open worlds making a feasible generated city an attractive technique for smaller companies to be able to compete with big open worlds of their own.
-\par
-Content creation requires creativity and time, these are both scarce resources which is why we need technology to help with this process.
-To create massive amounts of content without a big workforce algorithmically based solutions exist, Procedural Content Generation (PCG). PCG was in the past used to minimize the disk space required for games. .kkrieger is an  example of this. It has since evolved into a method to minimize workforce required for content. No man’s sky is an example of a game using PCG to minimize workforce while maximizing content.
-\par
-Procedural content generation is a large subject covering many different techniques. Games such as No mans sky (ref) are using PCG to generate an entire galaxy of 18 quintillion (18,446,744,073,709,551,616) (nomanssky.gamepedia.com/Planet) different planets complete with plants, animals, animations, biomes and sounds. While other games such as Borderlands (ref) uses PCG to generate over different 17,750,000 guns (borderlands.wikia.com/wiki/Weapons). Civilization IV, Minecraft and Spelunky are examples of games generating different game environments both in 2D and 3D using PCG. Minecrafts world being eight times bigger than the surface of the earth (minecraft.gamepedia.com/The\_Overworld). With enormous amounts of content like these examples we can see why handcrafting this would not be feasible nad PCG is an attractive creative method.
-\par
-Lots of work has been done in the field of PCG and it has been used within games for a long time, one of the earlies examples of a game using PCG is Elite(ref) from 1984. But no singular PCG solution has yet to be found, this may be attributed to the wastly different areas of use.
-\par
-In this thesis we are investigating the possibility of procedurally generating a city with Perlin noise that would be viable within a game. An implementation attempting to create such a city will be made and investigated through a user study along with data collection from the implementation.
-
-\subsection{background}
-As future game developers, we are always looking for better ways to create games. PCG enables big games to be made in far less time. This is attractive for smaller game companies and is a technique we want to explore more.
-Perlin Noise is the PCG technique we chose to use for every single stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
-There are many ways to procedurally generate a city, but most of them are very complicated which often means long implementation time. From a developer perspective there is not much use for PCG if the implementation time equals the time it would take to handcraft every single element. 
-
-\subsection{Procedural content generation}
-Procedural content generation in games is defined as "PCG is the algorithmic creation of game content with limited or direct user input" in What is procedural content generation?(ref) This is the definition used in this thesis.
-PCG is also used in areas outside the gaming industry. Speedtree (ref) is using PCG methods to generate trees that are used in movies such as Avatar(ref). Perlin noise was first invented to be used in Disney's computer animated sci-fi picture Tron (ref)
-This thesis will focus on the use of PCG in games with the previous mentioned defenition.
-
-\subsection{City generation}
-A city has many different definitions in the real world. (maybe example) But a city viable in games is unlike real cities. They are not a large human settlement with governments and sanitary systems. The definition of a city explored in this thesis is "A large area occupied with different kinds of houses connected through a road system." (better definition plz)
-Unlike a real city, a city viable in games do not need logic, electricity connections nor gas stations. It simply needs to be an engaging place to experience a game in. With this great simplification, generation of such a city becomes far less complex.
-To generate a city viable to use in games, three different generation stages have been recognized: Districts, roads (creating blocks) and buildings. These generation stages are used in the implementation. (nothing about why we want to generate city. But already told in earlier stages?)
-
-\subsection{Problem statement}
-Cities are desirable in games and are widely used by bigger companies to great success. The reason cities are not as widely used in smaller companies is because of how much time and creative work a city requires to create. But with the help of PCG big open worlds such as cities may be viable for more companies to implement.
-To create a city purely using Perlin noise and test if it is viable in games is the problem explored.
-
-\subsection{Objectives}
-Generating a city through the PCG technique Perlin noise and testing the viability in games is the goal. The creation of an implementation is therefore necessary.
-The following requirements have been set as a way to make sure the result will be viable.
-\begin{itemize}
-	\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city.
+	\subsection{Introduction}
+	Exploring a huge open world environment is a desirable feature in games. But creating a big open city such as in the Grand Theft Auto series and Batman: Arkham City involves years of work for a lot of people. Making big open cities in games is simply not feasible for most game companies. These games all have massive success with their big open worlds making a feasible generated city an attractive technique for smaller companies to be able to compete with big open worlds of their own.
+	\par
+	Content creation requires creativity and time, these are both scarce resources which is why game companies need technology to help with this process.
+	To create massive amounts of content without a big workforce algorithmically based solutions exist, Procedural Content Generation (PCG). PCG was in the past used to minimize the disk space required for games. .kkrieger is an  example of this. It has since evolved into a method to minimize workforce required for content. No man’s sky is an example of a game using PCG to minimize workforce while maximizing content.
+	\par
+	Procedural content generation is a large subject covering many different techniques. Games such as No mans sky (ref) are using PCG to generate an entire galaxy of 18 quintillion (18,446,744,073,709,551,616) (nomanssky.gamepedia.com/Planet) different planets complete with plants, animals, animations, biomes and sounds. While other games such as Borderlands (ref) uses PCG to generate over different 17,750,000 guns (borderlands.wikia.com/wiki/Weapons). Civilization IV, Minecraft and Spelunky are examples of games generating different game environments both in 2D and 3D using PCG. Minecrafts world being eight times bigger than the surface of the earth (minecraft.gamepedia.com/The\_Overworld). With enormous amounts of content like these examples it is understandable why handcrafting this would not be feasible and PCG is an attractive creative method.
+	\par
+	Lots of work has been done in the field of PCG and it has been used within games for a long time, one of the earlies examples of a game using PCG is Elite(ref) from 1984. But no singular PCG solution has yet to be found, this may be attributed to the wastly different areas of use.
+	\par
+	In this thesis the the possibility of procedurally generating a city with Perlin noise that would be viable within a game is investigated. An implementation attempting to create such a city will be made and inspected through a user study along with data collection from the implementation.
 	
-	\item \textbf{Determenism:} The generation should be determenistic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
+	\subsection{background}
+	The game industry is always looking for better ways to create games. PCG enables big games to be made in far less time. This is attractive for smaller game companies and is a technique this thesis tries explore more.
+	Perlin Noise is the PCG technique chosen to use for every single stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
+	There are many ways to procedurally generate a city, but most of them are very complicated which often means long implementation time. From a developer perspective there is not much use for PCG if the implementation time equals the time it would take to handcraft every single element. 
 	
-	\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an on-line setting. A game should never have loading screens for any longer than 30 seconds, our implementation therefore have a time limit of ten seconds. Even if this limit is excedded the implementation may still be viable in a off-line setting.
+	\subsection{Procedural content generation}
+	Procedural content generation in games is defined as "PCG is the algorithmic creation of game content with limited or direct user input" in What is procedural content generation?(ref) This is the definition used in this thesis. But PCG has been used for many purposes by many different people. There is no clear definition of exactly what PCG is that is universally agreed upon. (What is Procedural Content Generation?	Mario on the borderline)
+	PCG is also used in areas outside the gaming industry. Speedtree (ref) is using PCG methods to generate trees that are used in movies such as Avatar(ref). Perlin noise was first invented to be used in Disney's computer animated sci-fi picture Tron (ref)
+	This thesis will focus on the use of PCG in games with the previous mentioned defenition.
 	
-	\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
-\end{itemize} 
-
-\subsection{Research question}
-Can Perlin noise be used in a hierarchical manner to procedurally generate a city viable in games?
-\\
+	\subsection{City generation}
+	A city has many different definitions in the real world. (maybe example) But a city viable in games is unlike real cities. They are not a large human settlement with governments and sanitary systems. The definition of a city explored in this thesis is "A large area occupied with different kinds of houses connected through a road system." (better definition plz)
+	Unlike a real city, a city viable in games do not need logic, electricity connections nor gas stations. It simply needs to be an engaging place to experience a game in. With this great simplification, generation of such a city becomes far less complex.
+	To generate a city viable to use in games, three different generation stages have been recognized: Districts, roads (creating blocks) and buildings. These generation stages are used in the implementation. (nothing about why we want to generate city. But already told in earlier stages?)
+	
+	\subsection{Problem statement}
+	Cities are desirable in games and are widely used by bigger companies to great success. The reason cities are not as widely used in smaller companies is because of how much time and creative work a city requires to create. But with the help of PCG big open worlds such as cities may be viable for more companies to implement.
+	To create a city purely using Perlin noise and test if it is viable in games is the problem explored.
+	
+	\subsection{Objectives}
+	Generating a city through the PCG technique Perlin noise and testing the viability in games is the goal. The creation of an implementation is therefore necessary.
+	The following things need to be completed for the objective to be achieved.
+	
+	\begin{itemize}
+		\item \textbf{Implementation:} An implementation that generate viable cities. This implementation will have a user interface that allows the user to rapidly generate many different cities.
+		
+		\item \textbf{Data collection:} The implementation must calculate and save correct data that can be analyzed. Loading times and how many times Perlin noise is used for the generation are two types of data that are relevant.
+		
+		\item \textbf{User study:} After the implementation is done a user study will be conducted. This user study must have atleast 20 participants answering questions from a questionnaire.
+		
+		\item \textbf{Conclusion: } With the data from the user study and the implementation the conclusion that Perlin noise can generate cities viable in games can be done.
+	\end{itemize} 
+	
+	\subsection{Research question}
+	Can Perlin noise be used in a hierarchical manner to procedurally generate a city viable in games?
