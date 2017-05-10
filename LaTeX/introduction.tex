@@ -14,10 +14,11 @@
 	\subsection{background}
 	The game industry is always looking for better ways to create games. PCG enables big games to be made in far less time. This is attractive for smaller game companies and is a technique this thesis tries explore more.
 	Perlin Noise is the PCG technique chosen to use for every single stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
-	There are many ways to procedurally generate a city, but most of them are very complicated which often means long implementation time. From a developer perspective there is not much use for PCG if the implementation time equals the time it would take to handcraft every single element. 
+	There are many ways to procedurally generate a city, but most of them are very complicated which often means long implementation time. From a developer perspective there is not much use for PCG if the implementation time equals the time it would take to handcraft every single element.
 	
 	\subsection{Procedural content generation}
-	Procedural content generation in games is defined as "PCG is the algorithmic creation of game content with limited or direct user input" in What is procedural content generation?(ref) This is the definition used in this thesis. But PCG has been used for many purposes by many different people. There is no clear definition of exactly what PCG is that is universally agreed upon. (What is Procedural Content Generation?	Mario on the borderline)
+	Procedural content generation in games is defined as "PCG is the algorithmic creation of game content with limited or direct user input" in What is procedural content generation?(ref) This is the definition used in this thesis. But PCG has been used for many purposes by many different people. There is no clear definition of exactly what PCG is that is universally agreed upon. (What is Procedural Content Generation?	Mario on the borderline
+)
 	PCG is also used in areas outside the gaming industry. Speedtree (ref) is using PCG methods to generate trees that are used in movies such as Avatar(ref). Perlin noise was first invented to be used in Disney's computer animated sci-fi picture Tron (ref)
 	This thesis will focus on the use of PCG in games with the previous mentioned defenition.
 	
@@ -31,10 +32,13 @@
 	To create a city purely using Perlin noise and test if it is viable in games is the problem explored.
 	
 	\subsection{Objectives}
-	Generating a city through the PCG technique Perlin noise and testing the viability in games is the goal. The creation of an implementation is therefore necessary.
+	Generating a city through the PCG technique Perlin noise and testing the viability in games is the goal. The speed to implement the techniques, the time to generate a city and the cities viability within games is the corner stones of this thesis. The creation of an implementation is therefore necessary.
 	The following things need to be completed for the objective to be achieved.
 	
 	\begin{itemize}
+		\item \textbf{Perlin noise:} Everything should be generated with Perlin noise.
+		With only a single PCG technique to implement, the implementation should be fast to create.
+		
 		\item \textbf{Implementation:} An implementation that generate viable cities. This implementation will have a user interface that allows the user to rapidly generate many different cities.
 		
 		\item \textbf{Data collection:} The implementation must calculate and save correct data that can be analyzed. Loading times and how many times Perlin noise is used for the generation are two types of data that are relevant.
