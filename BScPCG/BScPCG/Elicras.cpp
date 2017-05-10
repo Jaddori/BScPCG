@@ -57,11 +57,11 @@ namespace PCG
 					Structure& s = structures[curStructure];
 					curStructure++;
 
-					glm::vec3 position(x*2, 0.0f, y*2);
+					glm::vec3 position(x*2, 0.175f, y*2);
 
 					// render bottom section
 					renderer->addElement(s.bottom.model, s.bottom.texture, position);
-					position.y += 0.7f;
+					position.y += 0.175f;
 
 					// render middle sections
 					for(int i=0; i<s.height; i++)
