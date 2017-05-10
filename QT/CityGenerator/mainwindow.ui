@@ -1180,6 +1180,19 @@
          <string>0</string>
         </property>
        </widget>
+       <widget class="QPushButton" name="btn_resetCamera">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>730</y>
+          <width>81</width>
+          <height>23</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Reset Camera</string>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>

@@ -21,6 +21,11 @@ using namespace Rendering;
 using namespace PCG;
 using namespace Utilities;
 
+#define CITY_WIDTH 30
+#define CITY_HEIGHT 30
+#define DEFAULT_CAMERA_POSITION glm::vec3(70.0f, 30.0f, 70.0f)
+#define DEFAULT_CAMERA_DIRECTION glm::vec3(-0.5f, -0.5f, -0.5f)
+
 class GLWidget : public QOpenGLWidget
 {
     Q_OBJECT
@@ -30,6 +35,7 @@ public:
     ~GLWidget();
 
     void generate(const CityParameters& parameters);
+    void resetCamera();
 
     Elicras& getElicras();
 
@@ -43,9 +49,6 @@ protected:
     void keyReleaseEvent(QKeyEvent* event);
 
 private:
-    static const int CITY_WIDTH = 100;
-    static const int CITY_HEIGHT = 100;
-
     AssetManager assets;
     Renderer renderer;
 

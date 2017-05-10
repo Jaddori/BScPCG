@@ -35,6 +35,8 @@ private slots:
 
     void on_slider_d3BlockSize_valueChanged(int value);
 
+    void on_btn_resetCamera_clicked();
+
 private:
     Ui::MainWindow *ui;
     SeedConverter seedConverter;

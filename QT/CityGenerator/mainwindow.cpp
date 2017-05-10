@@ -162,3 +162,8 @@ void MainWindow::on_slider_d3BlockSize_valueChanged(int value)
 {
     ui->lbl_d3BlockSizeValue->setText(QString::number(value));
 }
+
+void MainWindow::on_btn_resetCamera_clicked()
+{
+    ui->glWidget->resetCamera();
+}

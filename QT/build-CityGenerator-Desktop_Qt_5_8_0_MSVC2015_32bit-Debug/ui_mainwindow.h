@@ -106,6 +106,7 @@ public:
     QLabel *lbl_integerSeedValue;
     QLabel *lbl_generationTime;
     QLabel *lbl_generationTimeValue;
+    QPushButton *btn_resetCamera;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -441,6 +442,9 @@ public:
         lbl_generationTimeValue = new QLabel(gb_statistics);
         lbl_generationTimeValue->setObjectName(QStringLiteral("lbl_generationTimeValue"));
         lbl_generationTimeValue->setGeometry(QRect(10, 520, 80, 13));
+        btn_resetCamera = new QPushButton(gb_statistics);
+        btn_resetCamera->setObjectName(QStringLiteral("btn_resetCamera"));
+        btn_resetCamera->setGeometry(QRect(10, 730, 81, 23));
 
         gridLayout->addWidget(frame_info, 0, 0, 1, 1);
 
@@ -510,6 +514,7 @@ public:
         lbl_integerSeedValue->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
         lbl_generationTime->setText(QApplication::translate("MainWindow", "Generation time:", Q_NULLPTR));
         lbl_generationTimeValue->setText(QApplication::translate("MainWindow", "0", Q_NULLPTR));
+        btn_resetCamera->setText(QApplication::translate("MainWindow", "Reset Camera", Q_NULLPTR));
     } // retranslateUi
 
 };

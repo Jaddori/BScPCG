@@ -29,6 +29,13 @@ void GLWidget::generate(const CityParameters &parameters)
     update();
 }
 
+void GLWidget::resetCamera()
+{
+    renderer.getPerspectiveCamera()->setPosition(DEFAULT_CAMERA_POSITION);
+    renderer.getPerspectiveCamera()->setDirection(DEFAULT_CAMERA_DIRECTION);
+    update();
+}
+
 Elicras& GLWidget::getElicras()
 {
     return elicras;
@@ -160,7 +167,6 @@ void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));
     renderer.render(&assets);
 }
 
