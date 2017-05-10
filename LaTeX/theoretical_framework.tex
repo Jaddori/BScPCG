@@ -1,0 +1,32 @@
+\section{Theoretical Frameweeork}
+	\subsection{Perlin noise}
+	Perlin noise is a mathematical equation created by Ken Perlin 1983 and updated 2002 (Improving noise)
+	
+	
+	\subsection{Online vs offline}
+	There are two ways to use PCG algorithms, either offline or online. Online is when the content is generated while the game is being played or in a short loading screen just before the player can start playing. This allows content that is adapted to the individual player and semi-infinite content.(Procedural content generation in games (2016), Chaker, Noor, E-book) In the game Left 4 Dead(ref) PCG is used by analyzing the players behavior and altering the experience, this could be considered a mixture of artificial intelligence and online PCG.
+	\par Offline generation is when the content is being generated before the player starts playing. This could be done by the developers before releasing the game. Offline generation is useful when generating complicated content that is too slow to generate online.
+	These are the definitions used in this thesis.
+	
+	
+	\subsection{Viability}
+	When developing the implementation, there had to be requirements that will ensure that the result is viable in games.
+	The following requirements have been set to make sure the result will be viable.
+	
+	\begin{itemize}
+		\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city.
+		
+		\item \textbf{Determenism:} The generation should be determenistic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
+		
+		\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an on-line setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons colaboration about procedural generation with the company. (Constrained procedural floor
+		plan generation for gameenvironments) Even if this limit is excedded the implementation may still be viable in a offline setting.
+		
+		\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
+	\end{itemize} 
+
+	PCG can be either \textit{feasible} or \textit{infeasible}, for the generated content to be considered feasible it must fulfill all the constraints. (Constrained Novelty Search: A Study on Game Content Generation) Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. For a city an example of a constraint would be that there must be a way to travel everywhere in the city, i.e. no part of the city would be blocked by houses or have no roads connected to it.
+	
+	\subsection{Evaluation}
+	To know if the implementation does generate cities viable in games the results must be evaluated.
+
+\cite{DummyCitation}
