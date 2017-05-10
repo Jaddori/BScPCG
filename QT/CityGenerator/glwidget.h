@@ -14,9 +14,12 @@
 #include <QDebug>
 #include "Assets.h"
 #include "Renderer.h"
+#include "Elicras.h"
 
 using namespace Assets;
 using namespace Rendering;
+using namespace PCG;
+using namespace Utilities;
 
 class GLWidget : public QOpenGLWidget
 {
@@ -25,6 +28,10 @@ class GLWidget : public QOpenGLWidget
 public:
     GLWidget(QWidget* parent = 0);
     ~GLWidget();
+
+    void generate(const CityParameters& parameters);
+
+    Elicras& getElicras();
 
 protected:
     void initializeGL();
@@ -36,12 +43,16 @@ protected:
     void keyReleaseEvent(QKeyEvent* event);
 
 private:
-   // QTimer timer;
+    static const int CITY_WIDTH = 100;
+    static const int CITY_HEIGHT = 100;
 
     AssetManager assets;
     Renderer renderer;
 
-    int model, texture, otherTexture;
+    int fontTexture;
+    Assets::Font* font;
+
+    Elicras elicras;
 
     int mouseX, mouseY;
 };

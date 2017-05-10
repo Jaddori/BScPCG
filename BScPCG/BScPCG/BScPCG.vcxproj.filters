@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Assets.cpp">
+      <Filter>Source\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source\Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Source\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="DataHolder.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="DataManager.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="District.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="Noise.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="PerlinNoise.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomNoise.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="SeedConverter.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+    <ClCompile Include="Elicras.cpp">
+      <Filter>Source\PCG</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Array.h">
+      <Filter>Header\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets.h">
+      <Filter>Header\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseIncludes.h">
+      <Filter>Header\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Header\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header\Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="DataHolder.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="DataManager.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="District.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="Noise.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="PerlinNoise.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomNoise.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="SeedConverter.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="Elicras.h">
+      <Filter>Header\PCG</Filter>
+    </ClInclude>
+    <ClInclude Include="Array2D.h">
+      <Filter>Header\Utilities</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header">
+      <UniqueIdentifier>{3ea4703c-2961-4439-b512-ff83cb095896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{8fce065e-cb88-4afc-9259-b97d31c55f29}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Utilities">
+      <UniqueIdentifier>{77ec9e3e-37fe-41c8-aa1d-0b95fd18f38b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Rendering">
+      <UniqueIdentifier>{635d1071-bcc8-4ce5-a5b5-4559059803ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Assets">
+      <UniqueIdentifier>{e810aeb4-b130-47c3-a142-25561fc1cd80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Utilities">
+      <UniqueIdentifier>{2eeac5f5-f825-4dc3-a698-96b1df492f4c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Assets">
+      <UniqueIdentifier>{b41863b3-72ac-4d9c-b34b-cdc72e83cc73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Rendering">
+      <UniqueIdentifier>{8094a54e-0bef-4403-8b3c-33c872d695d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\PCG">
+      <UniqueIdentifier>{052a3e75-a7c6-440c-9778-c002555fe321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\PCG">
+      <UniqueIdentifier>{852ba28d-a03e-47f8-b8a0-db3b26a340ef}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

@@ -128,19 +128,42 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Array.h" />
+    <ClInclude Include="Array2D.h" />
     <ClInclude Include="Assets.h" />
     <ClInclude Include="BaseIncludes.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="Building.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="DataHolder.h" />
+    <ClInclude Include="DataManager.h" />
+    <ClInclude Include="District.h" />
+    <ClInclude Include="Elicras.h" />
+    <ClInclude Include="Font.h" />
     <ClInclude Include="Model.h" />
+    <ClInclude Include="Noise.h" />
+    <ClInclude Include="PerlinNoise.h" />
+    <ClInclude Include="RandomNoise.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="SeedConverter.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="Building.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="DataHolder.cpp" />
+    <ClCompile Include="DataManager.cpp" />
+    <ClCompile Include="District.cpp" />
+    <ClCompile Include="Elicras.cpp" />
+    <ClCompile Include="Font.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Noise.cpp" />
+    <ClCompile Include="PerlinNoise.cpp" />
+    <ClCompile Include="RandomNoise.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="SeedConverter.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>

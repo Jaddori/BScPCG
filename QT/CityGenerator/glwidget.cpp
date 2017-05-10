@@ -19,6 +19,21 @@ GLWidget::~GLWidget()
 {
 }
 
+void GLWidget::generate(const CityParameters &parameters)
+{
+    elicras.generate(parameters);
+
+    // ENABLE ME FOR FULL RANDOM GENERATION:
+    //elicras.fullRandom();
+
+    update();
+}
+
+Elicras& GLWidget::getElicras()
+{
+    return elicras;
+}
+
 void GLWidget::initializeGL()
 {
     qDebug("OpenGL Version: %s", glGetString(GL_VERSION));
@@ -34,53 +49,125 @@ void GLWidget::initializeGL()
 
     // setup OpenGL flags
     glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-    glEnable(GL_CULL_FACE);
-    glEnable(GL_DEPTH_TEST);
 
     // load assets
-    model = assets.LoadModel("./assets/models/valid_model.model");
-    texture = assets.LoadTexture("./assets/textures/valid_texture.dds");
-    otherTexture = assets.LoadTexture("./assets/textures/other_texture.dds");
+    font = assets.loadFont("./assets/fonts/verdana_18.bin");
+    fontTexture = assets.loadTexture("./assets/fonts/verdana_18.dds");
+
+    // house sections
+    int houseBottomSection = assets.loadModel("./assets/models/house_bot_section.model");
+    int houseMiddleSection = assets.loadModel("./assets/models/house_mid_section.model");
+    int houseTopSection = assets.loadModel("./assets/models/house_top_section.model");
+    int houseTopSection2 = assets.loadModel("./assets/models/house_top_section2.model");
+
+    // house textures
+    int houseBottomTexture = assets.loadTexture("./assets/textures/concrete1.dds");
+    int houseBottomTexture2 = assets.loadTexture("./assets/textures/concrete2.dds");
+    int houseBottomTexture3 = assets.loadTexture("./assets/textures/concrete3.dds");
+    int houseMiddleTexture = assets.loadTexture("./assets/textures/bricks1.dds");
+    int houseMiddleTexture2 = assets.loadTexture("./assets/textures/bricks2.dds");
+    int houseMiddleTexture3 = assets.loadTexture("./assets/textures/bricks3.dds");
+    int houseTopTexture = assets.loadTexture("./assets/textures/roof1.dds");
+    int houseTopTexture2 = assets.loadTexture("./assets/textures/roof2.dds");
+
+    // skyscraper sections
+    int skyBottomSection = assets.loadModel("./assets/models/skyscraper_bot_section.model");
+    int skyMiddleSection = assets.loadModel("./assets/models/skyscraper_mid_section.model");
+    int skyTopSection = assets.loadModel("./assets/models/skyscraper_top_section.model");
+
+    // skyscraper textures
+    int skyBottomTexture = houseBottomTexture;
+    int skyBottomTexture2 = houseBottomTexture2;
+    int skyBottomTexture3 = houseBottomTexture3;
+    int skyMiddleTexture = assets.loadTexture("./assets/textures/skyscraper1.dds");
+    int skyMiddleTexture2 = assets.loadTexture("./assets/textures/skyscraper2.dds");
+    int skyMiddleTexture3 = assets.loadTexture("./assets/textures/skyscraper3.dds");
+    int skyMiddleTexture4 = assets.loadTexture("./assets/textures/skyscraper4.dds");
+    int skyMiddleTexture5 = assets.loadTexture("./assets/textures/skyscraper5.dds");
+    int skyTopTexture = houseBottomTexture;
+    int skyTopTexture2 = houseBottomTexture2;
+    int skyTopTexture3 = houseBottomTexture3;
+
+    // factory sections
+    int factoryBottomSection = houseBottomSection;
+    int factoryMiddleSection = houseMiddleSection;
+    int factoryTopSection = skyTopSection;
+
+    int factoryBottomTexture = houseBottomTexture;
+    int factoryMiddleTexture = assets.loadTexture("./assets/textures/bricks_large1.dds");
+    int factoryMiddleTexture2 = assets.loadTexture("./assets/textures/bricks_large2.dds");
+    int factoryTopTexture = houseBottomTexture2;
+
+    elicras.setDimensions(CITY_WIDTH, CITY_HEIGHT);
+
+    // add some house bottom sections
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture}, SECTION_BOTTOM);
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture2}, SECTION_BOTTOM);
+    elicras.addBuildingSection(0, {houseBottomSection, houseBottomTexture3}, SECTION_BOTTOM);
+
+    // add some house middle sections
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture2}, SECTION_MIDDLE);
+    elicras.addBuildingSection(0, {houseMiddleSection, houseMiddleTexture3}, SECTION_MIDDLE);
+
+    // add some house top sections
+    elicras.addBuildingSection(0, {houseTopSection, houseTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection, houseTopTexture2}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(0, {houseTopSection2, houseTopTexture2}, SECTION_TOP);
+
+    // add some skyscraper bottom sections
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture}, SECTION_BOTTOM);
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture2}, SECTION_BOTTOM);
+    elicras.addBuildingSection(1, {skyBottomSection, skyBottomTexture3}, SECTION_BOTTOM);
+
+    // add some skyscraper middle sections
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture2}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture3}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture4}, SECTION_MIDDLE);
+    elicras.addBuildingSection(1, {skyMiddleSection, skyMiddleTexture5}, SECTION_MIDDLE);
+
+    // add some skyscraper top sections
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture}, SECTION_TOP);
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture2}, SECTION_TOP);
+    elicras.addBuildingSection(1, {skyTopSection, skyTopTexture3}, SECTION_TOP);
+
+    // add skyscraper height
+    elicras.loadAssets(&assets);
+
+    // add some factory bottom sections
+    elicras.addBuildingSection(2, {factoryBottomSection, factoryBottomTexture}, SECTION_BOTTOM);
+
+    // add some factory middle sections
+    elicras.addBuildingSection(2, {factoryMiddleSection, factoryMiddleTexture}, SECTION_MIDDLE);
+    elicras.addBuildingSection(2, {factoryMiddleSection, factoryMiddleTexture2}, SECTION_MIDDLE);
+
+    // add some factory top sections
+    elicras.addBuildingSection(2, {factoryTopSection, factoryTopTexture}, SECTION_TOP);
+
+    elicras.setRenderer(&renderer);
+
+    CityParameters tempParams = {};
+    tempParams.blockSizes[0] = tempParams.blockSizes[1] = tempParams.blockSizes[2] = 2;
+    elicras.generate(tempParams);
 
     // load the renderer
-    renderer.Load();
+    renderer.load();
 }
 
 void GLWidget::paintGL()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    for(int j=0; j<10; j++)
-    {
-        glm::vec3 position(-20.0f, 0.0f, (float)(j*4));
-        for(int i=0; i<10; i++)
-        {
-            renderer.AddElement(model, texture, position);
-            position.x += 4.0f;
-        }
-    }
-
-    glm::vec3 position(-20.0f, 0.0f, 40.0f);
-    for(int i=0; i<2; i++)
-    {
-        renderer.AddElement(model, texture, position);
-        position.x += 4.0f;
-    }
-
-    /*position.x = -20.0f;
-    position.z = 4.0f;
-    for(int i=0; i<10; i++)
-    {
-        renderer.AddElement(model, otherTexture, position);
-        position.x += 4.0f;
-    }*/
-
-    renderer.Render(&assets);
+    renderer.addText(font, fontTexture, "Testing...", glm::vec2(32.0f, 32.0f));
+    renderer.render(&assets);
 }
 
 void GLWidget::resizeGL(int w, int h)
 {
-    renderer.GetCamera()->UpdateProjection(w, h);
+    renderer.getPerspectiveCamera()->updatePerspective(w, h);
+    renderer.getOrthographicCamera()->updateOrthographic(w, h);
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
@@ -97,7 +184,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
         if(mouseX >= 0 && mouseY >= 0)
         {
             // move the camera with the mouse
-            renderer.GetCamera()->UpdateDirection(deltaX, deltaY);
+            renderer.getPerspectiveCamera()->updateDirection(deltaX, deltaY);
             update();
         }
 
@@ -147,7 +234,7 @@ void GLWidget::keyPressEvent(QKeyEvent* event)
         QOpenGLWidget::keyPressEvent(event);
     }
 
-    renderer.GetCamera()->UpdatePosition(movement);
+    renderer.getPerspectiveCamera()->updatePosition(movement);
     update();
 }
 
