@@ -50,7 +50,24 @@
 		\par
 		After the districts have expanded from their core position, the borders are clear to see. There are often clear lines where on one side there are skyscrapers and on the other there are industry for example. To negate this effect somewhat \textit{border competition} was implemented. The algorithm finds every cell where two different districts meet (i.e. One district in the cell and another district in the cell to the right). The competition range is 30\% of the total grid size. From the border cells we expand half the competition range to the left and the other half to the right; this is done in the X-axis only. For every cell that is in the competition range the two districts compete with modified Perlin noise. If the Perlin noise is above the value of 0.5 the district to the right wins, otherwise the district to the left wins. The winning district takes ownership of the cell.
 		
-				\subsection{Modified Perlin noise}
+		\begin{figure}[h]
+			\begin{subfigure}{0.5\textwidth}
+				\centering
+				\includegraphics[width=0.9\linewidth]{"Images/map districts colored"}
+				\caption{District generation}
+				\label{fig:map-districts}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textwidth}
+				\centering
+				\includegraphics[width=0.9\linewidth]{"Images/map borders colored"}
+				\caption{Border competition}
+				\label{fig:map-borders}
+			\end{subfigure}
+			\caption{Numeric representation of the city after district generation}
+			\label{fig:map-districts-and-borders}
+		\end{figure}
+		
+		\subsection{Modified Perlin noise}
 		Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is.
 		The modified Perlin noise is used when generating the districts. This noise has much sharper changes in values than regular Perlin noise does. Perlin noise without modification returns a value very close to 0.5 most of the time. This pose a problem when generating certain things. The districts core position for example should have some spread across the city and not be close to each nother. The Perlin noise is modified in the following way when generating a districts X-axis position; and used similarly for other parts of the generation:
 		
@@ -76,13 +93,36 @@
 			\caption{Different uses of Perlin noise}
 			\label{fig:normal-and-modified-perlin}
 		\end{figure}
-		    
 		
 		\subsubsection{Blocks}
-		After generating districts, the roads are generated (effectively creating blocks). The first step is to generate the main roads running through the city. Main roads always run vertically through the city, no matter what parameters are used. To figure out where the main roads should be, Perlin noise is used. By going through the cells of the map horizontally and checking if the Perlin noise for that cell is above a certain threshold, Elicras determines if that cell should be a main road or not. Since the main roads run through the whole city, the algorithm only goes through the first row of cells. If the algorithm determines that a cell should contain a main road, it sets the value of that cell to indicate that it now contains a main road. (TODO: Image console window after main roads). After generating the main roads, smaller roads are generated. This algorithm works on two levels. The first level calculates the width of the road by starting at its current position in the map and going right until it finds a main road. The next level works much the same way as the algorithm for generating the main roads, but it goes vertically instead of horizontally.(TODO: image) When the second level reaches the bottom of the map, it goes back to the first level. Road generation is complete when the end of the map is reached.(TODO: image)
+		After generating districts, the roads are generated (effectively creating blocks). The first step is to generate the main roads running through the city. Main roads always run vertically through the city, no matter what parameters are used. To figure out where the main roads should be, Perlin noise is used. By going through the cells of the map horizontally and checking if the Perlin noise for that cell is above a certain threshold, Elicras determines if that cell should be a main road or not. Since the main roads run through the whole city, the algorithm only goes through the first row of cells. If the algorithm determines that a cell should contain a main road, it sets the value of that cell to indicate that it now contains a main road. (TODO: Image console window after main roads). After generating the main roads, smaller roads are generated. This algorithm works on two levels. The first level calculates the width of the road by starting at its current position in the map and going right until it finds a main road. The next level works much the same way as the algorithm for generating the main roads, but it goes vertically instead of horizontally. When the second level reaches the bottom of the map, it goes back to the first level. Road generation is complete when the end of the map is reached.
+		
+		\begin{figure}[h]
+			\begin{subfigure}{0.5\textwidth}
+				\centering
+				\includegraphics[width=0.9\linewidth]{"Images/map main roads colored"}
+				\caption{Main roads}
+				\label{fig:map-main-roads}
+			\end{subfigure}
+			\begin{subfigure}{0.5\textwidth}
+				\centering
+				\includegraphics[width=0.9\linewidth]{"Images/map small roads colored"}
+				\caption{Small roads}
+				\label{fig:map-small-roads}
+			\end{subfigure}
+			\caption{Numeric representation of a city after block generation}
+			\label{fig:map-main-and-small-roads}
+		\end{figure}
 		
 		\subsubsection{Buildings}
-		The final stage of the generation process it the generation of buildings. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a district. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the districts parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a building or leave the cell vacant. If a building is placed, the algorithm uses Perlin noise to choose a bottom, middle and top sections. It chooses these sections from the list of available sections that belong to the district. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one. The final step of the algorithm determines the height of the building by multiplying the difference between the maximum height and the minimum height with the result from the Perlin noise and then adding the minimum height. (TODO: Math formula?) The results of the building generation is not stored in the map, but in a separate list of building sections that can later be rendered.(TODO: Images)
+		The final stage of the generation process it the generation of buildings. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a district. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the districts parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a building or leave the cell vacant. If a building is placed, the algorithm uses Perlin noise to choose a bottom, middle and top sections. It chooses these sections from the list of available sections that belong to the district. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one. The final step of the algorithm determines the height of the building by multiplying the difference between the maximum height and the minimum height with the result from the Perlin noise and then adding the minimum height. (TODO: Math formula?) The results of the building generation is not stored in the map, but in a separate list of building sections that can later be rendered.
+		
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.45\textwidth]{"Images/map grass colored"}
+			\caption{Numeric representation of a city after building generation}
+			\label{fig:map-grass}
+		\end{figure}
 
 	\subsection{Data collection}
 	Aside from the core functionality of the application, an effort was made to record any significant data about the generation process. The observer pattern was used at the core of this effort. In Elicras there is a DataManager and many DataHolders. Any class whose data is worth collecting, inherits from the DataHolder base class. This results in a centralized way of collecting data that is easy to use and to setup. When Elicras requests the data from the DataManager, it notifies the registered DataHolders to supply their data. The application gathers the following information about the generation process:
