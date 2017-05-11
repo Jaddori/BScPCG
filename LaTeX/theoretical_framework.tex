@@ -1,7 +1,22 @@
-\section{Theoretical Frameweeork}
-	\subsection{Perlin noise}
-	Perlin noise is a mathematical equation created by Ken Perlin 1983 and updated 2002 (Improving noise)
-	
+\section{Theoretical Framework}
+	\subsection{Noise}
+		\subsubsection{Lattice noises}
+		Lattice noises are simple and efficient ways of generating noise\cite{TexturingModeling} . The idea behind them is to divide a coordinate system into sections spanning between every integer coordinate. These sections are called the integer lattices. By first generating pseudorandom numbers at every lattice and then interpolating between them, noise is generated.
+		
+		\subsubsection{Value noise}
+		Value noise is a type of lattice noise. It uses a value between minus one and one at every lattice point and interpolates between them. The key difference between value noises is what type of interpolation is used. Methods such as linear and cubic interpolation have been used\cite{TexturingModeling}.
+		
+		\subsubsection{Gradient noise}
+		Gradient noise differs from value noise by generating gradient vectors at each lattice point, instead of raw values. To calculate the noise value of a point, three steps are taken. First, a vector is calculated from each lattice point to the point.  Then, the dot product between this vector and the gradient vector at the corresponding lattice point is calculated. Finally, the noise value is calculated by interpolating between the dot product results.
+		
+		\subsubsection{Perlin noise}
+		Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an x and a y coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4-10t^3\end{math}.
+		\begin{figure}
+			\centering
+			\includegraphics[width=0.5\linewidth]{"images/fade"}
+			\caption{Perlin's easy curve called fade}
+			\label{fig:fade}
+		\end{figure}
 	
 	\subsection{Online vs offline}
 	There are two ways to use PCG algorithms, either offline or online. Online is when the content is generated while the game is being played or in a short loading screen just before the player can start playing. This allows content that is adapted to the individual player and semi-infinite content.(Procedural content generation in games (2016), Chaker, Noor, E-book) In the game Left 4 Dead(ref) PCG is used by analyzing the players behavior and altering the experience, this could be considered a mixture of artificial intelligence and online PCG.
@@ -28,5 +43,3 @@
 	
 	\subsection{Evaluation}
 	To know if the implementation does generate cities viable in games the results must be evaluated.
-
-\cite{DummyCitation}
