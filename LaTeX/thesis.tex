@@ -1,4 +1,5 @@
 \documentclass[12pt]{article}
+\usepackage[a4paper]{geometry}
 \usepackage{graphicx}
 \usepackage{subcaption}
 
@@ -9,11 +10,12 @@
 
 \begin{document}
 	% Title page
-	\pagenumbering{roman}
+	\pagenumbering{gobble}
 	\maketitle
 	\newpage
 	
 	% Abstract
+	\pagenumbering{roman}
 	\include{abstract}
 	
 	% Table of contents
