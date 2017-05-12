@@ -3,6 +3,30 @@
 \usepackage{graphicx}
 \usepackage{subcaption}
 
+\usepackage{titlesec}
+\usepackage[hidelinks]{hyperref} % This shit makes "Contens" clickable
+
+% START OF MAKING SUBSUBSUB SECTION A THING
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+\titleformat{\subsubsubsection}
+{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\def\toclevel@subsubsubsection{4}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+% END OF MAKING SUBSUBSUB SECTION A THING
+
 % Meta data
 \title{Thesis Title}
 \date{2017-04-17}
