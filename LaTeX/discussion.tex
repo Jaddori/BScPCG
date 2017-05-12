@@ -1,4 +1,26 @@
 \section{Discussion}
-\subsection{Data and user study analysis}
-\subsection{Implementation analysis}
-\subsection{City analysis}
+	\subsection{Data and user study analysis}
+	
+	\subsection{Implementation analysis}
+	The implementation has a number of major limitations. In the interest of overview, a list of limitations that will be discussed is provided below.
+	
+	\begin{itemize}
+		\item Maximum of three districts.
+		\item All roads are straight.
+		\item One-to-one relationship between cell and building.
+		\item Flat terrain.
+		\item Arbitrary noise value manipulation.
+	\end{itemize}
+	
+	% 3 districts
+	The implementation was designed from the beginning to only support three districts. This means that the implementation might not work with more districts. Limiting the number of districts to three was an effort to minimize workload while still generating interesting intersections between districts.
+	% straight roads
+	Any city generated using Elicras is based on a two-dimensional grid. A cell in the grid represents a building, road or patch of grass. Depending on the model assets used when generating a city, this can look rigid and unnatural. This is the reason why all the roads are generated in straight lines. In a more believable setting, roads would be generated using curves. %TODO: ref someone who makes curved roads
+	% one-to-one
+	Each cell contains at most one building. The implementation has no support for buildings that span across cells. This means that large buildings like warehouses or hangars are difficult to represent. One way to work around this limitation is to consider each cell as a large space of land. By only using small parts of the cell for small buildings and large parts of the cell for large buildings, it will appear as though there is a difference in size between there cells.
+	% flat terrain
+	Any city is generated on a flat surface. Elicras makes no effort to consider the underlying terrain of the city. This renders our implementation ineffective in games with anything but flat terrain.
+	% noise manipulation
+	TODO: Talk about how we use Perlin noise in crazy ways
+	
+	\subsection{City analysis}
