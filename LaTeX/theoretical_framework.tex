@@ -1,37 +1,20 @@
 \section{Theoretical Framework}
 	\subsection{Noise}
-		\subsubsection{Lattice noises}
 		Lattice noises are simple and efficient ways of generating noise\cite{TexturingModeling}. The idea behind them is to divide a coordinate system into sections spanning between every integer coordinate. These sections are called the integer lattices. By first generating pseudorandom numbers at every lattice and then interpolating between them, noise is generated.
 		
-		\subsubsection{Value noise}
+		\par
 		Value noise is a type of lattice noise. It uses a value between minus one and one at every lattice point and interpolates between them. The key difference between value noises is what type of interpolation is used. Methods such as linear and cubic interpolation have been used\cite{TexturingModeling}.
 		
-		\subsubsection{Gradient noise}
+		\par
 		Gradient noise differs from value noise by generating gradient vectors at each lattice point, instead of raw values. To calculate the noise value of a point, three steps are taken. First, a vector is calculated from each lattice point to the point.  Then, the dot product between this vector and the gradient vector at the corresponding lattice point is calculated. Finally, the noise value is calculated by interpolating between the dot product results.
 		
-		\begin{figure}[h]
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.5\linewidth]{"Images/gradient_vectors"}
-				\caption{Gradient vectors}
-				\label{fig:gradient_vectors}
-			\end{subfigure}
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.5\linewidth]{"Images/vectors"}
-				\caption{Lattice-to-point vectors}
-				\label{fig:lattice-vectors}
-			\end{subfigure}
-			\caption{Noise vectors}
-			\label{fig:noise_vectors}
-		\end{figure}
-		
 		\subsubsection{Perlin noise}
-		Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an x and a y coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4+10t^3\end{math}.
+		Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an \texttt{x} and a \texttt{y} coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4+10t^3\end{math} and is graphed out in Figure \ref{fig:fade}.
+		
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.35\linewidth]{"images/fade"}
-			\caption{Perlin's ease curve called fade}
+			\caption{Perlin's ease curve called fade.}
 			\label{fig:fade}
 		\end{figure}
 	
@@ -42,15 +25,14 @@
 	
 	
 	\subsection{Viability}
-	When developing the implementation, there had to be requirements to ensure that the result is viable in games.
-	The following requirements have been set to make sure the result will be viable.
+	When developing the implementation, the following requirements were set to ensure that the result is viable in games.
 	
 	\begin{itemize}
-		\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city.
+		\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city. The city should also differ from a completely random city. If it is possible to distinguish a generated city from a random one, it is considered valid.
 		
-		\item \textbf{Determenism:} The generation should be determenistic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
+		\item \textbf{Determinism:} The generation should be deterministic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
 		
-		\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an on-line setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons colaboration about procedural generation with the company. (Constrained procedural floor
+		\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an online setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons collaboration about procedural generation with the company. (Constrained procedural floor
 		plan generation for gameenvironments) If this limit is excedded the implementation may still be viable in a offline setting.
 		
 		\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
