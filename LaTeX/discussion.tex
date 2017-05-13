@@ -10,6 +10,7 @@
 		\item One-to-one relationship between cell and building.
 		\item Flat terrain.
 		\item Arbitrary noise value manipulation.
+		\item Low quality models are used.
 	\end{itemize}
 	
 	% 3 districts
@@ -17,11 +18,11 @@
 	% straight roads
 	Any city generated using Elicras is based on a two-dimensional grid. A cell in the grid represents a building, road or patch of grass. Depending on the model assets used when generating a city, this can look rigid and unnatural. This is the reason why all the roads are generated in straight lines. In a more believable setting, roads would be generated using curves. %TODO: ref someone who makes curved roads
 	% one-to-one
-	Each cell contains at most one building. The implementation has no support for buildings that span across cells. This means that large buildings like warehouses or hangars are difficult to represent. One way to work around this limitation is to consider each cell as a large space of land. By only using small parts of the cell for small buildings and large parts of the cell for large buildings, it will appear as though there is a difference in size between there cells.
+	Each cell contains at most one building. The implementation has no support for buildings that span across cells. This means that large buildings like warehouses or hangars are difficult to represent. One way to work around this limitation is to consider each cell as a large space of land. By only using small parts of the cell for small buildings and large parts of the cell for large buildings, it will appear as though there is a difference in size between cells.
 	% flat terrain
 	Any city in our application is generated on a flat surface. Elicras makes no effort to consider the underlying terrain of the city. This renders our implementation ineffective in games with anything but flat terrain.
 	% noise manipulation
-	Perlin noise has been used at every stage of the generation process. There are parts of the process where we have shoehorned the noise function into our implementation rather than using it to its full potential. Examples of this is when Elicras determines where to place roads or what sections to use for a building. In these areas Perlin noise is used like a pseudorandom number generator(PRNG). By using it this way, some of the desirable features of Perlin noise are neglected. In these cases, using an actual PRNG like \textit{rand}\cite{RandCRT} might produce similar results, without the implementation overhead. In other cases, the properties of Perlin noise has a visual impact on the result despite being used like a PRNG. An example of this the process of determining whether to place a building or to leave a cell vacant. By checking the noise value against a threshold, buildings are placed in a natural looking way rather than at random.
+	Perlin noise has been used at every stage of the generation process. There are parts of the process where we have shoehorned the noise function into our implementation rather than using it to its full potential. Examples of this is when Elicras determines where to place roads or what sections to use for a building. In these areas Perlin noise is used like a pseudorandom number generator(PRNG). By using it this way, some of the desirable features of Perlin noise are neglected. In these cases, using an actual PRNG like \textit{rand}\cite{RandCRT} might produce similar results, without the implementation overhead. In other cases, the properties of Perlin noise have a visual impact on the result despite being used like a PRNG. An example of this the process of determining whether to place a building or to leave a cell vacant. By checking the noise value against a threshold, buildings are placed in a natural looking way rather than at random (see Figure \ref{fig:perlin-rand-vacant}).
 	
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
