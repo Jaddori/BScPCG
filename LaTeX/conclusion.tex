@@ -1,6 +1,21 @@
 \section{Conclusion and future work}
-\subsection{Conclusion}
-PCG is greatest.
+	\subsection{Conclusion}
+	In this work, we have researched the applications of Perlin noise on procedural content generation in the context of cities. An example of a generation process is outlined. The work starts with a motivation for the research, followed by a description of the generation process and its implementation.
+	
+	\par
+	The viability of this generation process was tested in a user study, the results of which have been analyzed and presented. The results of the user study supports our hypothesis and answers our research question. This work shows that Perlin noise can be used to generate cities viable in games.
 
-\subsection{Future work}
-Better techniques, more control.
+	\subsection{Future work}
+	This section will describe a number of directions for future work.
+	
+		\subsubsection{More generation parameters}
+		In Elicras, only four parameters are available per district. By providing more parameters, the user would have more control over how the city is generated. A few examples are: proximity between districts, size of the city, \textit{frequencies} and \textit{modifications} for Perlin noise (see Page \pageref{fig:normal-and-modified-perlin}).
+	
+		\subsubsection{Mesh generation}
+		This work presents a way of generating a large number of buildings from a small number of parts. This technique is still limited by handmade meshes. By generating meshes from scratch, a larger number of unique buildings can be generated. It would also save time by not requiring handmade meshes.
+		
+		\subsubsection{Curved roads}
+		The generation process outlined in this work requires a two-dimensional grid in which to generate the city. This results in straight roads and rectangular blocks. Generating curved roads would make the city look more interesting and natural. This is another area where procedural mesh generation would be beneficial.
+		
+		\subsubsection{Terrain evaluation}
+		Any city in our application is generated on flat terrain. A popular application of Perlin noise is terrain generation(TODO: ref). By taking the terrain into consideration when generating a city, the two ares of content generation could be combined.
