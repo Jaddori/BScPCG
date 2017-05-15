@@ -15,7 +15,7 @@ Most related work focus on one of two things: procedurally generating unique bui
 	\end{figure}
 		
 	\subsection{Buildings}
-	The final stage is the generation of \textit{buildings}. Each \textit{buildings} is made up of three meshes: the bottom, middle and top meshe. By dividing a building into sections, it is possible to assemble different pieces and generate new \textit{buildings}. This is a powerful way to use combinatorics to generate more content. For example, creating two \textit{buildings} would result in two unique \textit{buildings}. Whereas creating two bottom, middle and top sections would result in eight unique \textit{buildings}. Upon generation of a \textit{building}, the attributes of its \textit{district} is taken into consideration. What sections to combine, the minimum and maximum height as well as the density of \textit{buildings}, is all dictated by the \textit{district}.
+	The final stage is the generation of \textit{buildings}. Each \textit{buildings} is made up of three meshes: the bottom, middle and top mesh. By dividing a building into sections, it is possible to assemble different pieces and generate new \textit{buildings}. This is a powerful way to use combinatorics to generate more content. For example, creating two \textit{buildings} would result in two unique \textit{buildings}. Whereas creating two bottom, middle and top sections would result in eight unique \textit{buildings}. Upon generation of a \textit{building}, the attributes of its \textit{district} is taken into consideration. What sections to combine, the minimum and maximum height as well as the density of \textit{buildings}, is all dictated by the \textit{district}.
 
 \section{Implementation}
 To explore the procedural generation of a city, a desktop application was created. The application provides the end user with an interface that allows for the configuration of parameters along with some statistics. 
@@ -68,7 +68,7 @@ To explore the procedural generation of a city, a desktop application was create
 			\caption{Border competition.}
 			\label{fig:map-borders}
 		\end{subfigure}
-		\caption{Numeric representation of the city after \textit{district} generation.}
+		\caption{Numeric visualization of the city after \textit{district} generation.}
 		\label{fig:map-districts-and-borders}
 	\end{figure}
 		
@@ -114,7 +114,7 @@ To explore the procedural generation of a city, a desktop application was create
 			\caption{Small roads.}
 			\label{fig:map-small-roads}
 		\end{subfigure}
-		\caption{Numeric representation of a city after block generation.}
+		\caption{Numeric visualization of a city after block generation.}
 		\label{fig:map-main-and-small-roads}
 	\end{figure}
 		
@@ -124,7 +124,7 @@ To explore the procedural generation of a city, a desktop application was create
 	\begin{figure}
 		\centering
 		\includegraphics[width=0.45\textwidth]{"Images/map grass colored"}
-		\caption{Numeric representation of a city after building generation.}
+		\caption{Numeric visualization of a city after building generation.}
 		\label{fig:map-grass}
 	\end{figure}
 
@@ -143,7 +143,7 @@ To explore the procedural generation of a city, a desktop application was create
 	
 	
 \section{Experiment Design}
-	The user study conducted to verify the output from the implementation is defined here. The aim is to describe the relevant variables, what will be observed, why it is observed and the validity of the experiment.
+	The user study conducted to verify the output from the implementation is defined here. The aim is to describe the relevant variables, what will be observed, why they are observed and the validity of the experiment.
 	\subsection{Introduction}
 	A city generating implementation has been made. This implementation uses the procedural generation technique Perlin noise. Documented city generators use other techniques such as L-systems \cite{ProceduralModeling6} and often combine several complicated techniques. By using Perlin noise for every part of the city the generation speed is fast and the complexity of the implementation is kept low. However speed is not important if the result is not satisfactory.
 		
