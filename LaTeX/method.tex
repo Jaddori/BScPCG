@@ -1,270 +1,223 @@
-\section{Method}
+\section{City generation method}
+Most related work focus on one of two things: procedurally generating unique building meshes\cite{PseudoInfiniteCities} or procedurally generating large cities consisting of similar looking buildings\cite{InfiniteCities}. This work focuses instead on the procedurally generated placement of existing meshes in varied districts. The concept of districts breaks up the repetitive and self-similar nature of city by introducing distinct changes in appearance between them.
 
-	\subsection{City generation method}
-	Most related work focus on one of two things: procedurally generating unique building meshes\cite{PseudoInfiniteCities} or procedurally generating large cities consisting of similar looking buildings\cite{InfiniteCities}. This work focuses instead on the procedurally generated placement of existing meshes in varied districts. The concept of districts breaks up the repetitive and self-similar nature of city by introducing distinct changes in appearance between them.
-
-		\subsubsection{Districts}
-		The generation process starts with the generation of \textit{districts}. A \textit{districts} is an abstract representation of an area of the city. It controls what type of buildings it contains, the minimum and maximum height of these buildings and how densely populated the area is with these buildings. The \textit{districts} have a semi-random deterministic spread across the city. There is no constraints on the distribution of the \textit{districts}. This means that one seed may produce a city where 90\% of the city is made up of one \textit{district}. There are no constraints to prevent this because this would hinder the variability of the cities generated. The \textit{districts} typically have a lot of blocks where no other districts are competing. But at the borders between districts there is a lot more variation, this is referred to as \textit{border competition}. Here a single block may contain buildings from all three \textit{districts}. This was done to avoid hard borders between the \textit{districts}. The hard borders were considered to look strange and may compromise the cities viability in games. The \textit{districts} were deemed important as they provide variation throughout the city.
+	\subsection{Districts}
+	The generation process starts with the generation of \textit{districts}. A \textit{districts} is an abstract representation of an area of the city. It controls what type of buildings it contains, the minimum and maximum height of these buildings and how densely populated the area is with these buildings. The \textit{districts} have a semi-random deterministic spread across the city. There is no constraints on the distribution of the \textit{districts}. This means that one seed may produce a city where 90\% of the city is made up of one \textit{district}. There are no constraints to prevent this because this would hinder the variability of the cities generated. The \textit{districts} typically have a lot of blocks where no other districts are competing. But at the borders between districts there is a lot more variation, this is referred to as \textit{border competition}. Here a single block may contain buildings from all three \textit{districts}. This was done to avoid hard borders between the \textit{districts}. The hard borders were considered to look strange and may compromise the cities viability in games. The \textit{districts} were deemed important as they provide variation throughout the city.
 		
-		\subsubsection{Blocks}
-		The next stage in the process is the generation of \textit{blocks}. In this work, a \textit{block} is defined as an area enclosed by four roads. Looking at aerial photographs of large cities(TODO: ref) a certain pattern sometimes appear in the way roads are laid out. A few major roads stretches through the city and smaller, perpendicular roads connecting them together. It was decided to mimic this style. Since a \textit{block} is another abstract representation of an area, it is actually the roads that make them up. The first step of generating \textit{blocks} is to generate the main roads running through the city. After the main roads have been generated, smaller roads are generated in between, connecting the main roads together. After all roads have been generated, the city has affectively been divided into a non-uniform grid. Each cell in this grid is a \textit{block}. The size of each \textit{block} depends on what \textit{district} it belongs to.
+	\subsection{Blocks}
+	The next stage in the process is the generation of \textit{blocks}. In this work, a \textit{block} is defined as an area enclosed by four roads. Looking at aerial photographs of large cities(TODO: ref) a certain pattern sometimes appear in the way roads are laid out. A few major roads stretches through the city and smaller, perpendicular roads connecting them together. It was decided to mimic this style. Since a \textit{block} is another abstract representation of an area, it is actually the roads that make them up. The first step of generating \textit{blocks} is to generate the main roads running through the city. After the main roads have been generated, smaller roads are generated in between, connecting the main roads together. After all roads have been generated, the city has affectively been divided into a non-uniform grid. Each cell in this grid is a \textit{block}. The size of each \textit{block} depends on what \textit{district} it belongs to.
 		
-		\subsubsection{Buildings}
-		The final stage is the generation of \textit{buildings}. Each \textit{buildings} is made up of three meshes: the bottom, middle and top meshe. By dividing a building into sections, it is possible to assemble different pieces and generate new \textit{buildings}. This is a powerful way to use combinatorics to generate more content. For example, creating two \textit{buildings} would result in two unique \textit{buildings}. Whereas creating two bottom, middle and top sections would result in eight unique \textit{buildings}. Upon generation of a \textit{building}, the attributes of its \textit{district} is taken into consideration. What sections to combine, the minimum and maximum height as well as the density of \textit{buildings}, is all dictated by the \textit{district}.
+	\subsection{Buildings}
+	The final stage is the generation of \textit{buildings}. Each \textit{buildings} is made up of three meshes: the bottom, middle and top meshe. By dividing a building into sections, it is possible to assemble different pieces and generate new \textit{buildings}. This is a powerful way to use combinatorics to generate more content. For example, creating two \textit{buildings} would result in two unique \textit{buildings}. Whereas creating two bottom, middle and top sections would result in eight unique \textit{buildings}. Upon generation of a \textit{building}, the attributes of its \textit{district} is taken into consideration. What sections to combine, the minimum and maximum height as well as the density of \textit{buildings}, is all dictated by the \textit{district}.
 
-	\subsection{Implementation}
-	To explore the procedural generation of a city, a desktop application was created. The application provides the end user with an interface that allows for the configuration of parameters along with some statistics. 
+\section{Implementation}
+To explore the procedural generation of a city, a desktop application was created. The application provides the end user with an interface that allows for the configuration of parameters along with some statistics. 
 	
-		\subsubsection{Interface}
-		The core functionality of our application is in the form of a proprietary static library called Elicras. It was decided early on that there should be a separation between the graphical user interface and the functionality of the application. It is therefore possible to move Elicras into another front facing interface without any significant changes to the underlying code. Elicras is divided into three areas: Rendering, Assets and PCG. Rendering, as the name implies, handles all the OpenGL function calls. Assets handles all the loading and using of models and textures. PCG handles all the generation of procedural content. The front facing system interacts with these subsystems through Elicras.
+	\subsection{Interface}
+	The core functionality of our application is in the form of a proprietary static library called Elicras. It was decided early on that there should be a separation between the graphical user interface and the functionality of the application. It is therefore possible to move Elicras into another front facing interface without any significant changes to the underlying code. Elicras is divided into three areas: Rendering, Assets and PCG. Rendering, as the name implies, handles all the OpenGL function calls. Assets handles all the loading and using of models and textures. PCG handles all the generation of procedural content. The front facing system interacts with these subsystems through Elicras.
 		
-		\par
-		The graphical interface is implemented using Qt\cite{QtWebpage}. Qt is an abstraction layer between its supported platforms and their user interface. Using Qt it is possible to create an application once and deploy it to all of its supported platforms, including Windows, OSX and Linux. It abstracts away a lot of low level platform code and provides an easy to use editor (see Figure \ref{fig:qt-editor}) where you can create the graphical interface for you application\cite{Win32Programming}\cite{QtProgramming}.
+	\par
+	The graphical interface is implemented using Qt\cite{QtWebpage}. Qt is an abstraction layer between its supported platforms and their user interface. Using Qt it is possible to create an application once and deploy it to all of its supported platforms, including Windows, OSX and Linux. It abstracts away a lot of low level platform code and provides an easy to use editor (see Figure \ref{fig:qt-editor}) where you can create the graphical interface for you application\cite{Win32Programming}\cite{QtProgramming}.
 		
-		\begin{figure}[h]
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\linewidth]{"Images/Qt"}
+		\caption{Qt Editor.}
+		\label{fig:qt-editor}
+	\end{figure}
+		
+	\par
+	The interface is divided into three sections that are laid out horizontally (see Figure \ref{fig:elicras-interface}). The left section is for statistics such as number of buildings in each of the \textit{districts}, number of roads and the time it took to generate the city. The middle section displays the generated city. The right section of the interface contains controls for altering how the city is generated. There are four parameters per \textit{district}: minimum height, maximum height, density of \textit{buildings} and block size. There is also a global parameter called the seed. The seed can alter the look of the city without altering the per-\textit{districts} parameters. When the end user is satisfied with the parameters, they press the 'Generate' button and a city is generated and displayed on the screen.
+		
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.5\linewidth]{"Images/interface"}
+		\caption{Elicras graphical interface.}
+		\label{fig:elicras-interface}
+	\end{figure}
+		
+	\subsubsection{Districts}
+	The \textit{district} PCG generates a 2D grid with cells where each cell contains a \textit{district} number. Each cell is in the later stages filled with grass, roads or buildings. Each cell within the grid represents an area of land in the city. These areas are square shaped with a length of 10 meters which equates to a total area of 100 square meters for each cell.
+		
+	\par
+	Each \textit{district} has a starting position; this will be referred to as the \textit{district's} core. The core position of each \textit{district} is semi-randomly distributed throughout the city with modified Perlin noise. From the core position each \textit{district} takes control over all the cells they are closest to. The distance is calculated with Euclidian distance squared. The squared distance is used because this is faster for the computer to calculate than the real distance. The equation where \textbf{A} and \textbf{B} are 2D positions:
+	\begin{equation}
+		EuclideanSquaredDistance = (B1 - A1)^2 + (B2 - A2)^2
+	\end{equation}
+		
+	\par
+	After the \textit{districts} have expanded from their core position, the borders are clear to see. There are often clear lines where on one side there are skyscrapers and on the other there are industry for example. To mitigate this effect \textit{border competition} was implemented. The algorithm finds every cell where two different \textit{districts} meet (i.e. One \textit{district} in the cell and another \textit{district} in the cell to the right). The competition range is 30\% of the total grid size. From the border cells we expand half the competition range to the left and the other half to the right; this is done in the X-axis only. For every cell that is in the competition range the two \textit{districts} compete with modified Perlin noise. If the Perlin noise is above the value of 0.5 the \textit{district} to the right wins, otherwise the \textit{district} to the left wins. The winning \textit{district} takes ownership of the cell. A visualization of this process can be seen in Figure \ref{fig:map-districts-and-borders}.
+		
+	\begin{figure}[h]
+		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=0.7\linewidth]{"Images/Qt"}
-			\caption{Qt Editor.}
-			\label{fig:qt-editor}
-		\end{figure}
-		
-		\par
-		The interface is divided into three sections that are laid out horizontally (see Figure \ref{fig:elicras-interface}). The left section is for statistics such as number of buildings in each of the \textit{districts}, number of roads and the time it took to generate the city. The middle section displays the generated city. The right section of the interface contains controls for altering how the city is generated. There are four parameters per \textit{district}: minimum height, maximum height, density of \textit{buildings} and block size. There is also a global parameter called the seed. The seed can alter the look of the city without altering the per-\textit{districts} parameters. When the end user is satisfied with the parameters, they press the 'Generate' button and a city is generated and displayed on the screen.
-		
-		\begin{figure}[h]
+			\includegraphics[width=0.9\linewidth]{"Images/map districts colored"}
+			\caption{\textit{district} generation.}
+			\label{fig:map-districts}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=0.5\linewidth]{"Images/interface"}
-			\caption{Elicras graphical interface.}
-			\label{fig:elicras-interface}
-		\end{figure}
+			\includegraphics[width=0.9\linewidth]{"Images/map borders colored"}
+			\caption{Border competition.}
+			\label{fig:map-borders}
+		\end{subfigure}
+		\caption{Numeric representation of the city after \textit{district} generation.}
+		\label{fig:map-districts-and-borders}
+	\end{figure}
 		
-		\subsubsection{Districts}
-		The \textit{district} PCG generates a 2D grid with cells where each cell contains a \textit{district} number. Each cell is in the later stages filled with grass, roads or buildings. Each cell within the grid represents an area of land in the city. These areas are square shaped with a length of 10 meters which equates to a total area of 100 square meters for each cell.
+	\subsection{Modified Perlin noise}
+	Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is. The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value very close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:
 		
-		\par
-		Each \textit{district} has a starting position; this will be referred to as the \textit{district's} core. The core position of each \textit{district} is semi-randomly distributed throughout the city with modified Perlin noise. From the core position each \textit{district} takes control over all the cells they are closest to. The distance is calculated with Euclidian distance squared. The squared distance is used because this is faster for the computer to calculate than the real distance. The equation where \textbf{A} and \textbf{B} are 2D positions:
-		\begin{equation}
-			EuclideanSquaredDistance = (B1 - A1)^2 + (B2 - A2)^2
-		\end{equation}
+	\texttt{float noise = 20 * this->noise->generate(1.13x * x, 1.22 * y);\\
+		noise = (noise - floor(noise));}
 		
-		\par
-		After the \textit{districts} have expanded from their core position, the borders are clear to see. There are often clear lines where on one side there are skyscrapers and on the other there are industry for example. To mitigate this effect \textit{border competition} was implemented. The algorithm finds every cell where two different \textit{districts} meet (i.e. One \textit{district} in the cell and another \textit{district} in the cell to the right). The competition range is 30\% of the total grid size. From the border cells we expand half the competition range to the left and the other half to the right; this is done in the X-axis only. For every cell that is in the competition range the two \textit{districts} compete with modified Perlin noise. If the Perlin noise is above the value of 0.5 the \textit{district} to the right wins, otherwise the \textit{district} to the left wins. The winning \textit{district} takes ownership of the cell. A visualization of this process can be seen in Figure \ref{fig:map-districts-and-borders}.
+	The \textit{frequency} of this modified noise is 1.134 on the X-axis and the \textit{modification} is \texttt{noise = (noise - floor(noise))}.
+	The difference between modified and not modified Perlin noise is visualized in \textit{Figure \ref{fig:normal-and-modified-perlin}}.
 		
-		\begin{figure}[h]
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/map districts colored"}
-				\caption{\textit{district} generation.}
-				\label{fig:map-districts}
-			\end{subfigure}
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/map borders colored"}
-				\caption{Border competition.}
-				\label{fig:map-borders}
-			\end{subfigure}
-			\caption{Numeric representation of the city after \textit{district} generation.}
-			\label{fig:map-districts-and-borders}
-		\end{figure}
+	\begin{figure}[h]
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/floor perlin"}
+			\caption[Floored Perlin noise]{Modified Perlin noise.}
+			\label{fig:modified-perlin}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/normal perlin"}
+			\caption[Normal Perlin noise]{Normal Perlin noise.}
+			\label{fig:normal-perlin}
+		\end{subfigure}
+		\caption{Different uses of Perlin noise.}
+		\label{fig:normal-and-modified-perlin}
+	\end{figure}
 		
-		\subsubsection{Modified Perlin noise}
-		Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is.
-		The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value very close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:
+	\subsection{Blocks}
+	After generating \textit{districts}, the roads are generated (effectively creating \textit{blocks}). The first step is to generate the main roads running through the city. Main roads always run vertically through the city, no matter what parameters are used. To figure out where the main roads should be, Perlin noise is used. By going through the cells of the map horizontally and checking if the Perlin noise for that cell is above a certain threshold, Elicras determines if that cell should be a main road or not. Since the main roads run through the whole city, the algorithm only goes through the first row of cells. If the algorithm determines that a cell should contain a main road, it sets the value of that cell to indicate that it now contains a main road. After generating the main roads, smaller roads are generated. This algorithm works on two levels. The first level calculates the width of the road by starting at its current position in the map and going right until it finds a main road. The next level works much the same way as the algorithm for generating the main roads, but it goes vertically instead of horizontally. When the second level reaches the bottom of the map, it goes back to the first level. The distance between two smaller roads depends on the \textit{district's} block size. Road generation is complete when the end of the map is reached.
 		
-		\texttt{float noise = 20 * this->noise->generate(1.13x * x, 1.22 * y);\\
-			noise = (noise - floor(noise));}
+	\begin{figure}[h]
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/map main roads colored"}
+			\caption{Main roads.}
+			\label{fig:map-main-roads}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/map small roads colored"}
+			\caption{Small roads.}
+			\label{fig:map-small-roads}
+		\end{subfigure}
+		\caption{Numeric representation of a city after block generation.}
+		\label{fig:map-main-and-small-roads}
+	\end{figure}
 		
-		The \textit{frequency} of this modified noise is 1.134 on the X-axis and the \textit{modification} is \texttt{noise = (noise - floor(noise))}.
-		The difference between modified and not modified Perlin noise is visualized in \textit{Figure \ref{fig:normal-and-modified-perlin}}.
-		
-		\begin{figure}[h]
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/floor perlin"}
-				\caption[Floored Perlin noise]{Modified Perlin noise.}
-				\label{fig:modified-perlin}
-			\end{subfigure}
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/normal perlin"}
-				\caption[Normal Perlin noise]{Normal Perlin noise.}
-				\label{fig:normal-perlin}
-			\end{subfigure}
-			\caption{Different uses of Perlin noise.}
-			\label{fig:normal-and-modified-perlin}
-		\end{figure}
-		
-		\subsubsection{Blocks}
-		After generating \textit{districts}, the roads are generated (effectively creating \textit{blocks}). The first step is to generate the main roads running through the city. Main roads always run vertically through the city, no matter what parameters are used. To figure out where the main roads should be, Perlin noise is used. By going through the cells of the map horizontally and checking if the Perlin noise for that cell is above a certain threshold, Elicras determines if that cell should be a main road or not. Since the main roads run through the whole city, the algorithm only goes through the first row of cells. If the algorithm determines that a cell should contain a main road, it sets the value of that cell to indicate that it now contains a main road. After generating the main roads, smaller roads are generated. This algorithm works on two levels. The first level calculates the width of the road by starting at its current position in the map and going right until it finds a main road. The next level works much the same way as the algorithm for generating the main roads, but it goes vertically instead of horizontally. When the second level reaches the bottom of the map, it goes back to the first level. The distance between two smaller roads depends on the \textit{district's} block size. Road generation is complete when the end of the map is reached.
-		
-		\begin{figure}[h]
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/map main roads colored"}
-				\caption{Main roads.}
-				\label{fig:map-main-roads}
-			\end{subfigure}
-			\begin{subfigure}{0.5\textwidth}
-				\centering
-				\includegraphics[width=0.9\linewidth]{"Images/map small roads colored"}
-				\caption{Small roads.}
-				\label{fig:map-small-roads}
-			\end{subfigure}
-			\caption{Numeric representation of a city after block generation.}
-			\label{fig:map-main-and-small-roads}
-		\end{figure}
-		
-		\subsubsection{Buildings}
+	\subsection{Buildings}
 		The final stage of the generation process it the generation of \textit{buildings}. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a \textit{district}. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the \textit{districts} parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a \textit{buildings} or leave the cell vacant. If a \textit{buildings} is placed, the algorithm uses Perlin noise to choose a bottom, middle and top sections. It chooses these sections from the list of available sections that belong to the \textit{district}. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one. The final step of the algorithm determines the height of the \textit{buildings} by multiplying the difference between the maximum height and the minimum height with the result from the Perlin noise and then adding the minimum height. The results of the \textit{buildings} generation is not stored in the map, but in a separate list of building sections that can later be rendered. The placement of vacant tiles is stored in the map.
 		
-		\begin{figure}
-			\centering
-			\includegraphics[width=0.45\textwidth]{"Images/map grass colored"}
-			\caption{Numeric representation of a city after building generation.}
-			\label{fig:map-grass}
-		\end{figure}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.45\textwidth]{"Images/map grass colored"}
+		\caption{Numeric representation of a city after building generation.}
+		\label{fig:map-grass}
+	\end{figure}
 
-	\subsection{Data collection}
+\section{Data collection}
 	Aside from the core functionality of the application, an effort was made to record any significant data about the generation process. The observer pattern was used at the core of this effort. In Elicras there is a DataManager and many DataHolders. Any class whose data is worth collecting, inherits from the DataHolder base class. This results in a centralized way of collecting data that is easy to use and to setup. When Elicras requests the data from the DataManager, it notifies the registered DataHolders to supply their data. The application gathers the following information about the generation process:
-		\begin{itemize}
-			\item Number of Perlin noise calls.
-			\item Number of main roads.
-			\item Number of small roads.
-			\item Number of buildings in \textit{districts} 1-3.
-			\item Total number of buildings.
-			\item Number of grass tiles in \textit{districts} 1-3.
-			\item Total number of grass tiles.
-			\item Generation time.
-		\end{itemize}
+	\begin{itemize}
+		\item Number of Perlin noise calls.
+		\item Number of main roads.
+		\item Number of small roads.
+		\item Number of buildings in \textit{districts} 1-3.
+		\item Total number of buildings.
+		\item Number of grass tiles in \textit{districts} 1-3.
+		\item Total number of grass tiles.
+		\item Generation time.
+	\end{itemize}
 	
 	
-	\subsection{Experiment Design}
+\section{Experiment Design}
 	The user study conducted to verify the output from the implementation is defined here. The aim is to describe the relevant variables, what will be observed, why it is observed and the validity of the experiment.
-		\subsubsection{Introduction}
-		A city generating implementation has been made. This implementation uses the procedural generation technique Perlin noise. Documented city generators use other techniques such as L-systems \cite{ProceduralModeling6} and often combine several complicated techniques. By using Perlin noise for every part of the city the generation speed is fast and the complexity of the implementation is kept low. However speed is not important if the result is not satisfactory.
+	\subsection{Introduction}
+	A city generating implementation has been made. This implementation uses the procedural generation technique Perlin noise. Documented city generators use other techniques such as L-systems \cite{ProceduralModeling6} and often combine several complicated techniques. By using Perlin noise for every part of the city the generation speed is fast and the complexity of the implementation is kept low. However speed is not important if the result is not satisfactory.
 		
-			\subsubsubsection*{Definition}
-			In this user study the viability of the content generated by the implementation will be evaluated.  The viability in games will be decided by two factors. Does the user think the generated cities are viable in games? Do the cities look random or does the participants notice any coherent patterns in the city design?
+	\subsection*{Definition}
+	In this user study the viability of the content generated by the implementation will be evaluated.  The viability in games will be decided by two factors. Does the user think the generated cities are viable in games? Do the cities look random or does the participants notice any coherent patterns in the city design?
 			
 		
-		\subsubsection{Experiment Scoping}
-		What will be observed, from what perspective and why is it observed will be answered in this section.
+	\subsection{Experiment Scoping}
+	What will be observed, from what perspective and why is it observed will be answered in this section.
 		
-			\subsubsubsection*{Object of study}
-			The object of study is the implementation created for this thesis that procedurally generates cities using Perlin noise.
+	\subsection*{Object of study}
+	The object of study is the implementation created for this thesis that procedurally generates cities using Perlin noise.
 			
-			\subsubsubsection*{Quality focus}
-			The generated cities viability in games and if the participants find the content to be viable is the quality focus. The perceived structure, the look and randomness will also be evaluated. Comparison between fully PCG cities, partly PCG cities and fully random cities will be made.
+	\subsection*{Quality focus}
+	The generated cities viability in games and if the participants find the content to be viable is the quality focus. The perceived structure, the look and randomness will also be evaluated. Comparison between fully PCG cities, partly PCG cities and fully random cities will be made.
 			
-			\subsubsubsection*{Perspective}
-			Four pre-selected images of different generated and random cities will be provided to the participant. The images are selected by the researchers. Description of the four images:
-			\begin{itemize}
-				\item Fully PCG city with good choise of generation parameters.
-				\item Fully PCG city with bad choise of generation parameters.
-				\item Districts random but roads and buildings procedurally generated.
-				\item Fully randomly generated city.
-			\end{itemize}
+	\subsection*{Perspective}
+	Four pre-selected images of different generated and random cities will be provided to the participant. The images are selected by the researchers. Description of the four images:
+	\begin{itemize}
+		\item Fully PCG city with good choise of generation parameters.
+		\item Fully PCG city with bad choise of generation parameters.
+		\item Districts random but roads and buildings procedurally generated.
+		\item Fully randomly generated city.
+	\end{itemize}
 			
-			
-			
-			\subsubsubsection*{Context}
-			The user study will be conducted in the facilities of Blekinge Institute of Technology (BTH). The participants will be handed a questionnaire explaining what the participant is expected to do. The images of the different cities will also be available. All the material for the participants will be paper(A4). The same questionnaire and images will be available online for participants outside BTH.
-			The objective of this user study is to measure if the participants perceive the implementations generated cities as viable in games. The viability of the procedurally generated cities will be compared to randomly and semi-randomly generated cities. This will be analyzed to examine if Perlin noise is percieved as more viable in games than random.
+	\subsection*{Context}
+	The user study will be conducted in the facilities of Blekinge Institute of Technology (BTH). The participants will be handed a questionnaire explaining what the participant is expected to do. The images of the different cities will also be available. All the material for the participants will be paper(A4). The same questionnaire and images will be available online for participants outside BTH. The objective of this user study is to measure if the participants perceive the implementations generated cities as viable in games. The viability of the procedurally generated cities will be compared to randomly and semi-randomly generated cities. This will be analyzed to examine if Perlin noise is percieved as more viable in games than random.
 	
-		\subsubsection{Experiment planning}
-		This section defines the experiment further with things as variables, hypothesis and subject selection. The validity of the experiment is discussed and the questionnaire form is shown.
+	\subsection{Experiment planning}
+	This section defines the experiment further with things as variables, hypothesis and subject selection. The validity of the experiment is discussed and the questionnaire form is shown.
 		
-			\subsubsubsection*{Context Selection}
-			\textit{Gamer vs casual gamer vs non-gamer:} These are the definitions used in this user study, a participant who plays games at least once every week is a \textit{Gamer}. A \textit{casual gamer} plays games a minimum of once every month and \textit{non-gamers} plays games less than once every month. 
+	\subsection*{Context Selection}
+	\textit{Gamer vs casual gamer vs non-gamer:} These are the definitions used in this user study, a participant who plays games at least once every week is a \textit{Gamer}. A \textit{casual gamer} plays games a minimum of once every month and \textit{non-gamers} plays games less than once every month. 
 			
-			\textbf{Online vs offline: }
-			Online data collection is done through the internet. This could be an online questionnaire or a game that automatically collects data while the participants play. Offline data collection is done without the internet. This could be done through interviews or paper questionnaires. This user study will collect data Offline through a questionnaire and online through the same questionnaire. The questionnaire can be found at \textbf{\ref{ssssec:questionnaire}}.
+	\textbf{Online vs offline: }
+	Online data collection is done through the internet. This could be an online questionnaire or a game that automatically collects data while the participants play. Offline data collection is done without the internet. This could be done through interviews or paper questionnaires. This user study will collect data Offline through a questionnaire and online through the same questionnaire. The questionnaire can be found at \textbf{\ref{ssssec:questionnaire}}.
 			
-			\subsubsubsection*{Hypothesis}
-			The hypothesis of the user study is that the participants will notice a difference between a random city and a procedurally generated one. The participants will notice the district structure of the procedurally generated cities and the generated cities will be considered as more viable in games than a random city.
+	\subsection*{Hypothesis}
+	The hypothesis of the user study is that the participants will notice a difference between a random city and a procedurally generated one. The participants will notice the district structure of the procedurally generated cities and the generated cities will be considered as more viable in games than a random city.
 			
-			\textbf{Null hypothesis:} Cities generated with the implementation are not viable in games.
+	\textbf{Null hypothesis:} Cities generated with the implementation are not viable in games.
 			
-			\textbf{Alternative hypothesis:} The implementation procedurally generate cities that are viable in games.
+	\textbf{Alternative hypothesis:} The implementation procedurally generate cities that are viable in games.
 			
-			\subsubsubsection*{Variable selection}
-			The independent variables are the following:
-			\begin{itemize}
-				\item Building minimum height (1-10)
-				\item Building maximum height (1-10)
-				\item Density (0-1)
-				\item Block size (1-10)
-			\end{itemize}
-			All the independent variables are connected to different districts and can thereby vary throughout the city. Minimum and maximum height decides between what heights all the buildings in that district may be. Density is what decides how many buildings there will be. Block size controls how tightly the roads are placed which in turn decides how big each block in the city is.
-			The dependent variables are if the participant believes if the city is viable in games and if the participants notice any coherent patterns or believes the generated cities are random.
+	\subsubsection*{Variable selection}
+	The independent variables are the following:
+	\begin{itemize}
+		\item Building minimum height (1-10)
+		\item Building maximum height (1-10)
+		\item Density (0-1)
+		\item Block size (1-10)
+	\end{itemize}
+	All the independent variables are connected to different districts and can thereby vary throughout the city. Minimum and maximum height decides between what heights all the buildings in that district may be. Density is what decides how many buildings there will be. Block size controls how tightly the roads are placed which in turn decides how big each block in the city is. The dependent variables are if the participant believes if the city is viable in games and if the participants notice any coherent patterns or believes the generated cities are random.
 			
-			\textbf{Good} vs \textbf{bad} parameters: One of the images have intentionally bad parameters. What is meant by this is that the parameters are set to intentionally make a strange looking city. For example, the skyscrapers might have less height than regular houses or the density might be low making the industry district contain mainly grass instead of factories.
+	\textbf{Good} vs \textbf{bad} parameters: One of the images have intentionally bad parameters. What is meant by this is that the parameters are set to intentionally make a strange looking city. For example, the skyscrapers might have less height than regular houses or the density might be low making the industry district contain mainly grass instead of factories.
 			
-			\subsubsubsection*{Subject selection}
-			The participants will be selected by convenient sampling at BTH’s facilities. The participants therefore have a high chance of being students. The selected subjects will be asked if they want to participate and answer the short questionnaire.
-			The online questionnaire will be posted on various social websites such as Facebook.
+	\subsection*{Subject selection}
+	The participants will be selected by convenient sampling at BTH’s facilities. The participants therefore have a high chance of being students. The selected subjects will be asked if they want to participate and answer the short questionnaire. The online questionnaire will be posted on various social websites such as Facebook.
 			
-			\subsubsubsection*{Design type}
-			The participants will sit down and be handed the questionnaire along with the images of the cities and asked to read and answer the questionnaire. There will be a supervisor nearby in case the participants have any questions. The supervisor will not interact with the participants more than necessary.  The time of completion is estimated to be five minutes or less.
+	\subsection*{Design type}
+	The participants will sit down and be handed the questionnaire along with the images of the cities and asked to read and answer the questionnaire. There will be a supervisor nearby in case the participants have any questions. The supervisor will not interact with the participants more than necessary.  The time of completion is estimated to be five minutes or less.
 			
-			\subsubsubsection*{Instrumentation}
-			The guidelines for the participants is to look at the images of the virtual generated cities and answer the questionnaire honestly. All data collection both online and offline will be collected through the same questionnaire, it can be found under \textbf{\ref{ssssec:questionnaire}}.
+	\subsection*{Instrumentation}
+	The guidelines for the participants is to look at the images of the virtual generated cities and answer the questionnaire honestly. All data collection both online and offline will be collected through the same questionnaire, it can be found under \textbf{\ref{ssssec:questionnaire}}.
 			
-			\subsubsubsection*{Validity discussion} 
-			The validity is discussed in three ways: conclusion validity, internal validity, external validity. \cite{ExperimentationInSoftware}
-			\textbf{Conclusion validity:} The independent variables that were chosen in the city generation might not be the best variables to generate a city viable in games. The implementation might be the problem and not the technique that is explored: Perlin noise. The aim of 20 answered questionnaires might not be big enough to draw any conclusion as this might be statistically insignificant.
-			\textbf{Internal validity:} The images of the different cities were created and picked by the researchers. These images might be biased. The perspective these images display the city might not be optimal. For example observed from an angle big buildings blocks the view of the road and this might change the results.
-			\textbf{External validity:} The subjects in the offline user study will all be from BTH’s facilities. This means that most of the participants may be students with similar background. Many of the students at BTH also have personal experience with creating games of their own. This may cause the results to be vastly different compared to if the study were conducted in another country at another school. The online study will also be aimed mainly at individuals from Sweden. Participants in the online study may be acquainted with the researchers as the questionnaire will be posted on social websites.
+	\subsection*{Validity discussion} 
+	The validity is discussed in three ways: conclusion validity, internal validity, external validity. \cite{ExperimentationInSoftware}
+	\textbf{Conclusion validity:} The independent variables that were chosen in the city generation might not be the best variables to generate a city viable in games. The implementation might be the problem and not the technique that is explored: Perlin noise. The aim of 20 answered questionnaires might not be big enough to draw any conclusion as this might be statistically insignificant.
+	\textbf{Internal validity:} The images of the different cities were created and picked by the researchers. These images might be biased. The perspective these images display the city might not be optimal. For example observed from an angle big buildings blocks the view of the road and this might change the results.
+	\textbf{External validity:} The subjects in the offline user study will all be from BTH’s facilities. This means that most of the participants may be students with similar background. Many of the students at BTH also have personal experience with creating games of their own. This may cause the results to be vastly different compared to if the study were conducted in another country at another school. The online study will also be aimed mainly at individuals from Sweden. Participants in the online study may be acquainted with the researchers as the questionnaire will be posted on social websites.
 			
-			\subsubsubsection*{Questionnaire form} \label{ssssec:questionnaire}
-			This is a study of how you perceive different generated cities.
-			All answers are completely anonymous.
-			Images of five different generated cities will be shown
-			to you and we ask that you answer a questionnaire about these images.
-			Each image has a number associated with it.
-			Answer the questionnaire by simply drawing a circle
-			around one of the numbers representing the image that you believe is the best
-			answer to the question.
+	\subsection{Questionnaire form} \label{ssssec:questionnaire}
+	This is a study of how you perceive different generated cities. All answers are completely anonymous. Images of five different generated cities will be shown to you and we ask that you answer a questionnaire about these images. Each image has a number associated with it. Answer the questionnaire by simply drawing a circle around one of the numbers representing the image that you believe is the best answer to the question.
 			
-			\begin{enumerate}
-				\item How often do you play games? (1 answer)\\
-				At Least once a:	\tab Week \tab Month \tab Less than once a month
-				
-				\item Which city looks the most random? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city looks most natural? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city looks least natural? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city would be the best in a game? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city would be the worst in a game? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city looks the most repetitive? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city is the prettiest? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city is the ugliest? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-				
-				\item Which city has the best road network? (1 answer)\\
-				\tab 1 \tab 2 \tab 3 \tab 4 \tab 5
-			\end{enumerate}
+	% Put the questions here
 		
-		\subsubsection{Experiment Execution planning}
-		The experiment will be executed as follows:
-		In the offline user study, one participant will answer the questionnaire at a time. If the participants have any questions a supervisor will be close by. The participants are handed the images of the cities along with the questionnaire. Anyone at the BTH’s facilities may be asked to participate. The goal is to have 20 questionnaires answered fully. A complementary online questionnaire will also be available for participants outside the facilities to answer.
+	\subsection{Experiment Execution planning}
+	The experiment will be executed as follows: In the offline user study, one participant will answer the questionnaire at a time. If the participants have any questions a supervisor will be close by. The participants are handed the images of the cities along with the questionnaire. Anyone at the BTH’s facilities may be asked to participate. The goal is to have 20 questionnaires answered fully. A complementary online questionnaire will also be available for participants outside the facilities to answer.
 		
-		\subsubsection{Experiment analysis method}
-		The answers from all the answered questionnaires will be visualized in several graphs. The images all show a different city generated with a specific set of variables which will be mapped to the participant’s answers. For example: one city is completely randomly generated. Do the participants notice this or does it look like the generated cities? Is the PCG city with bad parameters perceived as more random than the city with good parameters?
-		The data will be analyzed to answer such questions and will then be used to draw a conclusion about the generated cities viability in games.
+	\subsection{Experiment analysis method}
+	The answers from all the answered questionnaires will be visualized in several graphs. The images all show a different city generated with a specific set of variables which will be mapped to the participant’s answers. For example: one city is completely randomly generated. Do the participants notice this or does it look like the generated cities? Is the PCG city with bad parameters perceived as more random than the city with good parameters? The data will be analyzed to answer such questions and will then be used to draw a conclusion about the generated cities viability in games.
 	
 	%%
 	%%

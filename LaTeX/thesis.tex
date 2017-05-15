@@ -1,78 +1,208 @@
-\documentclass[12pt]{article}
-\usepackage[a4paper, left=3cm, right=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+\documentclass[a4paper,oneside]{bth}
+
+\usepackage{amsmath}
+\usepackage{mathenv}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{textcomp}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage{changepage}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage{xtab}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\DeclareGraphicsExtensions{.pdf, .png, .jpg}
 
-\usepackage{titlesec}
-\usepackage[hidelinks]{hyperref} % This shit makes "Contens" clickable
-
-\newcommand\tab[1][1cm]{\hspace*{#1}} % Add \tab :D
-
-% START OF MAKING SUBSUBSUB SECTION A THING
-\titleclass{\subsubsubsection}{straight}[\subsection]
-
-\newcounter{subsubsubsection}[subsubsection]
-\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
-\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
-
-\titleformat{\subsubsubsection}
-{\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
-\titlespacing*{\subsubsubsection}
-{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
-
-\makeatletter
-\def\toclevel@subsubsubsection{4}
-\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
-\makeatother
-
-\setcounter{secnumdepth}{4}
-\setcounter{tocdepth}{4}
-% END OF MAKING SUBSUBSUB SECTION A THING
-
-% Meta data
-\title{Thesis Title}
-\date{2017-04-17}
-\author{Niclas Olsson, Elias Frank}
+\newtheorem{lem}{\textsc{Lemma}}[chapter]
+\newtheorem{thm}{\textsc{Theorem}}[chapter]
+\newtheorem{prop}{\textsc{Proposition}}[chapter]
+\newtheorem{post}{Postulate}[chapter]
+\newtheorem{corr}{\textsc{Corollary}}[chapter]
+\newtheorem{defs}{\textsc{Definition}}[chapter]
+\newtheorem{cons}{\textsc{Constraint}}[chapter]
+\newtheorem{ex}{\textbf{Example}}[chapter]
+\newtheorem{qu}{\textbf{Question}}[chapter]
 
 \begin{document}
-	% Title page
-	\pagenumbering{gobble}
-	\maketitle
-	\newpage
-	
-	% Abstract
-	\pagenumbering{roman}
-	\include{abstract}
-	
-	% Table of contents
-	\tableofcontents
-	\newpage
-	
-	\pagenumbering{arabic}
-	
-	% Introduction
-	\include{introduction}
-	
-	% Related work
-	\include{related_work}
-	
-	% Theoretical framework
-	\include{theoretical_framework}
-	
-	% Method
-	\include{method}
-	
-	% Results
-	\include{results}
-	
-	% Discussion
-	\include{discussion}
-	
-	% Conclusion
-	\include{conclusion}
-	
-	% References
-	\newpage
-	\bibliographystyle{IEEEtran}
-	\bibliography{./citations}
+
+\pagestyle{plain}
+\pagenumbering{roman}
+
+
+% FRONT MATTER
+%-------------
+% Please change the data below appropriately.
+% The data will be used to generate text in various places on the
+% thesis front and inner pages.
+%-------------
+% The month year when your final report was submitted.
+\newcommand{\thesisMonth}{June}
+\newcommand{\thesisYear}{2017}
+
+% The degree name you are submitting your thesis for.
+% This must be one of the following:
+%    Bachelor of Science in Computer Science
+%    Bachelor of Science in Digital Game Development
+%    Master of Science in Computer Science
+%    Master of Science in Software Engineering
+%    Master of Science in Telecommunication Systems
+\newcommand{\thesisDegree}{Bachelor of Science in Computer Science}
+
+% Course time in weeks. For a 15 credits course this should be 10 and
+% for a 30 credits course, this should be 20 weeks.
+% Note that the week figure is the same whether you work alone or in a pair.
+\newcommand{\thesisWeeks}{10}
+
+
+% THESIS FRONT PAGE (here you insert title, subtitle and author names)
+{\pagestyle{empty}
+\changepage{5cm}{1cm}{-0.5cm}{-0.5cm}{}{-2cm}{}{}{}
+\noindent
+\begin{tabular}{@{}p{0.75\textwidth} p{0.25\textwidth}}
+\thesisDegree & \hfill\multirow{3}{*}{\bthcsnotextlogo{3cm}} \\
+\thesisMonth \ \thesisYear & \\
+\end{tabular}
+
+\begin{center}
+
+\vspace {7.5cm}
+
+% TITLE
+{\Huge\textbf{Thesis Title\\*[0.25cm]}}
+
+\vspace {0.5cm}
+
+% SUBTITLE (if you have one)
+% You should exclude this line, if you don't have a subtitle.
+{\Large\textbf{Thesis Subtitle}}
+
+\vspace {3cm}
+
+% AUTHOR NAMES
+% Use the first version for single authors.
+% The second version is for two authors on separate rows
+%{\Large\textbf{Firstname Lastname}} % first version
+{\Large\textbf{Niclas Olsson \\*[0.25cm] Elias Frank}} %second version
+
+\end{center}
+
+\vspace*{\fill}
+
+\noindent%
+{\small 
+Faculty of Computing \\
+Blekinge Institute of Technology \\
+SE--371 79 Karlskrona, Sweden
+}
+
+\clearpage
+} % Back to \pagestyle{plain}
+
+
+% THESIS INNER PAGE (contact information to authors and supervisors go gere)
+{\pagestyle{empty}
+\changepage{5cm}{1cm}{-0.5cm}{-0.5cm}{}{-2cm}{}{}{}
+\noindent
+% Do not change the text below.
+{\small
+This thesis is submitted to the Faculty of Computing at Blekinge Institute
+of Technology in partial fulfillment of the requirements for the degree of
+\thesisDegree. The thesis is equivalent to \thesisWeeks\ 
+weeks of full time studies.
+}
+
+\vspace{15cm}
+
+\noindent
+\textbf{Contact Information:} \\
+Author(s): \\
+Niclas Olsson \\
+E-mail: niod12@student.bth.se \\
+Elias Frank \\
+E-mail: elfa14@student.bth.se
+
+\vspace{2cm}
+
+\noindent
+University advisor: \\
+PhD Hans Tap \\
+Department of XXX
+
+
+\vspace*{\fill}
+
+\noindent
+\begin{tabular}{@{}p{0.5\textwidth} l c l}
+Faculty of Computing             & Internet & : & www.bth.se \\
+Blekinge Institute of Technology & Phone    & : & +46 455 38 50 00 \\
+SE--371 79 Karlskrona, Sweden    & Fax      & : & +46 455 38 50 57 \\
+\end{tabular}
+\clearpage
+} % Back to \pagestyle{plain}
+
+\setcounter{page}{1}
+
+% ABSTRACT PAGE (in \pagestyle{plain})
+\abstract
+\begin{changemargin}{+.5cm}{+.5cm}
+\noindent
+\textbf{Context}. ... \newline
+\textbf{Objectives}. ... \newline
+\textbf{Methods}. ... \newline
+\textbf{Results}. ... \newline
+\textbf{Conclusions}. ...
+
+\vspace {1cm}
+% You can list 3-4 keywords, maximum 2 of these from the title;
+% starts 1 line below the abstract.
+\noindent
+\textbf{Keywords:} 3--4 keywords, maximum 2 of these from the title, starts 1 line
+below the abstract.
+
+\end{changemargin}
+
+
+% TABLE OF CONTENTS PAGES (generated by LaTeX using the command(s) below)
+% You should uncomment the commands you need.
+\tableofcontents
+%\listoffigures             % in case you have them
+%\listoftables              % in case you have them
+%\listofalgorithms          % in case you have them
+%\include{acknowledgments}  % OPTIONAL
+
+\cleardoublepage
+\pagestyle{headings}
+\pagenumbering{arabic}
+
+
+% THE ACTUAL THESIS STARTS HERE
+\chapter{Introduction}
+\input{introduction}
+
+\chapter{Related work}
+\input{related_work}
+
+\chapter{Theoretical framework}
+\input{theoretical_framework}
+
+\chapter{Method}
+\input{method}
+
+\chapter{Results}
+\input{results}
+
+\chapter{Discussion}
+\input{discussion}
+
+\chapter{Conclusion and future work}
+\input{conclusion}
+
+\bibliography{citations}
+\bibliographystyle{plain}
 \end{document}
