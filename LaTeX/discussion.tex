@@ -7,30 +7,56 @@ The implementation has a number of major limitations. In the interest of overvie
 	\item Maximum of three districts.
 	\item All roads are straight.
 	\item One-to-one relationship between cell and building.
+	\item Low quality models are used.
 	\item Flat terrain.
 	\item Arbitrary noise value manipulation.
-	\item Low quality models are used.
 \end{itemize}
 	
 % 3 districts
 The implementation was designed from the beginning to only support three districts. This means that the implementation might not work with more districts. Limiting the number of districts to three was an effort to minimize workload while still generating interesting intersections between districts.
 % straight roads
+\par
 Any city generated using Elicras is based on a two-dimensional grid. A cell in the grid represents a building, road or patch of grass. Depending on the model assets used when generating a city, this can look rigid and unnatural. This is the reason why all the roads are generated in straight lines. In a more believable setting, roads would be generated using curves\cite{CurvedRoads}.
 % one-to-one
+\par
 Each cell contains at most one building. The implementation has no support for buildings that span across cells. This means that large buildings like warehouses or hangars are difficult to represent. One way to work around this limitation is to consider each cell as a large space of land. By only using small parts of the cell for small buildings and large parts of the cell for large buildings, it will appear as though there is a difference in size between cells.
+% low quality models
+\par
+The models used in Elicras are of low quality. For most building sections simple shapes were used (see Figure \ref{fig:simple-sections}). It is likely that the overall visual fidelity of the city increases with higher quality models.
+
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{0.35\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{"Images/roof"}
+		\caption{Top section of a building.}
+		\label{fig:roof-mesh}
+	\end{subfigure}
+	\begin{subfigure}{0.35\textwidth}
+		\centering
+		\includegraphics[width=0.9\linewidth]{"Images/cube"}
+		\caption{Mid section of a building.}
+		\label{fig:cube-mesh}
+	\end{subfigure}
+	\caption{Building sections made up of simple shapes.}
+	\label{fig:simple-sections}
+\end{figure}
+
 % flat terrain
 Any city in our application is generated on a flat surface. Elicras makes no effort to consider the underlying terrain of the city. This renders our implementation ineffective in games with anything but flat terrain.
 % noise manipulation
+\par
 Perlin noise has been used at every stage of the generation process. There are parts of the process where we have shoehorned the noise function into our implementation rather than using it to its full potential. Examples of this is when Elicras determines where to place roads or what sections to use for a building. In these areas Perlin noise is used like a pseudorandom number generator(PRNG). By using it this way, some of the desirable features of Perlin noise are neglected. In these cases, using an actual PRNG like \textit{rand}\cite{RandCRT} might produce similar results, without the implementation overhead. In other cases, the properties of Perlin noise have a visual impact on the result despite being used like a PRNG. An example of this the process of determining whether to place a building or to leave a cell vacant. By checking the noise value against a threshold, buildings are placed in a natural looking way rather than at random (see Figure \ref{fig:perlin-rand-vacant}).
 	
 \begin{figure}[h]
-	\begin{subfigure}{0.5\textwidth}
+	\centering
+	\begin{subfigure}{0.35\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{"Images/rand vacant"}
 		\caption{Building placement using \textit{rand}.}
 		\label{fig:rand-vacant}
 	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
+	\begin{subfigure}{0.35\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{"Images/perlin vacant"}
 		\caption{Building placement using Perlin noise.}
