@@ -22,7 +22,7 @@ There are two ways to use PCG algorithms, either offline or online. Online is wh
 \par
 Offline generation is when the content is being generated before the player starts playing. This could be done by the developers before releasing the game. Offline generation is useful when generating complicated content that is too slow to generate online. These are the definitions used in this thesis.
 	
-\section{Viability}
+\section{Viability}\label{sec:viability}
 When developing the implementation, the following requirements were set to ensure that the result is viable in games.
 	
 \begin{itemize}
@@ -32,7 +32,7 @@ When developing the implementation, the following requirements were set to ensur
 		
 	\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an online setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons collaboration about procedural generation with the company\cite{FloorPlanPCG}.  If this limit is excedded the implementation may still be viable in a offline setting.
 		
-	\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
+	\item \textbf{Flexibility: } The implementation should be able to generate many different cities with different looks.
 \end{itemize} 
 
 PCG can be either \textit{feasible} or \textit{infeasible}. For the generated content to be considered feasible it must fulfill all the constraints\cite{NoveltySearch}. Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. For a city an example of a constraint would be that there must be a way to travel everywhere in the city, i.e. no part of the city would be blocked by houses or have no roads connected to it.
