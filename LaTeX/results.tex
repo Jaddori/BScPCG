@@ -1,29 +1,86 @@
+The results from the user study and the implementation will be presented here. In order to measure the viability of the cities the following three requirements were set Validity, Determinism, Performance and Flexibility, definitions can be found at \ref{sec:viability}.
+	
+\section{User study}
+A user study with 25 participants was conducted. The participants answered questions about images of procedurally generated cities from the implementation created. The user study aimed to measure the viability the cities have in a game.
+	
+%The user study had 25 participants. The figure \ref{fig:pie-chart-often-play} shows that most participants play games more than once a week, therefore they can be expected to have knowledge about game environments.
 
-	The results from the user study and the implementation will be presented here. In order to measure the viability of the cities the following three requirements were set Validity, Determinism, Performance and Flexibility, definitions can be found at \ref{sec:viability}.
-	
-	\section{User study}
-	A user study have been conducted where the participants answered questions about images of procedurally generated cities from the implementation created. The user study aimed to measure the viability the cities have in a game.
-	
-	The user study had 25 participants. The figure \ref{fig:pie-chart-often-play} shows that most participants play games more than once a week, therefore they can be expected to have knowledge about game environments. The city images
-	
-	\subsection{Validity rating}
-		Figure \ref{fig:pie-chart-ugly-pretty} shows that 48\% found \textit{City 3} to be the ugliest city.
-	
-	\begin{figure}[h]
+% how often do you play?
+\par
+The participants of the user study is divided into three groups: \textit{gamers}, \textit{casual gamers} and \textit{non-gamers}. By dividing the participants into levels of familiarity with games, a stronger case can be made for the validity of their answers. Figure \ref{fig:pie-chart-often-play} shows that most participants play at least once a week, putting them in the group of \textit{gamers}. Not enough participants fell into the group of casual or non-gamers. Their results have been discarded.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.65\textwidth]{"Images/OftenPlay"}
+	\caption{Pie chart of how often the participants play games.}
+	\label{fig:pie-chart-often-play}
+\end{figure}
+
+% viable in games?
+The main focus of the user study is to determine if a city generated using our application would be viable in games. The user study asks the participants which (if any) of the cities they think could be used in a game. Figure \ref{fig:pie-chart-use-in-game} shows the participants answers to this question.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.7\textwidth]{"Images/UseInGame"}
+	\caption{Pie chart of which cities the participants think could be used in a game.}
+	\label{fig:pie-chart-use-in-game}
+\end{figure}
+
+% PCG better than random?
+Under Viability (\ref{sec:viability}), two requirements are outline. A generated city must differ significantly from a city generated at random. A generated city must also avoid breaking the users immersion. In an effort to determine if our generation process fulfills these requirements, the participants were asked which city looks the most random and which city looks the most repetitive. The results are shown in Figure \ref{fig:pie-chart-random-repetitive}.
+
+\begin{figure}[h]
+	\begin{subfigure}{0.5\textwidth}
 		\centering
-		\includegraphics[width=0.6\textwidth]{"Images/OftenPlay"}
-		\caption{Pie chart of how often the participants play games.}
-		\label{fig:pie-chart-often-play}
-	\end{figure}
-
-	\begin{figure}[h]
+		\includegraphics[width=0.95\linewidth]{"Images/Random"}
+		\caption{Random cities chart.}
+		\label{fig:pie-chart-random}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
 		\centering
-		\includegraphics[width=0.6\textwidth]{"Images/UseInGame"}
-		\caption{Pie chart of which cities the participants think could be used in a game.}
-		\label{fig:pie-chart-use-in-game}
-	\end{figure}
+		\includegraphics[width=0.95\linewidth]{"Images/Repetitive"}
+		\caption{Repetitive cities chart.}
+		\label{fig:pie-chart-repetitive}
+	\end{subfigure}
+	\caption{Pie charts of random and repetitive cities.}
+	\label{fig:pie-chart-random-repetitive}
+\end{figure}
 
-	\begin{figure}[h]
+% least/most natural
+Figure \ref{fig:pie-chart-natural-least-natural} shows the participants answers to the question about which city looks the least and most natural. This question was intended to clarify the impact of districts on feel of the city.
+
+\begin{figure}[h]
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.95\linewidth]{"Images/LeastNatural"}
+		\caption{Least natural cities chart.}
+		\label{fig:pie-chart-least-natural}
+	\end{subfigure}
+	\begin{subfigure}{0.5\textwidth}
+		\centering
+		\includegraphics[width=0.95\linewidth]{"Images/Natural"}
+		\caption{Natural cities chart.}
+		\label{fig:pie-chart-natural}
+	\end{subfigure}
+	\caption{Pie charts of most and least natural cities.}
+	\label{fig:pie-chart-natural-least-natural}
+\end{figure}
+
+% best roads
+Another fundamental part of the generation process is the road network. To determine the impact that this stage has on the city, we asked the participants which of the cities had the best road network. Figure \ref{fig:pie-chart-road-network} shows the participants answers to this question.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{"Images/RoadNetwork"}
+	\caption{Pie chart of which cities has the best road network.}
+	\label{fig:pie-chart-road-network}
+\end{figure}
+
+% ugliest/prettiest
+\newpage
+By asking a broad question about the look of the cities and cross referencing the result against their perceived viability in games, a correlation between look and viability can be determined. This is the intention behind asking the participants which of the cities looks the ugliest and which one looks the prettiest. Figure \ref{fig:pie-chart-ugly-pretty} shows the result of these questions.
+
+\begin{figure}[h]
 	\begin{subfigure}{0.5\textwidth}
 		\centering
 		\includegraphics[width=0.9\linewidth]{"Images/Ugliest"}
@@ -39,44 +96,3 @@
 	\caption{Pie charts of prettiest and ugliest cities.}
 	\label{fig:pie-chart-ugly-pretty}
 \end{figure}
-
-\begin{figure}[h]
-	\begin{subfigure}{0.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/LeastNatural"}
-		\caption{Least natural cities chart.}
-		\label{fig:pie-chart-least-natural}
-	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/Natural"}
-		\caption{Natural cities chart.}
-		\label{fig:pie-chart-natural}
-	\end{subfigure}
-	\caption{Pie charts of most and least natural cities.}
-	\label{fig:pie-chart-natural-least-natural}
-\end{figure}
-
-\begin{figure}[h]
-	\begin{subfigure}{0.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/Random"}
-		\caption{Random cities chart.}
-		\label{fig:pie-chart-least-natural}
-	\end{subfigure}
-	\begin{subfigure}{0.5\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/Repetitive"}
-		\caption{Repetitive cities chart.}
-		\label{fig:pie-chart-natural}
-	\end{subfigure}
-	\caption{Pie charts of random and repetitive cities.}
-	\label{fig:pie-chart-natural-least-natural}
-\end{figure}
-
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.6\textwidth]{"Images/RoadNetwork"}
-		\caption{Pie chart of which cities has the best road network.}
-		\label{fig:pie-chart-road-network}
-	\end{figure}
