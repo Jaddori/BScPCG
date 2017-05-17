@@ -41,6 +41,32 @@ To explore the procedural generation of a city, a desktop application was create
 		\caption{Elicras graphical interface.}
 		\label{fig:elicras-interface}
 	\end{figure}
+	
+	\subsection{Modified Perlin noise}
+	Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is. The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value very close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:\\*[0.1cm]
+	
+	\texttt{float noise = 20 * this->noise->generate(1.13x * x, 1.22 * y);\\
+		noise = (noise - floor(noise));}\\*[0.1cm]
+		
+	The \textit{frequency} of this modified noise is 1.134 on the X-axis and the \textit{modification} is \texttt{noise = (noise - floor(noise))}.
+	The difference between modified and not modified Perlin noise is visualized in Figure \ref{fig:normal-and-modified-perlin}.
+		
+	\begin{figure}[h]
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/floor perlin"}
+			\caption[Floored Perlin noise]{Modified Perlin noise.}
+			\label{fig:modified-perlin}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/normal perlin"}
+			\caption[Normal Perlin noise]{Normal Perlin noise.}
+			\label{fig:normal-perlin}
+		\end{subfigure}
+		\caption{Different uses of Perlin noise.}
+		\label{fig:normal-and-modified-perlin}
+	\end{figure}
 		
 	\subsubsection{Districts}
 	The \textit{district} PCG generates a 2D grid with cells where each cell contains a \textit{district} number. Each cell is in the later stages filled with grass, roads or buildings. Each cell within the grid represents an area of land in the city. These areas are square shaped with a length of 10 meters which equates to a total area of 100 square meters for each cell.
@@ -58,7 +84,7 @@ To explore the procedural generation of a city, a desktop application was create
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"Images/map districts colored"}
-			\caption{\textit{district} generation.}
+			\caption{\textit{District} generation.}
 			\label{fig:map-districts}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
@@ -69,32 +95,6 @@ To explore the procedural generation of a city, a desktop application was create
 		\end{subfigure}
 		\caption{Numeric visualization of the city after \textit{district} generation.}
 		\label{fig:map-districts-and-borders}
-	\end{figure}
-		
-	\subsection{Modified Perlin noise}
-	Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is. The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value very close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:
-		
-	\texttt{float noise = 20 * this->noise->generate(1.13x * x, 1.22 * y);\\
-		noise = (noise - floor(noise));}
-		
-	The \textit{frequency} of this modified noise is 1.134 on the X-axis and the \textit{modification} is \texttt{noise = (noise - floor(noise))}.
-	The difference between modified and not modified Perlin noise is visualized in \textit{Figure \ref{fig:normal-and-modified-perlin}}.
-		
-	\begin{figure}[h]
-		\begin{subfigure}{0.5\textwidth}
-			\centering
-			\includegraphics[width=0.9\linewidth]{"Images/floor perlin"}
-			\caption[Floored Perlin noise]{Modified Perlin noise.}
-			\label{fig:modified-perlin}
-		\end{subfigure}
-		\begin{subfigure}{0.5\textwidth}
-			\centering
-			\includegraphics[width=0.9\linewidth]{"Images/normal perlin"}
-			\caption[Normal Perlin noise]{Normal Perlin noise.}
-			\label{fig:normal-perlin}
-		\end{subfigure}
-		\caption{Different uses of Perlin noise.}
-		\label{fig:normal-and-modified-perlin}
 	\end{figure}
 		
 	\subsection{Blocks}
@@ -130,6 +130,7 @@ To explore the procedural generation of a city, a desktop application was create
 \section{Data collection}
 	Aside from the core functionality of the application, an effort was made to record any significant data about the generation process. The observer pattern was used at the core of this effort. In Elicras there is a DataManager and many DataHolders. Any class whose data is worth collecting, inherits from the DataHolder base class. This results in a centralized way of collecting data that is easy to use and to setup. When Elicras requests the data from the DataManager, it notifies the registered DataHolders to supply their data. The application gathers the following information about the generation process:
 	\begin{itemize}
+		\setlength\itemsep{0.01cm}
 		\item Number of Perlin noise calls.
 		\item Number of main roads.
 		\item Number of small roads.
@@ -171,6 +172,7 @@ To explore the procedural generation of a city, a desktop application was create
 	Five pre-selected images of different generated and random cities was provided to the participant. The images are selected by hand. Description of the five images:
 	
 	\begin{enumerate}
+		\setlength\itemsep{0.01cm}
 		\item Fully PCG city with bad choice of generation parameters.
 		\item Fully PCG city with good choice of generation parameters.
 		\item Fully randomly generated city.
@@ -200,6 +202,7 @@ To explore the procedural generation of a city, a desktop application was create
 	\subsection{Variable selection}
 	The independent variables are the following:
 	\begin{itemize}
+		\setlength\itemsep{0.01cm}
 		\item Building minimum height (1-10).
 		\item Building maximum height (1-10).
 		\item Density (0.0-1.0).
