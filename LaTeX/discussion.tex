@@ -60,22 +60,4 @@ Any city in our application is generated on a flat surface. Elicras makes no eff
 \par
 Perlin noise has been used at every stage of the generation process. There are parts of the process where we have shoehorned the noise function into our implementation rather than using it to its full potential. Examples of this is when Elicras determines where to place roads or what sections to use for a building. In these areas Perlin noise is used like a pseudorandom number generator(PRNG). By using it this way, some of the desirable features of Perlin noise are neglected. In these cases, using an actual PRNG like \textit{rand}\cite{RandCRT} might produce similar results, without the implementation overhead. In other cases, the properties of Perlin noise have a visual impact on the result despite being used like a PRNG. An example of this the process of determining whether to place a building or to leave a cell vacant. By checking the noise value against a threshold, buildings are placed in a natural looking way rather than at random (see Figure \ref{fig:perlin-rand-vacant}).
 	
-\begin{figure}[h]
-	\centering
-	\begin{subfigure}{0.35\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/rand vacant"}
-		\caption{Building placement using \textit{rand}.}
-		\label{fig:rand-vacant}
-	\end{subfigure}
-	\begin{subfigure}{0.35\textwidth}
-		\centering
-		\includegraphics[width=0.9\linewidth]{"Images/perlin vacant"}
-		\caption{Building placement using Perlin noise.}
-		\label{fig:perlin-vacant}
-	\end{subfigure}
-	\caption{Side effect of using Perlin noise like a PRNG.}
-	\label{fig:perlin-rand-vacant}
-\end{figure}
-	
 \section{City analysis}

@@ -10,6 +10,26 @@ In this thesis, the possibility of procedurally generating a city with Perlin no
 	Perlin Noise is the PCG technique chosen for every stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
 	There are many ways to procedurally generate a city, but many of them are very complicated which often means long implementation time. From a developer's perspective there is not much use for PCG if the implementation time is equal or greater to the time it would take to handcraft every single element.
 	
+	Perlin noise generates noise with properties that may be interpreted as more natural than purely random. The noise has a structure and form that was thought that it may be a good addition to cities as cities also have structure and form and are not completely random. The difference between random and Perlin noise is illustrated in Figure \ref{fig:perlin-rand-vacant}.
+	
+	\begin{figure}[h]
+		\centering
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/rand vacant"}
+			\caption{Building placement using \textit{rand}.}
+			\label{fig:rand-vacant}
+		\end{subfigure}
+		\begin{subfigure}{0.35\textwidth}
+			\centering
+			\includegraphics[width=0.9\linewidth]{"Images/perlin vacant"}
+			\caption{Building placement using Perlin noise.}
+			\label{fig:perlin-vacant}
+		\end{subfigure}
+		\caption{Side effect of using Perlin noise like a PRNG.}
+		\label{fig:perlin-rand-vacant}
+	\end{figure}
+	
 	\section{Procedural content generation}
 	Procedural content generation in games is defined as "[...] \textit{the algorithmic creation of game content with limited or direct user input}"\cite{WhatIsPCG}. This is the definition used in this thesis. But PCG has been used for many purposes by many different people. There is no clear definition of exactly what PCG is that is universally agreed upon\cite{WhatIsPCG}.
 	
