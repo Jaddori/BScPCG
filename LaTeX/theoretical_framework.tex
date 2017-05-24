@@ -1,32 +1,38 @@
-\section{Theoretical Frameweeork}
-	\subsection{Perlin noise}
-	Perlin noise is a mathematical equation created by Ken Perlin 1983 and updated 2002 (Improving noise)
-	
-	
-	\subsection{Online vs offline}
-	There are two ways to use PCG algorithms, either offline or online. Online is when the content is generated while the game is being played or in a short loading screen just before the player can start playing. This allows content that is adapted to the individual player and semi-infinite content.(Procedural content generation in games (2016), Chaker, Noor, E-book) In the game Left 4 Dead(ref) PCG is used by analyzing the players behavior and altering the experience, this could be considered a mixture of artificial intelligence and online PCG.
-	\par Offline generation is when the content is being generated before the player starts playing. This could be done by the developers before releasing the game. Offline generation is useful when generating complicated content that is too slow to generate online.
-	These are the definitions used in this thesis.
-	
-	
-	\subsection{Viability}
-	When developing the implementation, there had to be requirements that will ensure that the result is viable in games.
-	The following requirements have been set to make sure the result will be viable.
-	
-	\begin{itemize}
-		\item \textbf{Validity:} The city does not have to be realistic but the city must be somewhat credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city.
+\section{Noise}
+Lattice noises are simple and efficient ways of generating noise\cite{TexturingModeling}. The idea behind them is to divide a coordinate system into sections spanning between every integer coordinate. These sections are called the integer lattices. By first generating pseudorandom numbers at every lattice and then interpolating between them, noise is generated.
 		
-		\item \textbf{Determenism:} The generation should be determenistic. This means that the exact same city can be generated again with the correct seed. Nothing should be purely random. This is important so that the users have control over the output of the implementation.
+\par
+Value noise is a type of lattice noise. It uses a value between minus one and one at every lattice point and interpolates between them. The key difference between value noises is what type of interpolation is used. Methods such as linear and cubic interpolation have been used\cite{TexturingModeling}.
 		
-		\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an on-line setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons colaboration about procedural generation with the company. (Constrained procedural floor
-		plan generation for gameenvironments) Even if this limit is excedded the implementation may still be viable in a offline setting.
+\par
+Gradient noise differs from value noise by generating gradient vectors at each lattice point, instead of raw values. To calculate the noise value of a point, three steps are taken. First, a vector is calculated from each lattice point to the point.  Then, the dot product between this vector and the gradient vector at the corresponding lattice point is calculated. Finally, the noise value is calculated by interpolating between the dot product results.
 		
-		\item \textbf{Flexibility: } The implementation should be able to generate many different viable cities with different looks.
-	\end{itemize} 
+\subsection{Perlin noise}
+Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an \texttt{x} and a \texttt{y} coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4+10t^3\end{math} and is graphed out in Figure \ref{fig:fade}.
+		
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.35\linewidth]{"Images/fade"}
+	\caption{Perlin's ease curve called fade.}
+	\label{fig:fade}
+\end{figure}
+	
+\section{Online vs offline}\label{sec:online-offline}
+There are two ways to use PCG algorithms, either offline or online. Online is when the content is generated while the game is being played or in a short loading screen just before the player can start playing. This allows content that is adapted to the individual player and semi-infinite content\cite{PCGGames}. In the game Left 4 Dead\cite{Left4Dead} PCG is used by analyzing the players behavior and altering the experience. This could be considered a mixture of artificial intelligence and online PCG.
+\par
+Offline generation is when the content is being generated before the player starts playing. This could be done by the developers before releasing the game. Offline generation is useful when generating complicated content that is too slow to generate online. These are the definitions used in this thesis.
+	
+\section{Viability}\label{sec:viability}
+When developing the implementation, the following requirements were set to ensure that the result is viable in games.
+	
+\begin{itemize}
+	\item \textbf{Validity:} The city does not have to be realistic but the city must be credible for the player to enjoy the environment. The player should not lose immersion because of broken geometry within the city. The city should also look better than a city generated a random. If a city is prettier and looks more natural than a city generated at random, it is considered valid.
+		
+	\item \textbf{Determinism:} The generation should be deterministic. This means that the exact same city can be generated again with the same seed. Nothing should be purely random. This is important so that the user has control over the output of the implementation.
+		
+	\item \textbf{Performance:} The city should be generated within a reasonable time frame to be viable in an online setting. A game should never have loading screens for any long period of time. This implementation have a time limit of 15 seconds as Paradox Interactive AB a game company set this as a time limit in Melins and Bengtssons collaboration about procedural generation with the company\cite{FloorPlanPCG}. The implementation must be viable to use in an online setting as defined in \ref{sec:online-offline}.
+		
+	\item \textbf{Flexibility: } The implementation should be able to generate many different cities with different looks.
+\end{itemize} 
 
-	PCG can be either \textit{feasible} or \textit{infeasible}, for the generated content to be considered feasible it must fulfill all the constraints. (Constrained Novelty Search: A Study on Game Content Generation) Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. For a city an example of a constraint would be that there must be a way to travel everywhere in the city, i.e. no part of the city would be blocked by houses or have no roads connected to it.
-	
-	\subsection{Evaluation}
-	To know if the implementation does generate cities viable in games the results must be evaluated.
-
-\cite{DummyCitation}
+PCG can be either \textit{feasible} or \textit{infeasible}. For the generated content to be considered feasible it must fulfill all the constraints\cite{NoveltySearch}. Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. For a city an example of a constraint would be that there must be a way to travel everywhere in the city, i.e. no part of the city would be blocked by houses or have no roads connected to it.
