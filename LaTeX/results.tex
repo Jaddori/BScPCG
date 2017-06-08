@@ -1,4 +1,4 @@
-The results from the user study and the implementation are presented here. In order to measure the viability of the cities the following three requirements were set Validity, Determinism, Performance and Flexibility, definitions can be found at \ref{sec:viability}. The images used during the user study are shown below:
+The results from the user study and the implementation are presented here. In order to measure the viability of the cities the following four requirements were set Validity, Determinism, Performance and Flexibility, defined at \ref{sec:viability}. The images used during the user study are shown below. Each city has the size 100x100.
 
 \begin{figure}[h]
 	\centering
@@ -108,7 +108,6 @@ The results from the user study and the implementation are presented here. In or
 	\end{figure}
 	
 	% best roads
-	\newpage
 	Another fundamental part of the generation process is the road network. To determine the impact that this stage has on the city, we asked the participants which of the cities had the best road network. Figure \ref{fig:pie-chart-road-network} shows the participants answers to this question.
 	
 	\begin{figure}[h]
@@ -118,6 +117,7 @@ The results from the user study and the implementation are presented here. In or
 		\label{fig:pie-chart-road-network}
 	\end{figure}
 	
+	\newpage
 	% ugliest/prettiest
 	By asking a broad question about the look of the cities and cross referencing the result against their perceived viability in games, a correlation between look and viability can be determined. This is the intention behind asking the participants which of the cities looks the ugliest and which one looks the prettiest. Figure \ref{fig:pie-chart-ugly-pretty} shows the result of these questions.
 	
@@ -141,27 +141,37 @@ The results from the user study and the implementation are presented here. In or
 
 \newpage
 \section{Data collection}
-	The following data were collected generating cities using the implementation. The parameters controlling the city were all randomly set during each generation. The cities were generated 100 times for each size respectively. The variable measured are all the average number of the 100 samples. The generation time is measured in seconds, the size is measured in cells with a width and a height. The table is read from left to the right.
+	The following data were collected generating cities using the implementation. The parameters controlling the city were all randomly set during each generation. The cities were generated 100 times for each size respectively. The variable measured are all the average number of the 100 samples. The generation time is measured in seconds, the size is measured in cells with a width and a height.
 	
 	\begin{center}
-		\begin{tabular}{||c | c c c c||} 
+		\begin{tabular}{|c | c c c c|} 
 			\hline
-			Size & Generation time & Perlin noise calls & Buildings & Vacant \\ [0.9ex] 
+			Size & Generation time & Standard deviation & Perlin noise calls & Buildings \\ [0.9ex] 
 			\hline\hline
-			10x10 & 0.0017s & 155 & 36 & 38 \\ 
+			10x10 & 0.0017s & 0.00009s & 155 & 36 \\ 
 			\hline
-			25x25 & 0.0056s & 745 & 213 & 157 \\
+			25x25 & 0.0056s & 0.002s & 745 & 213 \\
 			\hline
-			50x50 & 0.018s & 2997 & 838 & 664 \\
+			50x50 & 0.018s & 0.007s & 2997 & 838 \\
 			\hline
-			100x100 & 0.065s & 12083 & 3534 & 2619 \\
+			100x100 & 0.065s & 0.018s & 12083 & 3534 \\
 			\hline
-			250x250 & 0.378s & 75112 & 21012 & 18588 \\
+			250x250 & 0.378s & 0.063s & 75112 & 21012 \\
 			\hline
-			500x500 & 1.529s & 302188 & 87591 & 72086 \\
+			500x500 & 1.529s & 0.209s & 302188 & 87591 \\
 			\hline
-			1000x1000 & 6.750s & 1216841 & 367258 & 268168 \\ [2ex] 
+			1000x1000 & 6.750s & 1.052s & 1216841 & 367258 \\ [2ex] 
 			\hline
 		\end{tabular}
 	\end{center}
+	
+	\begin{flushleft}
+	The data was collected using the following configuration: \\
+	\end{flushleft}
+	\begin{tabular}{l l}
+		\textbf{Operating system:} & Windows 7 Ultimate 64-bit SP 1 \\
+		\textbf{Processor:} & Intel Core i7-5820K CPU @ 3.30GHz \\
+		\textbf{RAM:} & 16,0 GB \\
+		\textbf{Compiler:} & Visual Studio, 32-bit release mode \\
+	\end{tabular}
 	
