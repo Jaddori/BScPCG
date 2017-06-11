@@ -7,7 +7,8 @@ Procedural content generation is a large subject covering many different techniq
 In this thesis, the possibility of procedurally generating a city with Perlin noise, that would be viable within a game, is investigated. An implementation attempting to create such a city will be made and evaluated through a user study along with data collection from the implementation.
 	
 	\section{Background}
-	Perlin Noise is the PCG technique chosen for every stage of the city generation. This technique was mainly chosen because of how fast it is to implement as implementation time is very important in game development.
+	Perlin Noise is the PCG technique chosen for every stage of the city generation.
+	This technique was mainly chosen because it is feasible to implement within the time frame of this bachelor thesis and implementation time is very important in game development.
 	There are many ways to procedurally generate a city, but many of them are very complicated which often means long implementation time. From a developer's perspective there is not much use for PCG if the implementation time is equal or greater to the time it would take to handcraft every single element.
 	
 	Perlin noise generates noise with properties that may be interpreted as more natural than purely random. The noise has a natural form, making it a useful technique when generating natural looking content. The difference between random and Perlin noise is illustrated in Figure \ref{fig:perlin-rand-vacant}.
@@ -37,7 +38,7 @@ In this thesis, the possibility of procedurally generating a city with Perlin no
 	This thesis will focus on the use of PCG in games with the previous mentioned definition.
 	
 	\section{City generation}
-	A city has many different definitions in the real world. But a city viable in games is unlike real cities. They are not a large human settlement with governments and sanitary systems. The definition of a city explored in this thesis is "\textit{A large area occupied with different kinds of houses connected through a road system.}"
+	A city has many different definitions in the real world. But a city viable in games is unlike real cities. They are not a large human settlement with governments and sanitary systems. The definition of a city explored in this thesis is "\textit{An area occupied with different kinds of houses connected through a road system.}"
 	Unlike a real city, a city viable in games do not need logic, electricity connections nor gas stations. It simply needs to be an engaging place to experience a game in. With this great simplification, generation of such a city becomes far less complex.
 	To generate a city viable to use in games, three different generation stages have been recognized: Districts, blocks and buildings. These generation stages are used in the implementation.
 	

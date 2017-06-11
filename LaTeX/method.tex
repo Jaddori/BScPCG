@@ -20,7 +20,7 @@ Most related work focus on one of two things: procedurally generating unique bui
 To explore the procedural generation of a city, a desktop application was created. The application provides the end user with an interface that allows for the configuration of parameters along with some statistics. 
 	
 	\subsection{Interface}
-	The core functionality of our application is in the form of a proprietary static library called Elicras. It was decided early on that there should be a separation between the graphical user interface and the functionality of the application. It is therefore possible to move Elicras into another front facing interface without any significant changes to the underlying code. Elicras is divided into three areas: Rendering, Assets and PCG. Rendering, as the name implies, handles all the interfacing with the graphics card. Assets handles all the loading and using of models and textures. PCG handles all the generation of procedural content. The front facing system interacts with these subsystems through Elicras.
+	The core functionality of our application is in the form of a homemade static library called Elicras. It was decided early on that there should be a separation between the graphical user interface and the functionality of the application. It is therefore possible to move Elicras into another front facing interface without any significant changes to the underlying code. Elicras is divided into three areas: Rendering, Assets and PCG. Rendering, as the name implies, handles all the interfacing with the graphics card. Assets handles all the loading and using of models and textures. PCG handles all the generation of procedural content. The front facing system interacts with these subsystems through Elicras.
 		
 	\par
 	The graphical interface is implemented using Qt\cite{QtWebpage}. Qt is an abstraction layer between its supported platforms and their user interface. Using Qt it is possible to create an application once and deploy it to all of its supported platforms, including Windows, OSX and Linux. It abstracts away a lot of low level platform code and provides an easy to use editor (see Figure \ref{fig:qt-editor}) where you can create the graphical interface for you application\cite{Win32Programming}\cite{QtProgramming}.
@@ -43,7 +43,7 @@ To explore the procedural generation of a city, a desktop application was create
 	\end{figure}
 	
 	\subsection{Modified Perlin noise}
-	Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is. The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value very close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:\\*[0.1cm]
+	Depending on the \textit{frequency} and \textit{modifications} of the noise the results can be very different. The steps at which the data is sampled is what the \textit{frequency} is. If the results of the Perlin noise is changed further this is what \textit{modifications} is. The modified Perlin noise is used when generating the \textit{districts}. This noise has much sharper changes in values than regular Perlin noise. Perlin noise without modification returns a value close to 0.5 most of the time. This poses a problem when generating certain things. The \textit{districts} core position for example should have some spread across the city and not be close to each other. The Perlin noise is modified in the following way when generating a \textit{district's} X-axis position; and used similarly for other parts of the generation:\\*[0.1cm]
 	
 	\texttt{float noise = 20 * this->noise->generate(1.13 * x, 1.22 * y);\\
 		noise = (noise - floor(noise));}\\*[0.1cm]
@@ -78,7 +78,15 @@ To explore the procedural generation of a city, a desktop application was create
 	\end{equation}
 		
 	\par
-	After the \textit{districts} have expanded from their core position, the borders are clear to see. There are often clear lines where on one side there are skyscrapers and on the other there are industry for example. To mitigate this effect \textit{border competition} was implemented. The algorithm finds every cell where two different \textit{districts} meet (i.e. One \textit{district} in the cell and another \textit{district} in the cell to the right). The competition range is 30\% of the total grid size. From the border cells we expand half the competition range to the left and the other half to the right; this is done in the X-axis only. For every cell that is in the competition range the two \textit{districts} compete with modified Perlin noise. If the Perlin noise is above the value of 0.5 the \textit{district} to the right wins, otherwise the \textit{district} to the left wins. The winning \textit{district} takes ownership of the cell. A visualization of this process can be seen in Figure \ref{fig:map-districts-and-borders}.
+	After the \textit{districts} have expanded from their core position, the borders are clear to see. There are often clear lines where on one side there are skyscrapers and on the other there are industry for example. To mitigate this effect \textit{border competition} was implemented. The algorithm finds every cell where two different \textit{districts} meet (i.e. One \textit{district} in the cell and another \textit{district} in the cell to the right). The competition range is 30\% of the total grid size. From the border cells we expand half the competition range to the left and the other half to the right; this is done in the X-axis only. For every cell that is in the competition range the two \textit{districts} compete with modified Perlin noise. If the Perlin noise is above the value of 0.5 the \textit{district} to the left wins, otherwise the \textit{district} to the right wins, this can be seen in Figure \ref{fig:codeSnippet-borderCompetition}. The winning \textit{district} takes ownership of the cell. A visualization of this process can be seen in Figure \ref{fig:map-districts-and-borders}.
+	
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.4\linewidth]{"Images/borderCompetition"}
+		\caption{Code snippet of border competition.}
+		\label{fig:codeSnippet-borderCompetition}
+	\end{figure}
 		
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
@@ -225,7 +233,7 @@ To explore the procedural generation of a city, a desktop application was create
 	The validity is discussed in three ways: conclusion validity, internal validity, external validity\cite{ExperimentationInSoftware}.
 	
 	\par
-	\textbf{Conclusion validity:} The independent variables that were chosen in the city generation might not be the best variables to generate a city viable in games. The implementation might be the problem and not the technique that is explored: Perlin noise. The sample size of 20 answered questionnaires might not be large enough to draw any conclusion as this might be statistically insignificant.
+	\textbf{Conclusion validity:} The independent variables that were chosen in the city generation might not be the best variables to generate a city viable in games. The implementation might be the problem and not the technique that is explored: Perlin noise. The sample size of 27 answered questionnaires might not be large enough to draw any conclusion as this might be statistically insignificant.
 	
 	\par
 	\textbf{Internal validity:} The images of the different cities were created and picked by the hand. These images might be biased. The perspective these images display the city might not be optimal. For example observed from an angle big buildings blocks the view of the road and this might change the results.
@@ -234,10 +242,10 @@ To explore the procedural generation of a city, a desktop application was create
 	\textbf{External validity:} The subjects in the offline user study were all from BTH's facilities. This means that most of the participants may be students with similar background. Many of the students at BTH also have personal experience with creating games of their own. This may cause the results to be different compared to if the study were conducted in another country at another school. The online study was also aimed mainly at individuals from Sweden. Participants in the online study may be acquainted with the authors of this thesis, as the questionnaire was spread on social websites.
 	
 	\subsection{Experiment execution planning}
-	The experiment was executed as follows: In the offline user study, one participant answers the questionnaire at a time. If the participants have any questions a supervisor was close by. The participants are handed the images of the cities along with the questionnaire. Anyone at the BTH's facilities may be asked to participate. The goal is to have 20 questionnaires answered fully. A complementary online questionnaire was also available for participants outside the facilities to answer.
+	The experiment was executed as follows: In the offline user study, one participant answers the questionnaire at a time. If the participants have any questions a supervisor was close by. The participants are handed the images of the cities along with the questionnaire. Anyone at the BTH's facilities may be asked to participate. The goal was to have at least 20 questionnaires answered fully. A complementary online questionnaire was also available for participants outside the facilities to answer.
 		
 	\subsection{Experiment analysis method}
-	The answers from all the answered questionnaires is visualized in several graphs. The images all show a different city generated with a specific set of variables which was mapped to the participant's answers. For example: one city is completely randomly generated. Do the participants notice this or does it look like the generated cities? Is the PCG city with bad parameters perceived as more random than the city with good parameters? The data was analyzed to answer such questions and was then used to draw a conclusion about the generated cities viability in games.
+	The answers from all the answered questionnaires are visualized in several graphs. The images all show a different city generated with a specific set of variables which was mapped to the participant's answers. For example: one city is completely randomly generated. Do the participants notice this or does it look like the generated cities? Is the PCG city with bad parameters perceived as more random than the city with good parameters? The data was analyzed to answer such questions and was then used to draw a conclusion about the generated cities viability in games.
 	
 	\newpage
 	\section{Questionnaire form} \label{ssssec:questionnaire}
