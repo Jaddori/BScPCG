@@ -48,7 +48,7 @@ The results from the user study and the implementation are presented here. In or
 	
 	% how often do you play?
 	\par
-	The participants of the user study is divided into three groups: \textit{avid gamers}, \textit{occasional gamers} and \textit{non-gamers}. By dividing the participants into levels of familiarity with games, a stronger case can be made for the validity of their answers. Figure \ref{fig:pie-chart-often-play} shows that most participants play at least once a week, putting them in the group of \textit{avid gamers}. Not enough participants fell into the group of \textit{occasional} or \textit{non-gamers}. Their results have been discarded, which leaves 25 participants in the \textit{avid gamers} group.
+	The participants of the user study are divided into three groups: \textit{avid gamers}, \textit{occasional gamers} and \textit{non-gamers}. By dividing the participants into levels of familiarity with games, a stronger case can be made for the validity of their answers. Figure \ref{fig:pie-chart-often-play} shows that most participants play at least once a week, putting them in the group of \textit{avid gamers}. Not enough participants fell into the group of \textit{occasional} or \textit{non-gamers}. Their results have been discarded, which leaves 25 participants in the \textit{avid gamers} group.
 	
 	\begin{figure}[h]
 		\centering
@@ -68,7 +68,7 @@ The results from the user study and the implementation are presented here. In or
 	\end{figure}
 	
 	% PCG better than random?
-	Under Viability (\ref{sec:viability}), two requirements are outline. A generated city must differ significantly from a city generated at random. A generated city must also avoid breaking the users immersion. In an effort to determine if our generation process fulfills these requirements, the participants were asked which city looks the most random and which city looks the most repetitive. The results are shown in Figure \ref{fig:pie-chart-random-repetitive}.
+	Under Viability (\ref{sec:viability}), two requirements are outlined. A generated city must differ significantly from a city generated at random. A generated city must also avoid breaking the users immersion. In an effort to determine if our generation process fulfills these requirements, the participants were asked which city looks the most random and which city looks the most repetitive. The results are shown in Figure \ref{fig:pie-chart-random-repetitive}.
 	
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
@@ -88,7 +88,7 @@ The results from the user study and the implementation are presented here. In or
 	\end{figure}
 	
 	% least/most natural
-	Figure \ref{fig:pie-chart-natural-least-natural} shows the participants answers to the question about which city looks the least and most natural. This question was intended to clarify the impact of districts on feel of the city.
+	Figure \ref{fig:pie-chart-natural-least-natural} shows the participants answers to the question about which city looks the least and most natural. This question was intended to clarify the impact of districts on the feel of the city.
 	
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
@@ -108,6 +108,7 @@ The results from the user study and the implementation are presented here. In or
 	\end{figure}
 	
 	% best roads
+	\newpage
 	Another fundamental part of the generation process is the road network. To determine the impact that this stage has on the city, we asked the participants which of the cities had the best road network. Figure \ref{fig:pie-chart-road-network} shows the participants answers to this question.
 	
 	\begin{figure}[h]
@@ -117,7 +118,6 @@ The results from the user study and the implementation are presented here. In or
 		\label{fig:pie-chart-road-network}
 	\end{figure}
 	
-	\newpage
 	% ugliest/prettiest
 	By asking a broad question about the look of the cities and cross referencing the result against their perceived viability in games, a correlation between look and viability can be determined. This is the intention behind asking the participants which of the cities looks the ugliest and which one looks the prettiest. Figure \ref{fig:pie-chart-ugly-pretty} shows the result of these questions.
 	
@@ -142,7 +142,7 @@ The results from the user study and the implementation are presented here. In or
 \newpage
 \section{Data collection \label{section:DataCollection}}
 
-	The following data were collected generating cities using the implementation. The parameters controlling the city were all randomly set during each generation. The cities were generated 100 times for each size respectively. The data shown in the table are all the average number of the 100 samples. The generation time is measured in seconds, the size is measured in cells with a width and a height.
+	The following data was collected generating cities using the implementation. The parameters controlling the city were all randomly set during each generation. The cities were generated 100 times for each size respectively. The data shown in the table are all the average numbers of the 100 samples. The generation time is measured in seconds, the size is measured in cells with a width and a height.
 	The \textit{standard deviation} is calculated using the \textit{generation time} data and is also measured in seconds.
 	
 	\begin{center}
@@ -175,5 +175,6 @@ The results from the user study and the implementation are presented here. In or
 		\textbf{Processor:} & Intel Core i7-5820K CPU @ 3.30GHz \\
 		\textbf{RAM:} & 16,0 GB \\
 		\textbf{Compiler:} & Visual Studio, 32-bit release mode \\
+		\textbf{Threading model:} & Single-threaded \\
 	\end{tabular}
 	

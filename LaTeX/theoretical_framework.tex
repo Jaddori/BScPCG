@@ -8,14 +8,7 @@ Value noise is a type of lattice noise. It uses a value between minus one and on
 Gradient noise differs from value noise by generating gradient vectors at each lattice point, instead of raw values. To calculate the noise value of a point, three steps are taken. First, a vector is calculated from each lattice point to the point.  Then, the dot product between this vector and the gradient vector at the corresponding lattice point is calculated. Finally, the noise value is calculated by interpolating between the dot product results.
 		
 \subsection{Perlin noise}
-Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an \texttt{x} and a \texttt{y} coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4+10t^3\end{math} and is graphed out in Figure \ref{fig:fade}. Throughout our implementation we used two-dimensional Perlin noise.
-		
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.35\linewidth]{"Images/fade"}
-	\caption{Perlin's ease curve called fade.}
-	\label{fig:fade}
-\end{figure}
+Perlin noise is a type of gradient noise. It was developed by Ken Perlin in 1983 and improved in 2002\cite{PerlinNoise}. Perlin noise works in one, two and three dimensions, but for the purpose of this explanation two-dimensional Perlin noise will be used. The algorithm expects two arguments, an \texttt{x} and a \texttt{y} coordinate. These values are normalized so as to reside between two integer lattices, creating a point. A vector from each lattice point to this point is calculated. One of the gradient vectors is chosen at random based on the normalized coordinates. The dot product between this gradient vector and the vector to the point is calculated at each lattice point. The final value is calculated by interpolating between these dot products. Perlin noise interpolates between values using a proprietary ease curve called fade. It has the form \begin{math}6t^5-15t^4+10t^3\end{math}. Throughout our implementation we used two-dimensional Perlin noise.
 	
 \section{Online vs offline}\label{sec:online-offline}
 There are two ways to use PCG algorithms, either offline or online. Online is when the content is generated while the game is being played or in a short loading screen just before the player can start playing. This allows content that is adapted to the individual player and semi-infinite content\cite{PCGGames}. In the game Left 4 Dead\cite{Left4Dead} PCG is used by analyzing the players behavior and altering the experience. This could be considered a mixture of artificial intelligence and online PCG.
@@ -35,4 +28,4 @@ When developing the implementation, the following requirements were set to ensur
 	\item \textbf{Flexibility: } The implementation should be able to generate many different cities with different looks.
 \end{itemize} 
 
-PCG can be either \textit{feasible} or \textit{infeasible}. For the generated content to be considered feasible it must fulfill all the constraints\cite{NoveltySearch}. Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. For a city an example of a constraint would be that there must be a way to travel everywhere in the city, i.e. no part of the city would be blocked by houses or have no roads connected to it.
+PCG can be either \textit{feasible} or \textit{infeasible}. For the generated content to be considered feasible it must fulfill all the constraints\cite{NoveltySearch}. Constraints are game specific but the criteria is that with all constraints fulfilled the game should be playable. An example would be that a player should be able to travel to any location in the city.
