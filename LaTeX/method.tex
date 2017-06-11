@@ -112,27 +112,29 @@ To explore the procedural generation of a city, a desktop application was create
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"Images/main roads code"}
-			\caption{Psuedocode for main road generation.}
+			\caption{pseudocode for main road generation.}
 			\label{fig:main-roads-code}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"Images/small roads code"}
-			\caption{Psuedocode for small road generation.}
+			\caption{pseudocode for small road generation.}
 			\label{fig:small-roads-code}
 		\end{subfigure}
+				\caption{Psuedocode for road generation.}
+				\label{fig:pseudo-code-roads}
 	\end{figure}
 		
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=0.9\linewidth]{"Images/map main roads colored"}
+			\includegraphics[width=0.8\linewidth]{"Images/map main roads colored"}
 			\caption{Main roads.}
 			\label{fig:map-main-roads}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\centering
-			\includegraphics[width=0.9\linewidth]{"Images/map small roads colored"}
+			\includegraphics[width=0.8\linewidth]{"Images/map small roads colored"}
 			\caption{Small roads.}
 			\label{fig:map-small-roads}
 		\end{subfigure}
@@ -143,30 +145,33 @@ To explore the procedural generation of a city, a desktop application was create
 	\subsection{Buildings}
 		The final stage of the generation process it the generation of \textit{buildings}. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a \textit{district}. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the \textit{districts} parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a \textit{building} or leave the cell vacant (see Figure \ref{fig:vacant-code}). If a \textit{building} is placed, the algorithm uses Perlin noise to choose a bottom, middle and top section. It chooses these sections from the list of available sections that belong to the \textit{district}. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one (see Figure \ref{fig:section-code}).
 		
-	\begin{figure}
+	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.95\linewidth]{"Images/vacant code"}
-			\caption{Psuedocode for main road generation.}
+			\caption{pseudocode for building placement in cell.}
 			\label{fig:vacant-code}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.95\linewidth]{"Images/section code"}
-			\caption{Psuedocode for small road generation.}
+			\caption{pseudocode for building generation.}
 			\label{fig:section-code}
 		\end{subfigure}
+			\caption{pseudocode for road generation.}
+			\label{fig:pseudo-code-buildings}
 	\end{figure}
 		
 		The final step of the algorithm determines the height of the \textit{buildings} by multiplying the difference between the maximum height and the minimum height with the result from the Perlin noise and then adding the minimum height. The results of the \textit{buildings} generation is not stored in the map, but in a separate list of building sections that can later be rendered. The placement of vacant tiles is stored in the map. In Figure \ref{fig:map-grass} the city can be seen when all generation stages are done. The numbers 0-2 represent what district the buildings there are from, 8-9 are small and big roads and 7 represents the vacant cells.
 		
-	\begin{figure}
+	\begin{figure}[h]
 		\centering
 		\includegraphics[width=0.45\textwidth]{"Images/map grass colored"}
 		\caption{Numeric visualization of a city after building generation.}
 		\label{fig:map-grass}
 	\end{figure}
 
+\clearpage
 \section{Data collection}
 	Aside from the core functionality of the application, an effort was made to record any significant data about the generation process. The observer pattern was used at the core of this effort. In Elicras there is a DataManager and many DataHolders. Any class whose data is worth collecting, inherits from the DataHolder base class. This results in a centralized way of collecting data that is easy to use and to setup. When Elicras requests the data from the DataManager, it notifies the registered DataHolders to supply their data. The application gathers the following information about the generation process:
 	\begin{itemize}
