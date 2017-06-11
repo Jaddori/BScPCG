@@ -112,17 +112,17 @@ To explore the procedural generation of a city, a desktop application was create
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"Images/main roads code"}
-			\caption{pseudocode for main road generation.}
+			\caption{Pseudocode for main road generation.}
 			\label{fig:main-roads-code}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.9\linewidth]{"Images/small roads code"}
-			\caption{pseudocode for small road generation.}
+			\caption{Pseudocode for small road generation.}
 			\label{fig:small-roads-code}
 		\end{subfigure}
-				\caption{Psuedocode for road generation.}
-				\label{fig:pseudo-code-roads}
+		\caption{Psuedocode for road generation.}
+		\label{fig:pseudo-code-roads}
 	\end{figure}
 		
 	\begin{figure}[h]
@@ -143,22 +143,22 @@ To explore the procedural generation of a city, a desktop application was create
 	\end{figure}
 		
 	\subsection{Buildings}
-		The final stage of the generation process it the generation of \textit{buildings}. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a \textit{district}. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the \textit{districts} parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a \textit{building} or leave the cell vacant (see Figure \ref{fig:vacant-code}). If a \textit{building} is placed, the algorithm uses Perlin noise to choose a bottom, middle and top section. It chooses these sections from the list of available sections that belong to the \textit{district}. Since the result of Perlin noise is a value between zero and one, it is easy to multiply this result with the number of available sections in order to choose one (see Figure \ref{fig:section-code}).
+		The final stage of the generation process it the generation of \textit{buildings}. At this point the map contains values that indicate whether a cell is a road or a vacant slot belonging to a \textit{district}. This stage goes through the whole map, skipping over any roads. For each cell that the algorithm visits, three of the \textit{districts} parameters are considered: minimum height, maximum height and density. The algorithm retrieves a Perlin noise value for the cell and compares it against the density threshold to determine whether to place a \textit{building} or leave the cell vacant (see Figure \ref{fig:vacant-code}). If a \textit{building} is placed, the algorithm uses Perlin noise to choose a bottom, middle and top section. It chooses these sections from the list of available sections that belong to the \textit{district}. Perlin noise returns a value between zero and one, this is multiplied by the number of sections (see Figure \ref{fig:section-code}).
 		
 	\begin{figure}[h]
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.95\linewidth]{"Images/vacant code"}
-			\caption{pseudocode for building placement in cell.}
+			\caption{Pseudocode for building placement.}
 			\label{fig:vacant-code}
 		\end{subfigure}
 		\begin{subfigure}{0.5\textwidth}
 			\centering
 			\includegraphics[width=0.95\linewidth]{"Images/section code"}
-			\caption{pseudocode for building generation.}
+			\caption{Pseudocode for section selection.}
 			\label{fig:section-code}
 		\end{subfigure}
-			\caption{pseudocode for building placement and generation.}
+			\caption{Pseudocode for building generation.}
 			\label{fig:pseudo-code-buildings}
 	\end{figure}
 		
